@@ -1,102 +1,117 @@
-# # LlanquihueTour
+![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-## Descripción
+# 🧠 Actividad Sumativa 1: Realizando validación, excepciones y relaciones entre clases – Desarrollo Orientado a Objetos I
 
-LlanquihueTour es una aplicación desarrollada en Java. El objetivo del proyecto es modelar la gestión de actividades turísticas en la provincia de Llanquihue, permitiendo representar operadores locales, turistas, eventos y direcciones mediante clases relacionadas entre sí.
+## 👤 Autor del proyecto
 
-Durante el desarrollo se aplicaron conceptos fundamentales de POO como encapsulamiento, herencia, composición, constructores, getters, setters y sobrescritura del método `toString()`.
-
----
-
-## Estructura de paquetes y clases
-### Paquete `model`
-
-#### Usuario
-Clase base del sistema que almacena información común de los usuarios:
-
-Atributos principales:
-* Nombre
-* Correo electrónico
-
-#### OperadorLocal
-Clase que hereda de `Usuario` y representa a los operadores turísticos.
-
-Atributos principales:
-* Tipo de servicio
-* Comuna
-* Evento asociado
-
-#### Turista
-Clase que hereda de `Usuario` y representa a los asistentes de las actividades turísticas.
-
-Atributos principales:
-* Edad
-* Género
-* Evento asociado
-
-#### Evento
-Representa una actividad turística.
-
-Atributos principales:
-* Nombre del evento
-* Cantidad de participantes
-* Dirección asociada
-
-#### Direccion
-Representa la ubicación física de un evento.
-
-Atributos principales:
-* Calle
-* Tipo de inmueble
-* Número
+* **Nombre completo:** Luis Emilio Díaz Caroca
+* **Sección:** 004A
+* **Carrera:** Analista Programador Computacional
+* **Sede:** Online
 
 ---
 
-### Paquete `app`
-#### Main
-Clase principal encargada de crear las instancias del sistema.
+## 📘 Descripción general del sistema
+
+Este proyecto corresponde a la Actividad Sumativa 1: Realizando validación, excepciones y relaciones entre clases - **Desarrollo Orientado a Objetos I**.
+
+La solución desarrollada consiste en un sistema orientado a objetos para la gestión de actividades turísticas en la provincia de Llanquihue. El sistema permite representar operadores turísticos, turistas, eventos y direcciones, aplicando conceptos fundamentales de Programación Orientada a Objetos tales como encapsulamiento, herencia, composición, constructores, getters, setters y reutilización de código.
+
+La aplicación fue implementada en Java y ejecutada mediante consola, permitiendo visualizar la información de los distintos participantes y eventos registrados en el sistema.
 
 ---
 
-## Relación entre clases del proyecto y otros conceptos.
+## 🧱 Estructura general del proyecto
 
-### Herencia
-Las clases `OperadorLocal` y `Turista` heredan de la clase `Usuario`, reutilizando atributos comunes.
+```plaintext
+📁 src/
+├── app/
+│   └── Main.java
+│
+└── model/
+    ├── Usuario.java
+    ├── OperadorLocal.java
+    ├── Turista.java
+    ├── Evento.java
+    └── Direccion.java
+```
 
-### Composición
-La clase `Evento` contiene un objeto de tipo `Direccion`, mientras que las clases `OperadorLocal` y `Turista` contienen un objeto de tipo `Evento`.
+### Descripción de clases
+
+**Usuario**
+
+* Clase base del sistema.
+* Contiene atributos comunes como nombre y correo electrónico.
+
+**OperadorLocal**
+
+* Hereda de Usuario.
+* Representa a los operadores turísticos.
+* Contiene información sobre comuna, tipo de servicio y evento asignado.
+
+**Turista**
+
+* Hereda de Usuario.
+* Representa a los asistentes de actividades turísticas.
+* Contiene información de edad, género y evento inscrito.
+
+**Evento**
+
+* Representa una actividad turística.
+* Contiene nombre, dirección y cantidad de participantes.
+
+**Direccion**
+
+* Representa la ubicación física de un evento.
+* Contiene calle, tipo de inmueble y número.
+
+---
+
+## 🧩 Conceptos de Programación Orientada a Objetos aplicados
 
 ### Encapsulamiento
-Todos los atributos fueron declarados como `privados` y se accede a ellos mediante métodos `getters` y `setters`.
+
+Todos los atributos fueron declarados como privados y se accede a ellos mediante getters y setters.
+
+### Herencia
+
+Las clases OperadorLocal y Turista heredan de la clase Usuario.
+
+### Composición
+
+La clase Evento contiene un objeto de tipo Direccion.
+Las clases OperadorLocal y Turista contienen un objeto de tipo Evento.
 
 ### Validaciones
-Se implementaron validaciones en atributos numéricos para `evitar el ingreso de valores negativos`.
+
+Se implementaron validaciones en atributos numéricos para evitar el ingreso de valores negativos.
 
 ---
 
-## Instrucciones para compilar y ejecutar
+## ⚙️ Instrucciones para ejecutar el proyecto
 
-### Requisitos
+1. Clonar el repositorio desde GitHub:
 
-* Java JDK 23 o superior.
-* IntelliJ IDEA (recomendado), Apache Netbeans o VSC.
+```bash
+git clone https://github.com/lediazc/LlanquihueTour.git
+```
 
-## Compilación
+2. Abrir el proyecto en IntelliJ IDEA.
 
-1. Abrir el proyecto en IntelliJ IDEA.
-2. Esperar a que IntelliJ cargue y compile el proyecto automáticamente.
-3. Verificar que no existan errores de compilación.
+3. Ejecutar la clase:
 
-## Instrucciones para ejecutar
+```plaintext
+src/app/Main.java
+```
 
-1. Abrir el proyecto en IntelliJ IDEA.
-2. Abrir la clase `Main.java` ubicada en el paquete `app`.
-3. Ejecutar el método `main()` presionando el botón Run (Barra de herramientas de la aplicación).
 4. Revisar la salida generada en la consola.
+
 ---
 
-## Autor
+**Repositorio GitHub:** https://github.com/lediazc/LlanquihueTour
 
-_Luis Díaz C._
+**Fecha de entrega:** 08/06/2026
 
-Proyecto desarrollado para la asignatura de Programación Orientada a Objetos I.
+---
+
+© Duoc UC | Escuela de Informática y Telecomunicaciones | Evaluación Final Transversal EFT
