@@ -25,7 +25,7 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 
 ```plaintext
 📁 src/
-├── app/
+├── ui/
 │   └── Main.java
 │
 └── model/
@@ -101,7 +101,7 @@ git clone https://github.com/lediazc/LlanquihueTour.git
 3. Ejecutar la clase:
 
 ```plaintext
-src/app/Main.java
+src/ui/Main.java
 ```
 
 4. Revisar la salida generada en la consola.
