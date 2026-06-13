@@ -9,8 +9,8 @@ public class OperadorLocal extends Usuario{
     public OperadorLocal(String nombre, String correoElectronico, String tipoServicio, String comuna, Evento evento){
 
         super(nombre, correoElectronico);
-        this.tipoServicio = tipoServicio;
-        this.comuna = comuna;
+        setTipoServicio(tipoServicio);
+        setComuna(comuna);
         this.evento = evento;
     }
 
@@ -62,8 +62,15 @@ public class OperadorLocal extends Usuario{
      * @param tipoServicio Nombre del servicio.
      */
     public void setTipoServicio(String tipoServicio) {
+        if(tipoServicio== null || tipoServicio.trim().isEmpty()){
 
-        this.tipoServicio = tipoServicio;
+            this.tipoServicio = "No se proporcionó Tipo de servicio";
+
+        } else{
+
+            this.tipoServicio = tipoServicio;
+
+        }
     }
 
     /**
@@ -72,8 +79,15 @@ public class OperadorLocal extends Usuario{
      * @param comuna Nombre de la comuna del servicio.
      */
     public void setComuna(String comuna) {
+        if(comuna== null || comuna.trim().isEmpty()){
 
-        this.comuna = comuna;
+            this.comuna = "No se proporcionó comuna";
+
+        } else{
+
+            this.comuna = comuna;
+
+        }
     }
 
     /**

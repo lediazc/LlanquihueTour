@@ -15,9 +15,9 @@ public class Direccion {
      * @param numeroHogar Número de la edificación.
      */
     public Direccion(String calle, String edificacion, int numeroHogar ) {
-        this.calle = calle;
-        this.edificacion = edificacion;
-        this.numeroHogar = numeroHogar;
+        setCalle(calle);
+        setEdificacion(edificacion);
+        setNumeroHogar(numeroHogar);
     }
 
     /**
@@ -68,8 +68,15 @@ public class Direccion {
      * @param calle Nombre de la calle a registrar.
      */
     public void setCalle(String calle) {
+        if(calle== null || calle.trim().isEmpty()){
 
-        this.calle = calle;
+            this.calle = "No se proporcionó nombre de la calle";
+
+        } else{
+
+            this.calle = calle;
+
+        }
     }
 
     /**
@@ -78,8 +85,15 @@ public class Direccion {
      * @param edificacion Nombre del edificio a registrar.
      */
     public void setEdificacion(String edificacion) {
+        if(edificacion== null || edificacion.trim().isEmpty()){
 
-        this.edificacion = edificacion;
+            this.edificacion = "No se proporcionó nombre del edificio";
+
+        } else{
+
+            this.edificacion = edificacion;
+
+        }
     }
 
     /**
@@ -89,7 +103,7 @@ public class Direccion {
      */
     public void setNumeroHogar(int numeroHogar) {
 
-        this.numeroHogar = numeroHogar;
+        this.numeroHogar = Math.abs(numeroHogar);
     }
 
     //Metodo toString de formateo -------------------------------------

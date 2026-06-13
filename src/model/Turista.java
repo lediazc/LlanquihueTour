@@ -10,7 +10,7 @@ public class Turista extends Usuario {
 
         super(nombre, correoElectronico);
         setEdad(edad);
-        this.genero = genero;
+        setGenero(genero);
         this.evento = evento;
 
     }
@@ -78,8 +78,11 @@ public class Turista extends Usuario {
      * @param genero Género(sexo) del turista.
      */
     public void setGenero(String genero) {
-
-        this.genero = genero;
+        if(genero== null || genero.trim().isEmpty()){
+            this.genero = "No se proporcionó ningún genero";
+        } else {
+            this.genero = genero;
+        }
     }
 
     /**

@@ -19,8 +19,8 @@ public class Usuario {
      */
     public Usuario(String nombre, String correoElectronico){
 
-        this.nombre = nombre;
-        this.correoElectronico = correoElectronico;
+        setNombre(nombre);
+        setCorreoElectronico(correoElectronico);
 
     }
 
@@ -63,8 +63,11 @@ public class Usuario {
      * @param nombre Nombre del usuario.
      */
     public void setNombre(String nombre) {
-
-        this.nombre = nombre;
+        if(nombre == null || nombre.trim().isEmpty()){
+            this.nombre = "No se proporcionó ningún nombre";
+        } else {
+            this.nombre = nombre;
+        }
     }
 
 
@@ -74,8 +77,11 @@ public class Usuario {
      * @param correoElectronico Dato de contacto electrónico del usuario.
      */
     public void setCorreoElectronico(String correoElectronico) {
-
-        this.correoElectronico = correoElectronico;
+        if(correoElectronico== null || correoElectronico.trim().isEmpty()){
+            this.correoElectronico = "No se proporcionó ningún correo de contacto";
+        } else {
+            this.correoElectronico = correoElectronico;
+        }
     }
 
 }

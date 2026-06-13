@@ -8,7 +8,7 @@ public class Evento {
 
     public Evento(String nombreEvento, int cantidadParticipantes, Direccion direccion){
 
-        this.nombreEvento = nombreEvento;
+        setNombreEvento(nombreEvento);
         this.direccion = direccion;
         setCantidadParticipantes(cantidadParticipantes);
 
@@ -61,8 +61,15 @@ public class Evento {
      * @param nombreEvento Nombre del evento.
      */
     public void setNombreEvento(String nombreEvento) {
+        if(nombreEvento== null || nombreEvento.trim().isEmpty()){
 
-        this.nombreEvento = nombreEvento;
+            this.nombreEvento = "No se proporcionó nombre del evento";
+
+        } else{
+
+            this.nombreEvento = nombreEvento;
+
+        }
     }
 
     /**
