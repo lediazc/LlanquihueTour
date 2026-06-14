@@ -1,38 +1,41 @@
 package ui;
-
+import data.CreateNewFile;
 import model.Direccion;
 import model.Evento;
 import model.OperadorLocal;
 import model.Turista;
 
-
 public class Main {
     public static void main(String[] args) {
+
+        CreateNewFile archivo = new CreateNewFile();
+
+
 
         //Relacionado a eventoLosSaltosDelAlerce
         Direccion direccionLosSaltosDelAlerce = new Direccion("Traumen", " ", -1190);
         Evento eventoLosSaltosDelAlerce = new Evento("Los saltos del Alerce", 30 , direccionLosSaltosDelAlerce);
         //Operador a cargo
-        OperadorLocal operadorLocalLosSaltosDelAlerce = new OperadorLocal("Jacobo Benavides","jcobBen@gmail.com", "Guía turístico", "Puerto Montt", eventoLosSaltosDelAlerce);
+        OperadorLocal operadorLocalLosSaltosDelAlerce = new OperadorLocal("Jacobo Benavides","jcobBen@gmail.com", 234567989,"Guía turístico", "Puerto Montt", eventoLosSaltosDelAlerce);
         //Turista
-        Turista turistaLosSaltosDelAlerce = new Turista("Rocío Mena", "ROMENA@gmail.com", 30," ", eventoLosSaltosDelAlerce);
+        Turista turistaLosSaltosDelAlerce = new Turista("Rocío Mena", "ROMENA@gmail.com", 3456789, 30," ", eventoLosSaltosDelAlerce);
 
         //Relacionado a eventoRutaGastronomicaDelLago
         Direccion direccionRutaGastronomicaDelLago = new Direccion("Costanera Vicente Pérez Rosales", "Restaurant", 245);
 
         Evento eventoRutaGastronomicaDelLago = new Evento("Ruta Gastronómica del Lago", 18 , direccionRutaGastronomicaDelLago);
         //Operador a cargo
-        OperadorLocal operadorLocalRutaGastronomicaDelLago = new OperadorLocal("María González","mgonzalez@gmail.com", "Gastronomía", "Puerto Varas", eventoRutaGastronomicaDelLago);
+        OperadorLocal operadorLocalRutaGastronomicaDelLago = new OperadorLocal("María González","mgonzalez@gmail.com", 34569,"Gastronomía", "Puerto Varas", eventoRutaGastronomicaDelLago);
         //Turista
-        Turista turistaRutaGastronomicaDelLago = new Turista("Felipe Soto", "fsoto@gmail.com", 42,"Masculino", eventoRutaGastronomicaDelLago);
+        Turista turistaRutaGastronomicaDelLago = new Turista("Felipe Soto", "fsoto@gmail.com", 3456789 ,42,"Masculino", eventoRutaGastronomicaDelLago);
 
         //Relacionado a eventoNavegacionLagoLlanquihue
         Direccion direccionNavegacionLagoLlanquihue = new Direccion("Avenida Costanera", "Muelle", 88);
         Evento eventoNavegacionLagoLlanquihue = new Evento("Navegación Lago Llanquihue", 25 , direccionNavegacionLagoLlanquihue);
         //Operador a cargo
-        OperadorLocal operadorLocalNavegacionLagoLlanquihue = new OperadorLocal("Carlos Fuentes","cfuentes@gmail.com", "Navegación", "Llanquihue", eventoNavegacionLagoLlanquihue);
+        OperadorLocal operadorLocalNavegacionLagoLlanquihue = new OperadorLocal("Carlos Fuentes","cfuentes@gmail.com", 898798789,"Navegación", "Llanquihue", eventoNavegacionLagoLlanquihue);
         //Turista
-        Turista turistaNavegacionLagoLlanquihue = new Turista("Valentina Rojas", "vrojas@gmail.com", 27,"Femenino", eventoNavegacionLagoLlanquihue);
+        Turista turistaNavegacionLagoLlanquihue = new Turista("Valentina Rojas", "vrojas@gmail.com", 87800809,27,"Femenino", eventoNavegacionLagoLlanquihue);
 
 
         System.out.println(operadorLocalLosSaltosDelAlerce);

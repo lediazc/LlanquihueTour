@@ -6,9 +6,9 @@ public class Turista extends Usuario {
     private String genero;
     private Evento evento;
 
-    public Turista(String nombre, String correoElectronico, int edad, String genero, Evento evento) {
+    public Turista(String nombre, String correoElectronico, int numeroTelefonico, int edad, String genero, Evento evento) {
 
-        super(nombre, correoElectronico);
+        super(nombre, correoElectronico, numeroTelefonico);
         setEdad(edad);
         setGenero(genero);
         this.evento = evento;
@@ -109,6 +109,7 @@ public class Turista extends Usuario {
                 "\n=== INFORMACIÓN DEL TURISTA ===\n" +
                 "Nombre del turista: " + getNombre() + "\n" +
                 "Correo electrónico: " + getCorreoElectronico() + "\n" +
+                "Número de contacto: +569" + getNumeroTelefonico() + "\n"  +
                 "Edad: " + getEdad() + "\n" +
                 "Género: " + getGenero() + "\n" +
                 "⬇ Evento inscrito ⬇ " + getEvento();

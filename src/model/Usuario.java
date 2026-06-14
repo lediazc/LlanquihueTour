@@ -9,6 +9,7 @@ public class Usuario {
 
     private String nombre;
     private String correoElectronico;
+    private int numeroTelefonico;
 
 
     /**
@@ -17,11 +18,11 @@ public class Usuario {
      * @param nombre Nombre del usuario.
      * @param correoElectronico Dato de contacto del usuario.
      */
-    public Usuario(String nombre, String correoElectronico){
+    public Usuario(String nombre, String correoElectronico, int numeroTelefonico){
 
         setNombre(nombre);
         setCorreoElectronico(correoElectronico);
-
+        setNumeroTelefonico(numeroTelefonico);
     }
 
     /**
@@ -56,6 +57,14 @@ public class Usuario {
         return correoElectronico;
     }
 
+
+    public int getNumeroTelefonico() {
+
+        return numeroTelefonico;
+
+    }
+
+
     //Setters ----------------------------
     /**
      * Establece el nombre del usuario.
@@ -71,6 +80,7 @@ public class Usuario {
     }
 
 
+
     /**
      * Establece el correo electrónico del usuario.
      *
@@ -82,6 +92,12 @@ public class Usuario {
         } else {
             this.correoElectronico = correoElectronico;
         }
+    }
+
+    public void setNumeroTelefonico(int numeroTelefonico) {
+
+        this.numeroTelefonico = Math.abs(numeroTelefonico);
+
     }
 
 }

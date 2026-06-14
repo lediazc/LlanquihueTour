@@ -6,9 +6,9 @@ public class OperadorLocal extends Usuario{
     private String comuna; // Pueden ser: Puerto Montt, Puerto Varas,Frutillar, Llanquihue, Calbuco, Maullín, Fresia, Los Muermos y Cochamó
     private Evento evento;
 
-    public OperadorLocal(String nombre, String correoElectronico, String tipoServicio, String comuna, Evento evento){
+    public OperadorLocal(String nombre, String correoElectronico, int numeroTelefonico, String tipoServicio, String comuna, Evento evento){
 
-        super(nombre, correoElectronico);
+        super(nombre, correoElectronico, numeroTelefonico);
         setTipoServicio(tipoServicio);
         setComuna(comuna);
         this.evento = evento;
@@ -113,6 +113,7 @@ public class OperadorLocal extends Usuario{
                 "\n=== INFORMACIÓN DEL OPERADOR LOCAL ===\n" +
                 "Nombre del operador: " + getNombre() + "\n" +
                 "Correo electrónico: " + getCorreoElectronico() + "\n" +
+                "Número de contacto: +569" + getNumeroTelefonico() + "\n"  +
                 "Tipo de servicio ofrecido: " + getTipoServicio() + "\n" +
                 "Comuna de operación: " + getComuna() + "\n" +
                 "⬇ Información del evento asignado ⬇ " + getEvento();
