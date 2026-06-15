@@ -3,11 +3,7 @@ package data;
 import model.Evento;
 import model.Direccion;
 import model.OperadorLocal;
-
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,12 +14,6 @@ public class GestorDatos {
 
     private final Path carpetaResources = Path.of("resources");
     private final Path archivoGestorOperador = Path.of("resources/gestorDatosOperador.txt");
-    //private File FILE = new File("resources/gestorDatos.txt");
-
-    public GestorDatos(){
-
-        
-    }
 
     public void crearArchivoConDatosSemillaSiNoExiste() {
 
@@ -65,7 +55,7 @@ public class GestorDatos {
         }
     }
 
-    public ArrayList<OperadorLocal> leerLibrosDesdeArchivo() {
+    public ArrayList<OperadorLocal> leerOperadoresDesdeArchivo() {
 
         ArrayList<OperadorLocal> operadoresLocales = new ArrayList<>();
 
@@ -81,7 +71,7 @@ public class GestorDatos {
 
                 if (datos.length == 11) {
 
-                    String codigo                = datos[0].trim();
+                    String codigo                = datos[0].trim(); //Se usará para próximos incrementos, si es que debo relacionar datos
                     String nombreOperador        = datos[1].trim();
                     String correoOperador        = datos[2].trim();
                     int telefonoOperador         = Integer.parseInt(datos[3].trim());
@@ -104,16 +94,19 @@ public class GestorDatos {
                 } else {
 
                     System.out.println(
-                            "Linea ignorada por formato corrupto: " + linea
-                    );
 
+                            "Linea ignorada por formato corrupto: " + linea
+
+                    );
                 }
             }
 
         } catch (IOException e) {
 
             System.out.println(
+
                     "Error al leer los operadores Locales: " + e.getMessage()
+
             );
 
         }

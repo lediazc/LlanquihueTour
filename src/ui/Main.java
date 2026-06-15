@@ -1,52 +1,155 @@
 package ui;
-import data.CreateNewFile;
-import model.Direccion;
-import model.Evento;
+import data.GestorDatos;
 import model.OperadorLocal;
-import model.Turista;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
+
+
     public static void main(String[] args) {
 
-        CreateNewFile archivo = new CreateNewFile();
+        Scanner sc = new Scanner(System.in);
+        GestorDatos gestor = new GestorDatos();
 
 
-
-        //Relacionado a eventoLosSaltosDelAlerce
-        Direccion direccionLosSaltosDelAlerce = new Direccion("Traumen", " ", -1190);
-        Evento eventoLosSaltosDelAlerce = new Evento("Los saltos del Alerce", 30 , direccionLosSaltosDelAlerce);
-        //Operador a cargo
-        OperadorLocal operadorLocalLosSaltosDelAlerce = new OperadorLocal("Jacobo Benavides","jcobBen@gmail.com", 234567989,"Guía turístico", "Puerto Montt", eventoLosSaltosDelAlerce);
-        //Turista
-        Turista turistaLosSaltosDelAlerce = new Turista("Rocío Mena", "ROMENA@gmail.com", 3456789, 30," ", eventoLosSaltosDelAlerce);
-
-        //Relacionado a eventoRutaGastronomicaDelLago
-        Direccion direccionRutaGastronomicaDelLago = new Direccion("Costanera Vicente Pérez Rosales", "Restaurant", 245);
-
-        Evento eventoRutaGastronomicaDelLago = new Evento("Ruta Gastronómica del Lago", 18 , direccionRutaGastronomicaDelLago);
-        //Operador a cargo
-        OperadorLocal operadorLocalRutaGastronomicaDelLago = new OperadorLocal("María González","mgonzalez@gmail.com", 34569,"Gastronomía", "Puerto Varas", eventoRutaGastronomicaDelLago);
-        //Turista
-        Turista turistaRutaGastronomicaDelLago = new Turista("Felipe Soto", "fsoto@gmail.com", 3456789 ,42,"Masculino", eventoRutaGastronomicaDelLago);
-
-        //Relacionado a eventoNavegacionLagoLlanquihue
-        Direccion direccionNavegacionLagoLlanquihue = new Direccion("Avenida Costanera", "Muelle", 88);
-        Evento eventoNavegacionLagoLlanquihue = new Evento("Navegación Lago Llanquihue", 25 , direccionNavegacionLagoLlanquihue);
-        //Operador a cargo
-        OperadorLocal operadorLocalNavegacionLagoLlanquihue = new OperadorLocal("Carlos Fuentes","cfuentes@gmail.com", 898798789,"Navegación", "Llanquihue", eventoNavegacionLagoLlanquihue);
-        //Turista
-        Turista turistaNavegacionLagoLlanquihue = new Turista("Valentina Rojas", "vrojas@gmail.com", 87800809,27,"Femenino", eventoNavegacionLagoLlanquihue);
+        ArrayList<OperadorLocal> gestorOperadores = gestor.leerOperadoresDesdeArchivo();
 
 
-        System.out.println(operadorLocalLosSaltosDelAlerce);
-        System.out.println(turistaLosSaltosDelAlerce);
-        System.out.println();
-        System.out.println("----------------------------");
-        System.out.println(operadorLocalRutaGastronomicaDelLago);
-        System.out.println(turistaRutaGastronomicaDelLago);
-        System.out.println();
-        /*System.out.println("----------------------------");
-        System.out.println(operadorLocalNavegacionLagoLlanquihue);
-        System.out.println(turistaNavegacionLagoLlanquihue);*/
+        System.out.println("Bienvenido al Gestor de Personal de Llanquihue Tour");
+        System.out.println("Por favor, seleccione una de las siguientes opciones: "       + "\n" +
+                           "1) Mostrarme todos los registros del personal."                + "\n" +
+                           "2) Mostrarme sólo los resultados, en base a datos filtrados."  + "\n" +
+                           "3) Salir."
+                );
+        System.out.print("Elección deseada: ");
+
+        int eleccionUsuario = sc.nextInt();
+
+        switch (eleccionUsuario){
+            case 1:
+                mostrarTodosLosOperadores(gestorOperadores);
+                break;
+            case 2:
+                subMenuFiltros(gestorOperadores);
+                break;
+
+            case 3:
+                System.out.println("Hasta luego.");
+                break;
+
+            default:
+                System.out.println("¡Ups! ¡Esa opción no existe!");
+        }
+
+        sc.close();
+    }
+
+    public static void mostrarTodosLosOperadores(ArrayList<OperadorLocal> operadores) {
+
+        if (operadores.isEmpty()) {
+            System.out.println("No hay registros actuales");
+        } else {
+            System.out.println("↓↓↓ Listado de operadores registrados ↓↓↓");
+
+            for (OperadorLocal operador : operadores) {
+                System.out.println(operador);
+            }
+        }
+    }
+
+    public static void subMenuFiltros(ArrayList<OperadorLocal> operadores) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("¡Excelente! cuéntanos qué buscas:"               + "\n" +
+                "1) Operador a cargo de eventos grandes (≥ 15 asistentes)"   + "\n" +
+                "2) Operador a cargo de eventos pequeños (< 15 asistentes)"  + "\n" +
+                "3) Buscar datos por nombre de Operador"                     + "\n" +
+                "4) Salir."
+        );
+        System.out.print("Elección deseada: ");
+
+
+        int eleccionUsuario = sc.nextInt();
+
+
+        sc.nextLine();
+
+        switch (eleccionUsuario){
+            case 1:
+                mostrarOperadoresEventosGrandes(operadores);
+                break;
+
+            case 2:
+                mostrarOperadoresEventosPequenos(operadores);
+                break;
+
+            case 3:
+
+                buscarOperadoresPorFiltrado(operadores);
+                break;
+
+            case 4:
+                System.out.println("Hasta luego.");
+                break;
+
+            default:
+                System.out.println("¡Ups! ¡Esa opción no existe!");
+        }
+    }
+
+    public static void mostrarOperadoresEventosGrandes(ArrayList<OperadorLocal> operadores) {
+
+        for (OperadorLocal operador : operadores) {
+
+            if (operador.getEvento().getCantidadParticipantes() >= 15) {
+
+                System.out.println(operador);
+
+            }
+        }
+    }
+
+    public static void mostrarOperadoresEventosPequenos(ArrayList<OperadorLocal> operadores) {
+
+        for (OperadorLocal operador : operadores) {
+
+            if (operador.getEvento().getCantidadParticipantes() < 15) {
+
+                System.out.println(operador);
+
+            }
+        }
+    }
+
+    public static void buscarOperadoresPorFiltrado(ArrayList<OperadorLocal> operadores) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nombre del operador: ");
+        String nombreOperador = sc.nextLine().trim().toLowerCase();
+
+        boolean encontrado = false;
+
+        if(nombreOperador.isEmpty()){
+            System.out.println("No escribiste ningún dato de operador");
+            System.out.println("Hasta luego.");
+        } else{
+            for (OperadorLocal operador : operadores) {
+
+                if (operador.getNombre().toLowerCase().contains(nombreOperador)) {
+                    System.out.println(operador);
+                    encontrado = true;
+
+                }
+            }
+
+
+            if (!encontrado) {
+                System.out.println("No se encontraron operadores con ese nombre.");
+            }
+
+        }
+
     }
 }
