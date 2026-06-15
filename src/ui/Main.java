@@ -12,9 +12,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         GestorDatos gestor = new GestorDatos();
 
-
         ArrayList<OperadorLocal> gestorOperadores = gestor.leerOperadoresDesdeArchivo();
-
 
         System.out.println("Bienvenido al Gestor de Personal de Llanquihue Tour");
         System.out.println("Por favor, seleccione una de las siguientes opciones: "       + "\n" +
@@ -45,6 +43,11 @@ public class Main {
         sc.close();
     }
 
+    /**
+     * Muestra todos los operadores registrados.
+     *
+     * @param operadores Lista de operadores a mostrar.
+     */
     public static void mostrarTodosLosOperadores(ArrayList<OperadorLocal> operadores) {
 
         if (operadores.isEmpty()) {
@@ -57,6 +60,13 @@ public class Main {
             }
         }
     }
+
+    /**
+     * Muestra el submenú de filtros disponibles para la búsqueda de operadores locales y ejecuta la opción seleccionada por el usuario.
+     *  Se activa una vez seleccionada la opción 2 en el menú global del aplicativo
+     *
+     * @param operadores Lista de operadores sobre la cual se realizarán los filtros y búsquedas.
+     */
 
     public static void subMenuFiltros(ArrayList<OperadorLocal> operadores) {
 
@@ -99,6 +109,11 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra los operadores asociados a eventos con 15 o más asistentes.
+     *
+     * @param operadores Lista de operadores a revisar.
+     */
     public static void mostrarOperadoresEventosGrandes(ArrayList<OperadorLocal> operadores) {
 
         for (OperadorLocal operador : operadores) {
@@ -111,6 +126,11 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra los operadores asociados a eventos con menos de 15 asistentes.
+     *
+     * @param operadores Lista de operadores a revisar.
+     */
     public static void mostrarOperadoresEventosPequenos(ArrayList<OperadorLocal> operadores) {
 
         for (OperadorLocal operador : operadores) {
@@ -123,6 +143,11 @@ public class Main {
         }
     }
 
+    /**
+     * Busca operadores por nombre.
+     *
+     * @param operadores Lista de operadores disponibles.
+     */
     public static void buscarOperadoresPorFiltrado(ArrayList<OperadorLocal> operadores) {
 
         Scanner sc = new Scanner(System.in);
@@ -143,7 +168,6 @@ public class Main {
 
                 }
             }
-
 
             if (!encontrado) {
                 System.out.println("No se encontraron operadores con ese nombre.");
