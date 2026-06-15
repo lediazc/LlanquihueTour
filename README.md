@@ -1,8 +1,8 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# 🧠 Actividad Sumativa 1: Realizando validación, excepciones y relaciones entre clases – Desarrollo Orientado a Objetos I
+# Actividad Sumativa 1: Realizando validación, excepciones y relaciones entre clases – Desarrollo Orientado a Objetos I
 
-## 👤 Autor del proyecto
+## Autor del proyecto
 
 * **Nombre completo:** Luis Emilio Díaz Caroca
 * **Sección:** 004A
@@ -11,7 +11,7 @@
 
 ---
 
-## 📘 Descripción general del sistema
+## Descripción general del sistema
 
 Este proyecto corresponde a la Actividad Sumativa 1: Realizando validación, excepciones y relaciones entre clases - **Desarrollo Orientado a Objetos I**.
 
@@ -21,20 +21,48 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 
 ---
 
-## 🧱 Estructura general del proyecto
+## Estructura general del proyecto
 
 ```plaintext
 📁 src/
+├── data/
+|   └── GestorDatos.java
 ├── ui/
-│   └── Main.java
-│
+|   └── Main.java
 └── model/
     ├── Usuario.java
     ├── OperadorLocal.java
     ├── Turista.java
     ├── Evento.java
     └── Direccion.java
+
+📁 resources/ 
+    └── gestorDatosOperador.txt
 ```
+### Descripción de clases
+El sistema utiliza un archivo de texto plano (.txt) llamado:
+
+"gestorDatosOperador"
+
+Cada línea representa un operador local y contiene información separada por punto y coma (;).
+
+Ejemplo:
+
+1;Jacobo Benavides;jcob@gmail.com;234567989;Guía turístico;Puerto Montt;Tour Volcán Osorno;25;Los Alerces;Oficina;123
+
+Cuando se ejecuta el método main, el sistema:
+
+1- Lee el archivo línea por línea.
+
+2- Separa los datos utilizando ".split(";")"
+
+3- Crea objetos Direccion.
+
+4- Crea objetos Evento.
+
+5- Crea objetos OperadorLocal.
+
+6- Almacena los objetos en un ArrayList.
 
 ### Descripción de clases
 
@@ -66,8 +94,16 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 * Contiene calle, tipo de inmueble y número.
 
 ---
+##  Funcionalidades implementadas
+Essta semana (15/06/2026) se implementaron las siguientes funcionalidades:
 
-## 🧩 Conceptos de Programación Orientada a Objetos aplicados
+- Mostrar operadores registrados
+- Permite recorrer toda la colección y visualizar cada operador junto a la información de su evento asociado.
+- Filtrar operadores por cantidad de asistentes(Por eventos grandes o pequeños y por nombre específico)
+
+---
+
+##  Conceptos de Programación Orientada a Objetos aplicados
 
 ### Encapsulamiento
 
@@ -88,7 +124,7 @@ Se implementaron validaciones en atributos numéricos para evitar el ingreso de 
 
 ---
 
-## ⚙️ Instrucciones para ejecutar el proyecto
+##  Instrucciones para ejecutar el proyecto
 
 1. Clonar el repositorio desde GitHub:
 
