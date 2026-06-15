@@ -95,7 +95,7 @@ Cuando se ejecuta el método main, el sistema:
 
 ---
 ##  Funcionalidades implementadas
-Essta semana (15/06/2026) se implementaron las siguientes funcionalidades:
+Esta semana (15/06/2026) se implementaron las siguientes funcionalidades:
 
 - Mostrar operadores registrados
 - Permite recorrer toda la colección y visualizar cada operador junto a la información de su evento asociado.
@@ -146,7 +146,7 @@ src/ui/Main.java
 
 **Repositorio GitHub:** https://github.com/lediazc/LlanquihueTour
 
-**Fecha de entrega:** 08/06/2026
+**Fecha de entrega:** 15/06/2026
 
 ---
 
