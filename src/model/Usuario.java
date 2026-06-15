@@ -32,6 +32,7 @@ public class Usuario {
 
         this.nombre = "Sin nombre registrado";
         this.correoElectronico = "Sin correo electrónico registrado";
+        this.numeroTelefonico = 0;
 
     }
 
@@ -57,7 +58,11 @@ public class Usuario {
         return correoElectronico;
     }
 
-
+    /**
+     * Obtiene el número telefónico del usuario.
+     *
+     * @return número registrado.
+     */
     public int getNumeroTelefonico() {
 
         return numeroTelefonico;
@@ -79,8 +84,6 @@ public class Usuario {
         }
     }
 
-
-
     /**
      * Establece el correo electrónico del usuario.
      *
@@ -94,6 +97,11 @@ public class Usuario {
         }
     }
 
+    /**
+     * Establece el número telefónico del usuario.
+     *
+     * @param numeroTelefonico Dato de número telefónico del usuario.
+     */
     public void setNumeroTelefonico(int numeroTelefonico) {
 
         this.numeroTelefonico = Math.abs(numeroTelefonico);

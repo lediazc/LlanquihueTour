@@ -39,7 +39,7 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 📁 resources/ 
     └── gestorDatosOperador.txt
 ```
-### Descripción de clases
+### Descripción del documento utilizado
 El sistema utiliza un archivo de texto plano (.txt) llamado:
 
 "gestorDatosOperador"
