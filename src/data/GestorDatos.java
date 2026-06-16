@@ -27,12 +27,12 @@ public class GestorDatos {
             if (!Files.exists(archivoGestorOperador)) {
 
                 List<String> datosSemilla = List.of(
-                        "1;Jacobo Benavides;jcob@gmail.com;234567989;Guía turístico;Puerto Montt;Tour Volcán Osorno;25;Los Alerces;Oficina;123",
-                        "2;María González;maria.gonzalez@gmail.com;987654321;Kayak;Puerto Varas;Travesía Lago Llanquihue;15;Imperial;Casa;456",
-                        "3;Pedro Muñoz;pedro.munoz@gmail.com;912345678;Cabalgatas;Frutillar;Ruta Ecuestre Frutillar;12;Los Castaños;Parcela;78",
-                        "4;Camila Soto;camila.soto@gmail.com;976543210;Gastronomía;Calbuco;Festival de Sabores del Mar;80;Costanera;Restaurant;210",
-                        "5;Rodrigo Pérez;rodrigo.perez@gmail.com;998877665;Trekking;Cochamó;Expedición Valle Cochamó;20;Río Puelo;Refugio;15",
-                        "6;Valentina Rojas;valentina.rojas@gmail.com;955443322;Navegación;Maullín;Navegación Humedales de Maullín;30;O'Higgins;Oficina;332"
+                        "1;jacobo benavides;jcob@gmail.com;234567989;guía turístico;puerto montt;tour volcán osorno;25;los alerces;oficina;123",
+                        "2;maría gonzález;maria.gonzalez@gmail.com;987654321;kayak;puerto varas;travesía lago llanquihue;15;imperial;casa;456",
+                        "3;pedro muñoz;pedro.munoz@gmail.com;912345678;cabalgatas;frutillar;ruta ecuestre frutillar;12;los castaños;parcela;78",
+                        "4;camila soto;camila.soto@gmail.com;976543210;gastronomía;calbuco;festival de sabores del mar;80;costanera;restaurant;210",
+                        "5;rodrigo pérez;rodrigo.perez@gmail.com;998877665;trekking;cochamó;expedición valle cochamó;20;río puelo;refugio;15",
+                        "6;valentina rojas;valentina.rojas@gmail.com;955443322;navegación;maullín;navegación humedales de maullín;30;o'higgins;oficina;332"
                 );
 
                 Files.write(archivoGestorOperador, datosSemilla);
