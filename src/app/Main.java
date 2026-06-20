@@ -1,5 +1,5 @@
-package ui;
-import data.GestorDatos;
+package app;
+import service.GestorDatos;
 import model.OperadorLocal;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,7 +19,7 @@ public class Main {
         ArrayList<OperadorLocal> gestorOperadores = gestor.leerOperadoresDesdeArchivo();
 
         System.out.println("Bienvenido al Gestor de Personal de Llanquihue Tour");
-        System.out.println("Por favor, seleccione una de las siguientes opciones: "       + "\n" +
+        System.out.println("Por favor, seleccione una de las siguientes opciones: "        + "\n" +
                            "1) Mostrarme todos los registros del personal."                + "\n" +
                            "2) Mostrarme sólo los resultados, en base a datos filtrados."  + "\n" +
                            "3) Salir."

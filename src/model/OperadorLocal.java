@@ -5,13 +5,16 @@ public class OperadorLocal extends Usuario{
     private String tipoServicio; // Pueden ser: Navegación, Kayak, Cabalgatas, Trekking, Gastronomía, etc.
     private String comuna; // Pueden ser: Puerto Montt, Puerto Varas,Frutillar, Llanquihue, Calbuco, Maullín, Fresia, Los Muermos y Cochamó
     private Evento evento;
+    private boolean vigente;
 
-    public OperadorLocal(String nombre, String correoElectronico, int numeroTelefonico, String tipoServicio, String comuna, Evento evento){
+    public OperadorLocal(String nombre, String correoElectronico, int numeroTelefonico, String tipoServicio, String comuna, Evento evento, boolean vigente){
 
         super(nombre, correoElectronico, numeroTelefonico);
         setTipoServicio(tipoServicio);
         setComuna(comuna);
         this.evento = evento;
+        this.vigente = vigente;
+
     }
 
     public OperadorLocal(){
@@ -52,6 +55,16 @@ public class OperadorLocal extends Usuario{
     public Evento getEvento() {
 
         return evento;
+    }
+
+    /**
+     * Obtiene el estado actual del operador local.
+     *
+     * @return El estado de la variable booleana activo.
+     */
+     public boolean getVigencia() {
+
+        return vigente;
     }
 
 
@@ -100,6 +113,16 @@ public class OperadorLocal extends Usuario{
         this.evento = evento;
     }
 
+    /**
+     * Establece el estado de vigencia del operador Local.
+     *
+     * @param vigente Nombre del evento del operador local.
+     */
+    public void setVigencia(boolean  vigente) {
+
+        this.vigente = vigente;
+    }
+
     //Metodo toString de formateo -------------------------------------
     /**
      * Devuelve el usuario formateado.
@@ -112,6 +135,7 @@ public class OperadorLocal extends Usuario{
         return
                 "\n=== INFORMACIÓN DEL OPERADOR LOCAL ===\n" +
                 "Nombre del operador: " + getNombre() + "\n" +
+                "¿Operador presenta servicios vigentes?:" + getVigencia() + "\n" +
                 "Correo electrónico: " + getCorreoElectronico() + "\n" +
                 "Número de contacto: +569" + getNumeroTelefonico() + "\n"  +
                 "Tipo de servicio ofrecido: " + getTipoServicio() + "\n" +

@@ -1,6 +1,6 @@
-1;jacobo benavides;jcob@gmail.com;234567989;guía turístico;puerto montt;tour volcán osorno;25;los alerces;oficina;123
-2;maría gonzález;maria.gonzalez@gmail.com;987654321;kayak;puerto varas;travesía lago llanquihue;15;imperial;casa;456
-3;pedro muñoz;pedro.munoz@gmail.com;912345678;cabalgatas;frutillar;ruta ecuestre frutillar;12;los castaños;parcela;78
-4;camila soto;camila.soto@gmail.com;976543210;gastronomía;calbuco;festival de sabores del mar;80;costanera;restaurant;210
-5;rodrigo pérez;rodrigo.perez@gmail.com;998877665;trekking;cochamó;expedición valle cochamó;20;río puelo;refugio;15
-6;valentina rojas;valentina.rojas@gmail.com;955443322;navegación;maullín;navegación humedales de maullín;30;o'higgins;oficina;332
+1;jacobo benavides;true;jcob@gmail.com;234567989;guía turístico;puerto montt;tour volcán osorno;25;los alerces;oficina;123
+2;maría gonzález;true;maria.gonzalez@gmail.com;987654321;kayak;puerto varas;travesía lago llanquihue;15;imperial;casa;456
+3;pedro muñoz;true;pedro.munoz@gmail.com;912345678;cabalgatas;frutillar;ruta ecuestre frutillar;12;los castaños;parcela;78
+4;camila soto;false;camila.soto@gmail.com;976543210;gastronomía;calbuco;festival de sabores del mar;80;costanera;restaurant;210
+5;rodrigo pérez;false;rodrigo.perez@gmail.com;998877665;trekking;cochamó;expedición valle cochamó;20;río puelo;refugio;15
+6;valentina rojas;true;valentina.rojas@gmail.com;955443322;navegación;maullín;navegación humedales de maullín;30;o'higgins;oficina;332
