@@ -61,7 +61,7 @@ public class OperadorLocal extends Usuario{
     /**
      * Obtiene el estado actual del operador local.
      *
-     * @return El estado de la variable booleana activo.
+     * @return El estado de la variable formateada en mensaje amigable al usuario.
      */
      public String getVigencia() {
         if(vigente){
@@ -69,6 +69,15 @@ public class OperadorLocal extends Usuario{
         } else {
             return "No vigente";
         }
+    }
+
+    /**
+     * Obtiene el estado actual del operador local.
+     *
+     * @return El estado de la variable booleana vigencia.
+     */
+    public boolean isVigente() {
+        return vigente;
     }
 
 

@@ -22,7 +22,9 @@ public class ConsultaOperadorLocal {
                 "1) Operador a cargo de eventos grandes (≥ 15 asistentes)"   + "\n" +
                 "2) Operador a cargo de eventos pequeños (< 15 asistentes)"  + "\n" +
                 "3) Buscar datos por nombre de Operador"                     + "\n" +
-                "4) Salir."
+                "4) Mostrar operadores vigentes"                             + "\n" +
+                "5) Mostrar operadores no vigentes"                          + "\n" +
+                "6) Salir."
         );
         System.out.print("Elección deseada: ");
 
@@ -47,6 +49,14 @@ public class ConsultaOperadorLocal {
                 break;
 
             case 4:
+                mostrarOperadoresVigentes(operadores);
+                break;
+
+            case 5:
+                mostrarOperadoresNoVigentes(operadores);
+                break;
+
+            case 6:
                 System.out.println("Hasta luego.");
                 break;
 
@@ -139,5 +149,39 @@ public class ConsultaOperadorLocal {
 
         }
 
+    }
+
+    public void mostrarOperadoresVigentes(ArrayList<OperadorLocal> operadores) {
+
+        boolean encontrado = false;
+
+        for (OperadorLocal operador : operadores) {
+
+            if (operador.isVigente()) {
+                System.out.println(operador);
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("No se encontraron operadores vigentes.");
+        }
+    }
+
+    public void mostrarOperadoresNoVigentes(ArrayList<OperadorLocal> operadores) {
+
+        boolean encontrado = false;
+
+        for (OperadorLocal operador : operadores) {
+
+            if (!operador.isVigente()) {
+                System.out.println(operador);
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("No se encontraron operadores no vigentes.");
+        }
     }
 }

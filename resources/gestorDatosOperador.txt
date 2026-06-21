@@ -1,9 +1,9 @@
-1;jacobo benavides;Vigente;jcob@gmail.com;234567989;guía turístico;puerto montt;tour volcán osorno;25;los alerces;oficina;123
-2;maría gonzález;Vigente;maria.gonzalez@gmail.com;987654321;kayak;puerto varas;travesía lago llanquihue;15;imperial;casa;456
-3;pedro muñoz;Vigente;pedro.munoz@gmail.com;912345678;cabalgatas;frutillar;ruta ecuestre frutillar;12;los castaños;parcela;78
-4;camila soto;Vigente;camila.soto@gmail.com;976543210;gastronomía;calbuco;festival de sabores del mar;80;costanera;restaurant;210
-5;rodrigo pérez;Vigente;rodrigo.perez@gmail.com;998877665;trekking;cochamó;expedición valle cochamó;20;río puelo;refugio;15
-6;valentina rojas;Vigente;valentina.rojas@gmail.com;955443322;navegación;maullín;navegación humedales de maullín;30;o'higgins;oficina;332
-7;pepito juarez;Vigente;pepj@llanquihue.cl;87783443;chef;puerto montt;sabores de tenglo;10;tenglo 123;restaurant;3223
-8;holio menez;Vigente;aloah1234@gmail.com;78943983;guia;frutillar;Sin nombre de evento registrado;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;0
-9;jose meme;Vigente;meme@jose.cl;78896543;locutor;maitencillo;Sin nombre de evento registrado;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;0
+1;jacobo benavides;true;jcob@gmail.com;234567989;guía turístico;puerto montt;tour volcán osorno;25;los alerces;oficina;123
+2;maría gonzález;true;maria.gonzalez@gmail.com;987654321;kayak;puerto varas;travesía lago llanquihue;15;imperial;casa;456
+3;pedro muñoz;true;pedro.munoz@gmail.com;912345678;cabalgatas;frutillar;ruta ecuestre frutillar;12;los castaños;parcela;78
+4;camila soto;true;camila.soto@gmail.com;976543210;gastronomía;calbuco;festival de sabores del mar;80;costanera;restaurant;210
+5;rodrigo pérez;true;rodrigo.perez@gmail.com;998877665;trekking;cochamó;expedición valle cochamó;20;río puelo;refugio;15
+6;valentina rojas;true;valentina.rojas@gmail.com;955443322;navegación;maullín;navegación humedales de maullín;30;o'higgins;oficina;332
+7;pepito juarez;false;pepj@llanquihue.cl;87783443;chef;puerto montt;sabores de tenglo;10;tenglo 123;restaurant;3223
+8;holio menez;false;aloah1234@gmail.com;78943983;guia;frutillar;Sin nombre de evento registrado;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;0
+9;jose meme;true;meme@jose.cl;78896543;locutor;maitencillo;Sin nombre de evento registrado;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;0

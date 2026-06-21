@@ -3,7 +3,6 @@ package service;
 import model.Evento;
 import model.Direccion;
 import model.OperadorLocal;
-import util.EntradaConsola;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -72,7 +71,7 @@ public class GestorDatosOperador {
 
             String linea = codigo                        + ";" +
                     operador.getNombre()                 + ";" +
-                    operador.getVigencia()               + ";" +
+                    operador.isVigente()                 + ";" +
                     operador.getCorreoElectronico()      + ";" +
                     operador.getNumeroTelefonico()       + ";" +
                     operador.getTipoServicio()           + ";" +
