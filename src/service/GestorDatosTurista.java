@@ -90,7 +90,7 @@ public class GestorDatosTurista {
                     int numeroAsistenteEvento    = Integer.parseInt(datos[8].trim());
                     String nombreCalleDireccion  = datos[9].trim();
                     String edificacionDireccion  = datos[10].trim();
-                    int numeroDireccion          = Integer.parseInt(datos[11].trim());
+                    String numeroDireccion       = datos[11].trim();
 
                     Direccion direccion = new Direccion(nombreCalleDireccion, edificacionDireccion, numeroDireccion);
 

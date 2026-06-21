@@ -3,7 +3,7 @@ package service;
 import model.Evento;
 import model.Direccion;
 import model.OperadorLocal;
-import util.Validador;
+import util.EntradaConsola;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,15 +12,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class GestorDatosOperador {
 
     private final Path carpetaResources = Path.of("resources");
     private final Path archivoGestorOperador = Path.of("resources/gestorDatosOperador.txt");
-    Scanner sc = new Scanner(System.in);
 
-    public void crearArchivoConDatosSemillaSiNoExiste() {
+    private FormularioOperadorLocal formulario = new FormularioOperadorLocal();
+
+    public void crearArchivoConDatosSemillaOperadorLocal() {
 
         try {
 
@@ -60,132 +60,6 @@ public class GestorDatosOperador {
         }
     }
 
-    public OperadorLocal  agregarOperadorLocal(){
-        ArrayList<OperadorLocal> operadoresLocales = new ArrayList<>();
-        OperadorLocal operadorLocalSingular;
-        Evento evento;
-        Direccion direccion;
-        String nombreOperador;
-        String correoOperador;
-        String telefonoOperador;
-        String tipoServicio;
-        String comuna;
-        String respuesta;
-
-        crearArchivoConDatosSemillaSiNoExiste();
-        boolean vigencia = false;
-
-        System.out.println("Agregemos un Operador Local");
-
-        do {
-
-            System.out.print("Digita el nombre del operador: ");
-            nombreOperador = sc.nextLine().trim().toLowerCase();
-
-            if (!Validador.textoValido(nombreOperador)) {
-                System.out.println("El nombre no puede estar vacío.");
-            }
-
-        } while (!Validador.textoValido(nombreOperador));
-
-
-        do {
-
-            System.out.print("Digita el correo del operador(xx@xx.cl): ");
-            correoOperador = sc.nextLine().trim().toLowerCase();
-
-            if (!Validador.correoValido(correoOperador)) {
-                System.out.println("El correo no respeta el formato solicitado xx@xx.cl.");
-            }
-
-        } while (!Validador.correoValido(correoOperador));
-
-
-        do {
-
-            System.out.print("Digita el número de contacto del operador(No agregar +569): ");
-            telefonoOperador = sc.nextLine().trim();
-
-            if (!Validador.telefonoValido(telefonoOperador)) {
-                System.out.println("El teléfono debe tener exactamente 8 dígitos.");
-            }
-
-        } while (!Validador.telefonoValido(telefonoOperador));
-
-
-        do {
-
-            System.out.print("Que servicio presta el operador: ");
-            tipoServicio = sc.nextLine().trim().toLowerCase();
-
-            if (!Validador.textoValido(tipoServicio)) {
-                System.out.println("Debes indicar un tipo de servicio.");
-            }
-
-        } while (!Validador.textoValido(tipoServicio));
-
-
-        do {
-
-            System.out.print("En que comuna: ");
-            comuna = sc.nextLine().trim().toLowerCase();
-
-            if (!Validador.textoValido(comuna)) {
-                System.out.println("Debes indicar una comuna.");
-            }
-
-        } while (!Validador.textoValido(comuna));
-
-
-        System.out.print("El operador cuenta con un evento asociado (Si/No) : ");
-        respuesta = sc.nextLine().trim().toLowerCase();
-
-        if (respuesta.equals("si") || respuesta.equals("s") || respuesta.equals("yes") || respuesta.equals("y")) {
-
-            System.out.print("Muy bien! indicanos el nombre del evento: ");
-            String nombreEvento = sc.nextLine().trim().toLowerCase();
-            System.out.print("El número de participantes del evento: ");
-            int numeroParticipante = sc.nextInt();
-            sc.nextLine();
-            System.out.print("El nombre de la calle en donde es este evento: ");
-            String nombreCalleEvento = sc.nextLine().trim().toLowerCase();
-            System.out.print("El edificio tiene un nombre particular o es otro inmueble?: ");
-            String tipoEdificioEvento = sc.nextLine().trim().toLowerCase();
-            System.out.print("El número del edificio: ");
-            int numeroEdificio = sc.nextInt();
-            sc.nextLine();
-            System.out.println("Excelente! Crearemos al operador con estado: Vigente");
-
-
-            direccion = new Direccion(nombreCalleEvento, tipoEdificioEvento, numeroEdificio);
-            evento = new Evento(nombreEvento, numeroParticipante, direccion);
-
-            vigencia = true;
-
-
-        } else if (respuesta.equals("no") || respuesta.equals("n")) {
-
-            System.out.println("Excelente! Crearemos al operador con estado:No Vigente");
-
-            direccion = new Direccion();
-            evento = new Evento();
-
-        } else {
-
-            System.out.println("Respuesta inválida");
-            System.out.println("Crearemos al operador con estado:No Vigente");
-
-            direccion = new Direccion();
-            evento = new Evento();
-
-        }
-
-
-
-        return new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, tipoServicio, comuna, evento, vigencia);
-
-    }
-
     public void guardarOperadoresEnArchivo(ArrayList<OperadorLocal> operadoresLocales) {
         ArrayList<String> lineas = new ArrayList<>();
 
@@ -196,17 +70,17 @@ public class GestorDatosOperador {
             Evento evento = operador.getEvento();
             Direccion direccion = evento.getDireccion();
 
-            String linea = codigo + ";" +
-                    operador.getNombre() + ";" +
-                    operador.getVigencia() + ";" +
-                    operador.getCorreoElectronico() + ";" +
-                    operador.getNumeroTelefonico() + ";" +
-                    operador.getTipoServicio() + ";" +
-                    operador.getComuna() + ";" +
-                    evento.getNombreEvento() + ";" +
-                    evento.getCantidadParticipantes() + ";" +
-                    direccion.getCalle() + ";" +
-                    direccion.getEdificacion() + ";" +
+            String linea = codigo                        + ";" +
+                    operador.getNombre()                 + ";" +
+                    operador.getVigencia()               + ";" +
+                    operador.getCorreoElectronico()      + ";" +
+                    operador.getNumeroTelefonico()       + ";" +
+                    operador.getTipoServicio()           + ";" +
+                    operador.getComuna()                 + ";" +
+                    evento.getNombreEvento()             + ";" +
+                    evento.getCantidadParticipantes()    + ";" +
+                    direccion.getCalle()                 + ";" +
+                    direccion.getEdificacion()           + ";" +
                     direccion.getNumeroHogar();
 
             lineas.add(linea);
@@ -224,7 +98,7 @@ public class GestorDatosOperador {
     public void agregarOperadorYGuardar() {
         ArrayList<OperadorLocal> operadoresLocales = leerOperadoresDesdeArchivo();
 
-        OperadorLocal nuevoOperador = agregarOperadorLocal();
+        OperadorLocal nuevoOperador = formulario.agregarOperadorLocal();
 
         operadoresLocales.add(nuevoOperador);
 
@@ -235,11 +109,9 @@ public class GestorDatosOperador {
 
         ArrayList<OperadorLocal> operadoresLocales = new ArrayList<>();
 
-        crearArchivoConDatosSemillaSiNoExiste();
+        crearArchivoConDatosSemillaOperadorLocal();
 
-        try {
-
-            BufferedReader lector = new BufferedReader(new FileReader(archivoGestorOperador.toFile()));
+        try (BufferedReader lector = new BufferedReader(new FileReader(archivoGestorOperador.toFile()))){
 
             String linea;
 
@@ -260,7 +132,7 @@ public class GestorDatosOperador {
                     int numeroAsistenteEvento    = Integer.parseInt(datos[8].trim());
                     String nombreCalleDireccion  = datos[9].trim();
                     String edificacionDireccion  = datos[10].trim();
-                    int numeroDireccion          = Integer.parseInt(datos[11].trim());
+                    String numeroDireccion       = datos[11].trim();
 
                     Direccion direccion = new Direccion(nombreCalleDireccion, edificacionDireccion, numeroDireccion);
 

@@ -4,7 +4,7 @@ public class Direccion {
 
     private String calle;
     private String edificacion; //Se puede indicar casa o edificio de condominio
-    private int numeroHogar;
+    private String numeroHogar;
 
 
     /**
@@ -14,7 +14,7 @@ public class Direccion {
      * @param edificacion Tipo de inmueble (Casa, casona, edificio, restaurant, protectora, etc).
      * @param numeroHogar Número de la edificación.
      */
-    public Direccion(String calle, String edificacion, int numeroHogar ) {
+    public Direccion(String calle, String edificacion, String numeroHogar ) {
         setCalle(calle);
         setEdificacion(edificacion);
         setNumeroHogar(numeroHogar);
@@ -26,7 +26,7 @@ public class Direccion {
     public Direccion() {
         this.calle = "No presenta calle registrada";
         this.edificacion = "Vive en casa o en condominio de 1 edificio";
-        this.numeroHogar = 0;
+        this.numeroHogar = "No proporcionó número de hogar";
     }
 
     //Getters ----------------------------
@@ -55,7 +55,7 @@ public class Direccion {
      *
      * @return Número del edificio.
      */
-    public int getNumeroHogar() {
+    public String getNumeroHogar() {
 
         return numeroHogar;
     }
@@ -101,9 +101,16 @@ public class Direccion {
      *
      * @param numeroHogar Número del edificio a registrar.
      */
-    public void setNumeroHogar(int numeroHogar) {
+    public void setNumeroHogar(String numeroHogar) {
+        if(numeroHogar== null || numeroHogar.trim().isEmpty()){
 
-        this.numeroHogar = Math.abs(numeroHogar);
+            this.numeroHogar = "No se proporcionó n° del edificio";
+
+        } else{
+
+            this.numeroHogar = numeroHogar;
+
+        }
     }
 
     //Metodo toString de formateo -------------------------------------
