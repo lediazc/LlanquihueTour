@@ -12,4 +12,8 @@ public class Validador {
     public static boolean telefonoValido(String telefono) {
         return telefono != null && telefono.matches("\\d{8}");
     }
+
+    public static boolean correoValido(String correo) {
+        return correo != null && correo.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
 }

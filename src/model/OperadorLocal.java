@@ -23,6 +23,7 @@ public class OperadorLocal extends Usuario{
         this.tipoServicio = "No hay servicio registrado";
         this.comuna = "No hay comuna registrada";
         this.evento = new Evento();
+        this.vigente = false;
 
     }
 

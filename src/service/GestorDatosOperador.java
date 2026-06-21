@@ -3,6 +3,7 @@ package service;
 import model.Evento;
 import model.Direccion;
 import model.OperadorLocal;
+import util.Validador;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -64,27 +65,80 @@ public class GestorDatosOperador {
         OperadorLocal operadorLocalSingular;
         Evento evento;
         Direccion direccion;
+        String nombreOperador;
+        String correoOperador;
+        String telefonoOperador;
+        String tipoServicio;
+        String comuna;
+        String respuesta;
 
         crearArchivoConDatosSemillaSiNoExiste();
         boolean vigencia = false;
 
         System.out.println("Agregemos un Operador Local");
-        System.out.print("Digita el nombre del operador: ");
-        String nombreOperador = sc.nextLine().trim().toLowerCase();
 
-        System.out.print("Digita el correo del operador(xx@xx.cl): ");
-        String correoOperador = sc.nextLine().trim().toLowerCase();
+        do {
 
-        System.out.print("Digita el número de contacto del operador(No agregar +569): ");
-        String telefonoOperador = sc.nextLine().trim().toLowerCase();
+            System.out.print("Digita el nombre del operador: ");
+            nombreOperador = sc.nextLine().trim().toLowerCase();
 
-        System.out.print("Que servicio presta el operador: ");
-        String tipoServicio = sc.nextLine().trim().toLowerCase();
-        System.out.print("En que comuna: ");
-        String comuna = sc.nextLine().trim().toLowerCase();
+            if (!Validador.textoValido(nombreOperador)) {
+                System.out.println("El nombre no puede estar vacío.");
+            }
+
+        } while (!Validador.textoValido(nombreOperador));
+
+
+        do {
+
+            System.out.print("Digita el correo del operador(xx@xx.cl): ");
+            correoOperador = sc.nextLine().trim().toLowerCase();
+
+            if (!Validador.correoValido(correoOperador)) {
+                System.out.println("El correo no respeta el formato solicitado xx@xx.cl.");
+            }
+
+        } while (!Validador.correoValido(correoOperador));
+
+
+        do {
+
+            System.out.print("Digita el número de contacto del operador(No agregar +569): ");
+            telefonoOperador = sc.nextLine().trim();
+
+            if (!Validador.telefonoValido(telefonoOperador)) {
+                System.out.println("El teléfono debe tener exactamente 8 dígitos.");
+            }
+
+        } while (!Validador.telefonoValido(telefonoOperador));
+
+
+        do {
+
+            System.out.print("Que servicio presta el operador: ");
+            tipoServicio = sc.nextLine().trim().toLowerCase();
+
+            if (!Validador.textoValido(tipoServicio)) {
+                System.out.println("Debes indicar un tipo de servicio.");
+            }
+
+        } while (!Validador.textoValido(tipoServicio));
+
+
+        do {
+
+            System.out.print("En que comuna: ");
+            comuna = sc.nextLine().trim().toLowerCase();
+
+            if (!Validador.textoValido(comuna)) {
+                System.out.println("Debes indicar una comuna.");
+            }
+
+        } while (!Validador.textoValido(comuna));
+
 
         System.out.print("El operador cuenta con un evento asociado (Si/No) : ");
-        String respuesta = sc.nextLine().trim().toLowerCase();
+        respuesta = sc.nextLine().trim().toLowerCase();
 
         if (respuesta.equals("si") || respuesta.equals("s") || respuesta.equals("yes") || respuesta.equals("y")) {
 
@@ -106,6 +160,8 @@ public class GestorDatosOperador {
             direccion = new Direccion(nombreCalleEvento, tipoEdificioEvento, numeroEdificio);
             evento = new Evento(nombreEvento, numeroParticipante, direccion);
 
+            vigencia = true;
+
 
         } else if (respuesta.equals("no") || respuesta.equals("n")) {
 
@@ -124,7 +180,7 @@ public class GestorDatosOperador {
 
         }
 
-        vigencia = respuesta.equals("si");
+
 
         return new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, tipoServicio, comuna, evento, vigencia);
 
