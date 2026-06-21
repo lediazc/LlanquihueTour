@@ -6,7 +6,7 @@ public class Turista extends Usuario {
     private String genero;
     private Evento evento;
 
-    public Turista(String nombre, String correoElectronico, int numeroTelefonico, int edad, String genero, Evento evento) {
+    public Turista(String nombre, String correoElectronico, String numeroTelefonico, int edad, String genero, Evento evento) {
 
         super(nombre, correoElectronico, numeroTelefonico);
         setEdad(edad);

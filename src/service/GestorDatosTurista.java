@@ -1,19 +1,21 @@
 package service;
 
-import model.Evento;
 import model.Direccion;
+import model.Evento;
 import model.OperadorLocal;
-import javax.swing.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-public class GestorDatos {
+public class GestorDatosTurista {
 
     private final Path carpetaResources = Path.of("resources");
-    private final Path archivoGestorOperador = Path.of("resources/gestorDatosOperador.txt");
+    private final Path archivoGestorOperador = Path.of("resources/gestorDatosTurista.txt");
 
     public void crearArchivoConDatosSemillaSiNoExiste() {
 
@@ -55,6 +57,10 @@ public class GestorDatos {
         }
     }
 
+    public void agregarOperadorLocal(){
+        System.out.println("Agregemos un Operador Local");
+    }
+
     public ArrayList<OperadorLocal> leerOperadoresDesdeArchivo() {
 
         ArrayList<OperadorLocal> operadoresLocales = new ArrayList<>();
@@ -63,9 +69,11 @@ public class GestorDatos {
 
         try {
 
-            List<String> lineas = Files.readAllLines(archivoGestorOperador);
+            BufferedReader lector = new BufferedReader(new FileReader(archivoGestorOperador.toFile()));
 
-            for (String linea : lineas) {
+            String linea;
+
+            while((linea = lector.readLine()) != null){
 
                 String[] datos = linea.split(";");
 
@@ -75,7 +83,7 @@ public class GestorDatos {
                     String nombreOperador        = datos[1].trim();
                     boolean vigencia             = Boolean.parseBoolean(datos[2].trim());
                     String correoOperador        = datos[3].trim();
-                    int telefonoOperador         = Integer.parseInt(datos[4].trim());
+                    String telefonoOperador      = datos[4].trim();
                     String tipoServicio          = datos[5].trim();
                     String comunaOperador        = datos[6].trim();
                     String nombreEvento          = datos[7].trim();

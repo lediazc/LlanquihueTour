@@ -7,7 +7,7 @@ public class OperadorLocal extends Usuario{
     private Evento evento;
     private boolean vigente;
 
-    public OperadorLocal(String nombre, String correoElectronico, int numeroTelefonico, String tipoServicio, String comuna, Evento evento, boolean vigente){
+    public OperadorLocal(String nombre, String correoElectronico, String numeroTelefonico, String tipoServicio, String comuna, Evento evento, boolean vigente){
 
         super(nombre, correoElectronico, numeroTelefonico);
         setTipoServicio(tipoServicio);
@@ -62,9 +62,12 @@ public class OperadorLocal extends Usuario{
      *
      * @return El estado de la variable booleana activo.
      */
-     public boolean getVigencia() {
-
-        return vigente;
+     public String getVigencia() {
+        if(!vigente){
+            return "Vigente";
+        } else {
+            return "No vigente";
+        }
     }
 
 

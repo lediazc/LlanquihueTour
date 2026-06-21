@@ -1,5 +1,5 @@
 package app;
-import service.GestorDatos;
+import service.GestorDatosOperador;
 import model.OperadorLocal;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        GestorDatos gestor = new GestorDatos();
+        GestorDatosOperador gestor = new GestorDatosOperador();
 
         ArrayList<OperadorLocal> gestorOperadores = gestor.leerOperadoresDesdeArchivo();
 
@@ -22,7 +22,8 @@ public class Main {
         System.out.println("Por favor, seleccione una de las siguientes opciones: "        + "\n" +
                            "1) Mostrarme todos los registros del personal."                + "\n" +
                            "2) Mostrarme sólo los resultados, en base a datos filtrados."  + "\n" +
-                           "3) Salir."
+                           "3) Agregar Operador Local."                                    + "\n" +
+                           "4) Salir."
                 );
         System.out.print("Elección deseada: ");
 
@@ -37,6 +38,10 @@ public class Main {
                 break;
 
             case 3:
+                gestor.agregarOperadorYGuardar();
+                break;
+
+            case 4:
                 System.out.println("Hasta luego.");
                 break;
 

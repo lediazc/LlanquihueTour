@@ -9,7 +9,7 @@ public class Usuario {
 
     private String nombre;
     private String correoElectronico;
-    private int numeroTelefonico;
+    private String numeroTelefonico;
 
 
     /**
@@ -18,7 +18,7 @@ public class Usuario {
      * @param nombre Nombre del usuario.
      * @param correoElectronico Dato de contacto del usuario.
      */
-    public Usuario(String nombre, String correoElectronico, int numeroTelefonico){
+    public Usuario(String nombre, String correoElectronico, String numeroTelefonico){
 
         setNombre(nombre);
         setCorreoElectronico(correoElectronico);
@@ -32,7 +32,7 @@ public class Usuario {
 
         this.nombre = "Sin nombre registrado";
         this.correoElectronico = "Sin correo electrónico registrado";
-        this.numeroTelefonico = 0;
+        this.numeroTelefonico = "00000000";
 
     }
 
@@ -59,11 +59,11 @@ public class Usuario {
     }
 
     /**
-     * Obtiene el número telefónico del usuario.
+     * Obtiene el número telefónico del usuario en formato String.
      *
      * @return número registrado.
      */
-    public int getNumeroTelefonico() {
+    public String getNumeroTelefonico() {
 
         return numeroTelefonico;
 
@@ -102,9 +102,13 @@ public class Usuario {
      *
      * @param numeroTelefonico Dato de número telefónico del usuario.
      */
-    public void setNumeroTelefonico(int numeroTelefonico) {
+    public void setNumeroTelefonico(String numeroTelefonico) {
 
-        this.numeroTelefonico = Math.abs(numeroTelefonico);
+        if(numeroTelefonico == null || numeroTelefonico.trim().isEmpty()){
+            this.numeroTelefonico = "11111111";
+        } else {
+            this.numeroTelefonico = numeroTelefonico;
+        }
 
     }
 
