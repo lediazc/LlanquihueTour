@@ -12,6 +12,10 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.ArrayList;
 
+
+/**
+ * Gestiona la creación, lectura y almacenamiento de operadores locales en archivos de texto.
+ */
 public class GestorDatosOperador {
 
     private final Path carpetaResources = Path.of("resources");
@@ -19,6 +23,10 @@ public class GestorDatosOperador {
 
     private FormularioOperadorLocal formulario = new FormularioOperadorLocal();
 
+
+    /**
+     * Crea la carpeta resources y el archivo de operadores con datos semilla si estos no existen previamente.
+     */
     public void crearArchivoConDatosSemillaOperadorLocal() {
 
         try {
@@ -59,6 +67,12 @@ public class GestorDatosOperador {
         }
     }
 
+
+    /**
+     * Guarda todos los operadores recibidos en el archivo gestorDatosOperador.txt.
+     * @param operadoresLocales Lista de operadores a guardar.
+     */
+
     public void guardarOperadoresEnArchivo(ArrayList<OperadorLocal> operadoresLocales) {
         ArrayList<String> lineas = new ArrayList<>();
 
@@ -94,6 +108,10 @@ public class GestorDatosOperador {
         }
     }
 
+
+    /**
+     * Agrega un nuevo operador local mediante formulario y posteriormente actualiza el archivo de almacenamiento.
+     */
     public void agregarOperadorYGuardar() {
         ArrayList<OperadorLocal> operadoresLocales = leerOperadoresDesdeArchivo();
 
@@ -104,6 +122,11 @@ public class GestorDatosOperador {
         guardarOperadoresEnArchivo(operadoresLocales);
     }
 
+
+    /**
+     * Lee todos los operadores almacenados en el archivo y los carga en una colección ArrayList.
+     * @return Lista de operadores cargados desde el archivo.
+     */
     public ArrayList<OperadorLocal> leerOperadoresDesdeArchivo() {
 
         ArrayList<OperadorLocal> operadoresLocales = new ArrayList<>();
@@ -158,6 +181,10 @@ public class GestorDatosOperador {
                     "Error al leer los operadores Locales: " + e.getMessage()
 
             );
+
+        } catch (NumberFormatException e) {
+
+            System.out.println("Error al convertir dato numérico: " + e.getMessage());
 
         }
 

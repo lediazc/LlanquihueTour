@@ -1,0 +1,5 @@
+1;ana torres;ana.torres@gmail.com;87654321;28;femenino;tour volcán osorno;25;los alerces;oficina;123
+2;carlos perez;carlos.perez@gmail.com;91234567;34;masculino;travesía lago llanquihue;15;imperial;casa;456
+3;marcela rios;marcela.rios@gmail.com;98765432;22;femenino;ruta ecuestre frutillar;12;los castaños;parcela;78
+4;diego salinas;diego.salinas@gmail.com;99887766;41;masculino;festival de sabores del mar;80;costanera;restaurant;210
+5;paula fuentes;paula.fuentes@gmail.com;95544332;30;femenino;expedición valle cochamó;20;río puelo;refugio;15

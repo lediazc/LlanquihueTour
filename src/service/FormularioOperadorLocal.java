@@ -9,11 +9,19 @@ import util.Validador;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Permite ingresar por consola la información necesaria para crear un nuevo OperadorLocal.
+ */
+
 public class FormularioOperadorLocal {
 
     Scanner sc = new Scanner(System.in);
     private EntradaConsola entrada = new EntradaConsola();
 
+    /**
+     * Solicita al usuario los datos de un operador local, valida la información ingresada y construye el nuevo OperadorLocal.
+     * @return OperadorLocal creado con los datos ingresados.
+     */
     public OperadorLocal agregarOperadorLocal(){
 
         Evento evento;
