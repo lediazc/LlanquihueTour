@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# Actividad Sumativa 1: Realizando validación, excepciones y relaciones entre clases – Desarrollo Orientado a Objetos I
+# Actividad Sumativa 2 - Organización modular y creación de una librería personalizada
 
 ## Autor del proyecto
 
@@ -13,7 +13,7 @@
 
 ## Descripción general del sistema
 
-Este proyecto corresponde a la Actividad Sumativa 1: Realizando validación, excepciones y relaciones entre clases - **Desarrollo Orientado a Objetos I**.
+Este proyecto corresponde a la Actividad Sumativa 2: Organización modular y creación de una librería personalizada - **Desarrollo Orientado a Objetos I**.
 
 La solución desarrollada consiste en un sistema orientado a objetos para la gestión de actividades turísticas en la provincia de Llanquihue. El sistema permite representar operadores turísticos, turistas, eventos y direcciones, aplicando conceptos fundamentales de Programación Orientada a Objetos tales como encapsulamiento, herencia, composición, constructores, getters, setters y reutilización de código.
 
@@ -26,16 +26,22 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 ```plaintext
 📁 src/
 ├── service/
-|   └── GestorDatos.java
+|    ├── ConsultaOperadorLocal.java
+|    ├── FormularioOperadorLocal.java
+|    ├── GestorDatosOperador.java
+|    ├── GestorDatosTurista.java
+|    └── MenuGeneral.java
 ├── app/
 |   └── Main.java
 └── model/
-    ├── Usuario.java
-    ├── OperadorLocal.java
-    ├── Turista.java
-    ├── Evento.java
-    └── Direccion.java
-
+|    ├── Usuario.java
+|    ├── OperadorLocal.java
+|    ├── Turista.java
+|    ├── Evento.java
+|    └── Direccion.java
+└── util/
+    ├── EntradaConsola.java
+    └── Validador.java
 📁 resources/ 
     └── gestorDatosOperador.txt
 ```
@@ -52,30 +58,34 @@ Ejemplo:
 
 Cuando se ejecuta el método main, el sistema:
 
-1- Lee el archivo línea por línea.
+1.- Se verifica la existencia del archivo.
 
-2- Separa los datos utilizando ".split(";")"
+2.- Se crean datos semilla si el archivo no existe.
 
-3- Crea objetos Direccion.
+3.- Se leen los registros línea por línea.
 
-4- Crea objetos Evento.
+4.- Se separan los datos mediante split(";").
 
-5- Crea objetos OperadorLocal.
+5.- Se construyen objetos Direccion.
 
-6- Almacena los objetos en un ArrayList.
+6.- Se construyen objetos Evento.
+
+7.- Se construyen objetos OperadorLocal.
+
+8.- Los objetos se almacenan en un ArrayList.
 
 ### Descripción de clases
 
 **Usuario**
 
 * Clase base del sistema.
-* Contiene atributos comunes como nombre y correo electrónico.
+* Contiene atributos comunes como nombre, número telefónico y correo electrónico.
 
 **OperadorLocal**
 
 * Hereda de Usuario.
 * Representa a los operadores turísticos.
-* Contiene información sobre comuna, tipo de servicio y evento asignado.
+* Contiene información sobre comuna, tipo de servicio, evento asignado y su estado de vigencia.
 
 **Turista**
 
@@ -93,13 +103,55 @@ Cuando se ejecuta el método main, el sistema:
 * Representa la ubicación física de un evento.
 * Contiene calle, tipo de inmueble y número.
 
+**GestorDatosOperador**
+
+Responsable de:
+
+* Crear archivos de datos.
+* Leer información desde archivos.
+* Guardar registros en archivos.
+* Crear datos semilla.
+* Persistir nuevos operadores.
+
+**ConsultaOperadorLocal**
+
+* Permite realizar consultas y filtros sobre los operadores cargados en memoria.
+
+**FormularioOperadorLocal**
+
+* Gestiona el ingreso interactivo de nuevos operadores mediante consola.
+
+**EntradaConsola**
+
+* Centraliza la captura y validación básica de textos ingresados por el usuario.
+
+**Validador**
+
+Contiene métodos estáticos de validación para:
+
+* Texto
+* Correos electrónicos
+* Números telefónicos
+* Valores numéricos
+
 ---
 ##  Funcionalidades implementadas
-Esta semana (15/06/2026) se implementaron las siguientes funcionalidades:
+Esta semana (22/06/2026) se implementaron las siguientes funcionalidades:
+* Gestión de registros
 
-- Mostrar operadores registrados
-- Permite recorrer toda la colección y visualizar cada operador junto a la información de su evento asociado.
-- Filtrar operadores por cantidad de asistentes(Por eventos grandes o pequeños y por nombre específico)
+* Filtros y búsquedas
+
+* Validaciones
+
+* Manejo de excepciones
+
+---
+
+Semana (15/06/2026) se implementaron las siguientes funcionalidades:
+
+* Mostrar operadores registrados
+* Permite recorrer toda la colección y visualizar cada operador junto a la información de su evento asociado.
+* Filtrar operadores por cantidad de asistentes(Por eventos grandes o pequeños y por nombre específico)
 
 ---
 
@@ -121,6 +173,19 @@ Las clases OperadorLocal y Turista contienen un objeto de tipo Evento.
 ### Validaciones
 
 Se implementaron validaciones en atributos numéricos para evitar el ingreso de valores negativos.
+
+### Modularización
+
+El proyecto se encuentra organizado en paquetes según su responsabilidad:
+
+* app
+* model
+* service
+* util
+
+### Colecciones
+
+Se utiliza ArrayList para almacenar dinámicamente los operadores cargados desde archivo.
 
 ---
 
@@ -146,7 +211,7 @@ src/app/Main.java
 
 **Repositorio GitHub:** https://github.com/lediazc/LlanquihueTour
 
-**Fecha de entrega:** 15/06/2026
+**Fecha de entrega:** 22/06/2026
 
 ---
 
