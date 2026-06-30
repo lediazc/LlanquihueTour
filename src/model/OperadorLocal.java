@@ -118,10 +118,8 @@ public class OperadorLocal extends Usuario{
 
         return
                 "\n=== INFORMACIÓN DEL OPERADOR LOCAL ===\n" +
-                "Nombre del operador: " + getNombre() + "\n" +
+                super.toString() +
                 "¿Operador presenta servicios vigentes?:" + getVigencia() + "\n" +
-                "Correo electrónico: " + getCorreoElectronico() + "\n" +
-                "Número de contacto: +569" + getNumeroTelefonico() + "\n"  +
                 "Comuna de operación: " + getComuna() + "\n" +
                 "⬇ Información del evento asignado ⬇ " +
                 getServicioTuristico();

@@ -61,9 +61,7 @@ public class Turista extends Usuario {
 
         return
                 "\n=== INFORMACIÓN DEL TURISTA ===\n" +
-                        "Nombre del turista: " + getNombre() + "\n" +
-                        "Correo electrónico: " + getCorreoElectronico() + "\n" +
-                        "Número de contacto: +569" + getNumeroTelefonico() + "\n" +
+                        super.toString() +
                         "Edad: " + getEdad() + "\n" +
                         "Género: " + getGenero() + "\n" +
                         "⬇ Servicio inscrito ⬇ " + "\n" +

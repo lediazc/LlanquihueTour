@@ -44,7 +44,7 @@ public class PaseoLacustre extends ServicioTuristico{
 
     @Override
     public String toString() {
-        return "\n--- Paseo Lacustre ---\n" +
+        return "\n--- Paseo Lacustre ---" +
                 super.toString() +
                 "Tipo de Embarcación: " + tipoEmbarcacion;
     }

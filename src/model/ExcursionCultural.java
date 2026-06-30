@@ -43,7 +43,7 @@ public class ExcursionCultural extends ServicioTuristico{
 
     @Override
     public String toString() {
-        return "\n--- Excursión Cultural ---\n" +
+        return "\n--- Excursión Cultural ---" +
                 super.toString() +
                 "Lugar histórico a visitar: " + lugarHistorico;
     }

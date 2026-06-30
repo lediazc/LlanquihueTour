@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# Actividad Sumativa 2 - Organización modular y creación de una librería personalizada
+# Actividad formativa 4 - Creación de jerarquías de clases con herencia simple
 
 ## Autor del proyecto
 
@@ -13,7 +13,7 @@
 
 ## Descripción general del sistema
 
-Este proyecto corresponde a la Actividad Sumativa 2: Organización modular y creación de una librería personalizada - **Desarrollo Orientado a Objetos I**.
+Este proyecto corresponde a la Actividad Formativa 4: Actividad formativa 4 - Creación de jerarquías de clases con herencia simple - **Desarrollo Orientado a Objetos I**.
 
 La solución desarrollada consiste en un sistema orientado a objetos para la gestión de actividades turísticas en la provincia de Llanquihue. El sistema permite representar operadores turísticos, turistas, eventos y direcciones, aplicando conceptos fundamentales de Programación Orientada a Objetos tales como encapsulamiento, herencia, composición, constructores, getters, setters y reutilización de código.
 
@@ -27,7 +27,9 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 📁 src/
 ├── service/
 |    ├── ConsultaOperadorLocal.java
+|    ├── ConsultaTurista.java
 |    ├── FormularioOperadorLocal.java
+|    ├── FormularioTurista.java
 |    ├── GestorDatosOperador.java
 |    ├── GestorDatosTurista.java
 |    └── MenuGeneral.java
@@ -37,7 +39,11 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 |    ├── Usuario.java
 |    ├── OperadorLocal.java
 |    ├── Turista.java
-|    ├── Evento.java
+|    ├── Evento.java //Clase eliminada
+|    ├── PaseoLacustre.java
+|    ├── RutaGastronomica.java
+|    ├── ExcursionCultural.java
+|    ├── ServicioTuristico.java
 |    └── Direccion.java
 └── util/
     ├── EntradaConsola.java
@@ -136,7 +142,18 @@ Contiene métodos estáticos de validación para:
 
 ---
 ##  Funcionalidades implementadas
-Esta semana (22/06/2026) se implementaron las siguientes funcionalidades:
+Esta semana (29/06/2026) se implementaron las siguientes funcionalidades:
+* Implementación de herencia y polimorfismo mediante la jerarquía `ServicioTuristico`, incorporando las clases `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural`.
+
+* Selección dinámica del tipo de servicio turístico durante el registro de operadores y turistas.
+
+* Sobrescritura de `toString()` en las subclases utilizando `super.toString()` para extender la información común del servicio.
+
+* Mejoras en la organización del modelo orientado a objetos, eliminando atributos redundantes y centralizando la información común en la superclase `ServicioTuristico`.
+
+* Se eliminó la clase Evento, debido a solicitud del trabajo semanal.
+---
+Semana (22/06/2026) se implementaron las siguientes funcionalidades:
 * Gestión de registros
 
 * Filtros y búsquedas

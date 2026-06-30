@@ -112,4 +112,11 @@ public class Usuario {
 
     }
 
+    @Override
+    public String toString() {
+        return
+                "Nombre: " + getNombre() + "\n" +
+                "Correo electrónico: " + getCorreoElectronico() + "\n" +
+                "Número de contacto: +569" + getNumeroTelefonico() + "\n";
+    }
 }
