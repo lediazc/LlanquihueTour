@@ -4,7 +4,3 @@
 4;camila soto;true;camila.soto@gmail.com;97654321;calbuco;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
 5;rodrigo pérez;true;rodrigo.perez@gmail.com;99887766;cochamó;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
 6;valentina rojas;true;valentina.rojas@gmail.com;95544332;maullín;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha
-7;elan;true;gpt@openai.com;12345678;otradimension;RutaGastronomica;comidagpt;1.0;2;inexistente;espaciosideral;99;5
-8;luis;true;luis@gmail.com;12345678;qa;PaseoLacustre;paseo;3.0;20;paseocalle;aire libre;00;bicicleta
-9;haru;true;haru@gmail.com;12345678;gato;ExcursionCultural;haru caminata;3.0;20;callemuseo;museo;11;museo de los gatos
-10;camila;false;cami@gmail.com;12345678;santiago;ExcursionCultural;Sin nombre registrado;0.0;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;No proporcionó número de hogar;Sin lugar histórico registrado
