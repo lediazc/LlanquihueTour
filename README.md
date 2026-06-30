@@ -180,12 +180,15 @@ Todos los atributos fueron declarados como privados y se accede a ellos mediante
 
 ### Herencia
 
-Las clases OperadorLocal y Turista heredan de la clase Usuario.
+Las clases `OperadorLocal` y `Turista` heredan de la clase `Usuario`.
+
+La clase abstracta `ServicioTuristico` actúa como superclase de `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural`, permitiendo aplicar herencia y polimorfismo mediante la sobrescritura del método `toString()`.
 
 ### Composición
 
-La clase Evento contiene un objeto de tipo Direccion.
-Las clases OperadorLocal y Turista contienen un objeto de tipo Evento.
+La clase `ServicioTuristico` contiene un objeto de tipo `Direccion`.
+
+Las clases `OperadorLocal` y `Turista` contienen un objeto de tipo `ServicioTuristico`, representando el servicio turístico asociado a cada usuario.
 
 ### Validaciones
 
