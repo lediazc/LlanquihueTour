@@ -1,8 +1,11 @@
 package service;
 
-import model.Evento;
 import model.Direccion;
 import model.OperadorLocal;
+import model.ServicioTuristico;
+import model.RutaGastronomica;
+import model.PaseoLacustre;
+import model.ExcursionCultural;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -39,12 +42,12 @@ public class GestorDatosOperador {
             if (!Files.exists(archivoGestorOperador)) {
 
                 List<String> datosSemilla = List.of(
-                        "1;jacobo benavides;true;jcob@gmail.com;234567989;guía turístico;puerto montt;tour volcán osorno;25;los alerces;oficina;123",
-                        "2;maría gonzález;true;maria.gonzalez@gmail.com;987654321;kayak;puerto varas;travesía lago llanquihue;15;imperial;casa;456",
-                        "3;pedro muñoz;true;pedro.munoz@gmail.com;912345678;cabalgatas;frutillar;ruta ecuestre frutillar;12;los castaños;parcela;78",
-                        "4;camila soto;false;camila.soto@gmail.com;976543210;gastronomía;calbuco;festival de sabores del mar;80;costanera;restaurant;210",
-                        "5;rodrigo pérez;false;rodrigo.perez@gmail.com;998877665;trekking;cochamó;expedición valle cochamó;20;río puelo;refugio;15",
-                        "6;valentina rojas;true;valentina.rojas@gmail.com;955443322;navegación;maullín;navegación humedales de maullín;30;o'higgins;oficina;332"
+                        "1;jacobo benavides;true;jcob@gmail.com;23456798;puerto montt;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5",
+                        "2;maría gonzález;true;maria.gonzalez@gmail.com;98765432;puerto varas;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán",
+                        "3;pedro muñoz;true;pedro.munoz@gmail.com;91234567;frutillar;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial",
+                        "4;camila soto;true;camila.soto@gmail.com;97654321;calbuco;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8",
+                        "5;rodrigo pérez;true;rodrigo.perez@gmail.com;99887766;cochamó;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó",
+                        "6;valentina rojas;true;valentina.rojas@gmail.com;95544332;maullín;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha"
                 );
 
                 Files.write(archivoGestorOperador, datosSemilla);
@@ -78,23 +81,44 @@ public class GestorDatosOperador {
 
         int codigo = 1;
 
+
         for (OperadorLocal operador : operadoresLocales) {
 
-            Evento evento = operador.getEvento();
-            Direccion direccion = evento.getDireccion();
+            ServicioTuristico servicio = operador.getServicioTuristico();
+            Direccion direccion = servicio.getDireccion();
+
+            String tipoServicioTuristico = servicio.getClass().getSimpleName();
+
+            String datoExtra = "";
+
+            if (servicio instanceof RutaGastronomica) {
+
+                datoExtra = String.valueOf(((RutaGastronomica) servicio).getNumeroDeParadas());
+
+            } else if (servicio instanceof PaseoLacustre) {
+
+                datoExtra = ((PaseoLacustre) servicio).getTipoEmbarcacion();
+
+            } else if (servicio instanceof ExcursionCultural) {
+
+                datoExtra = ((ExcursionCultural) servicio).getLugarHistorico();
+
+            }
 
             String linea = codigo                        + ";" +
                     operador.getNombre()                 + ";" +
                     operador.isVigente()                 + ";" +
                     operador.getCorreoElectronico()      + ";" +
                     operador.getNumeroTelefonico()       + ";" +
-                    operador.getTipoServicio()           + ";" +
                     operador.getComuna()                 + ";" +
-                    evento.getNombreEvento()             + ";" +
-                    evento.getCantidadParticipantes()    + ";" +
+                    tipoServicioTuristico                + ";" +
+                    servicio.getNombre()                 + ";" +
+                    servicio.getDuracionHoras()          + ";" +
+                    servicio.getCantidadParticipantes()  + ";" +
                     direccion.getCalle()                 + ";" +
                     direccion.getEdificacion()           + ";" +
-                    direccion.getNumeroHogar();
+                    direccion.getNumeroHogar()           + ";" +
+                    datoExtra;
 
             lineas.add(linea);
             codigo++;
@@ -141,27 +165,49 @@ public class GestorDatosOperador {
 
                 String[] datos = linea.split(";");
 
-                if (datos.length == 12) {
+                if (datos.length == 14) {
 
                     String codigo                = datos[0].trim(); //Se usará para próximos incrementos, si es que debo relacionar datos
                     String nombreOperador        = datos[1].trim();
                     boolean vigencia             = Boolean.parseBoolean(datos[2].trim());
                     String correoOperador        = datos[3].trim();
                     String telefonoOperador      = datos[4].trim();
-                    String tipoServicio          = datos[5].trim();
-                    String comunaOperador        = datos[6].trim();
+                    String comunaOperador        = datos[5].trim();
+                    String tipoServicioTuristico = datos[6].trim();
                     String nombreEvento          = datos[7].trim();
-                    int numeroAsistenteEvento    = Integer.parseInt(datos[8].trim());
-                    String nombreCalleDireccion  = datos[9].trim();
-                    String edificacionDireccion  = datos[10].trim();
-                    String numeroDireccion       = datos[11].trim();
+                    double cantidadHoras         = Double.parseDouble(datos[8].trim());
+                    int numeroAsistenteEvento    = Integer.parseInt(datos[9].trim());
+                    String nombreCalleDireccion  = datos[10].trim();
+                    String edificacionDireccion  = datos[11].trim();
+                    String numeroDireccion       = datos[12].trim();
+                    String datoExtra             = datos[13].trim();
 
                     Direccion direccion = new Direccion(nombreCalleDireccion, edificacionDireccion, numeroDireccion);
 
-                    Evento evento = new Evento(nombreEvento, numeroAsistenteEvento, direccion);
+                    ServicioTuristico servicio;
 
-                    OperadorLocal operadorLocal = new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, tipoServicio, comunaOperador, evento, vigencia);
+                    switch (tipoServicioTuristico) {
+                        case "RutaGastronomica":
+                            servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra));
+                            break;
 
+                        case "PaseoLacustre":
+                            servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra);
+                            break;
+
+                        case "ExcursionCultural":
+                            servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra);
+                            break;
+
+                        default:
+                            servicio = new ExcursionCultural();
+                            break;
+                    }
+
+                    servicio.setDireccion(direccion);
+                    servicio.setCantidadParticipantes(numeroAsistenteEvento);
+
+                    OperadorLocal operadorLocal = new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, comunaOperador, servicio, vigencia);
                     operadoresLocales.add(operadorLocal);
 
                 } else {

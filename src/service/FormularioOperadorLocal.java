@@ -1,8 +1,6 @@
 package service;
 
-import model.Direccion;
-import model.Evento;
-import model.OperadorLocal;
+import model.*;
 import util.EntradaConsola;
 import util.Validador;
 
@@ -24,8 +22,8 @@ public class FormularioOperadorLocal {
      */
     public OperadorLocal agregarOperadorLocal(){
 
-        Evento evento;
-        Direccion direccion;
+        ServicioTuristico servicioTuristico;
+        Direccion direccion = new Direccion();
         String nombreOperador;
         String correoOperador;
         String telefonoOperador;
@@ -34,10 +32,20 @@ public class FormularioOperadorLocal {
         String respuesta;
 
         String nombreEvento;
+        double horaEvento = 0.0;
+        String horaTexto;
+
         int numeroParticipante = 0;
         String nombreCalleEvento;
         String tipoEdificioEvento;
         String numeroEdificio;
+
+        int seleccionEvento = 0;
+
+
+        int numeroParadas = 0;
+        String tipoEmbarcacion;
+        String lugarHistorico;
 
         boolean vigencia = false;
 
@@ -68,9 +76,7 @@ public class FormularioOperadorLocal {
 
         } while (!Validador.telefonoValido(telefonoOperador));
 
-
-        tipoServicio = entrada.solicitarTexto("Que servicio presta el operador: ", "Debes indicar un tipo de servicio.");
-        comuna = entrada.solicitarTexto("En que comuna: ", "Debes indicar una comuna.");
+        comuna = entrada.solicitarTexto("En que comuna tiene actividad: ", "Debes indicar una comuna.");
 
 
         System.out.print("El operador cuenta con un evento asociado (Si/No) : ");
@@ -78,7 +84,35 @@ public class FormularioOperadorLocal {
 
         if (respuesta.equals("si") || respuesta.equals("s") || respuesta.equals("yes") || respuesta.equals("y")) {
 
+            System.out.println("¡Muy bien!  indicanos el tipo de evento asociado");
+            do {
+                System.out.println("1. Ruta Gastronomica");
+                System.out.println("2. Paseo Lacustre");
+                System.out.println("3. Excursion Cultural");
+                seleccionEvento = sc.nextInt();
+                sc.nextLine();
+
+            } while (seleccionEvento != 1 && seleccionEvento != 2 && seleccionEvento != 3 );
+
             nombreEvento = entrada.solicitarTexto("Muy bien! indicanos el nombre del evento: ", "El nombre del evento no puede estar vacío.");
+
+            do {
+                try{
+                    System.out.print("Cuanto durará el evento (en horas, ejem: 45 minutos son 0.75: ");
+
+                    horaTexto = sc.nextLine().trim().replace(",", ".");
+                    horaEvento = Double.parseDouble(horaTexto);
+
+
+                    if (!Validador.numerosPositivos(horaEvento)) {
+                        System.out.println("El número no cumple el formato");
+                    }
+                }catch(InputMismatchException e){
+                    System.out.println("Se produjo el siguiente error al ingresar n° de participantes: " + e);
+                    sc.nextLine();
+                }
+
+            } while (!Validador.numerosPositivos(horaEvento));
 
             do {
                 try{
@@ -87,7 +121,7 @@ public class FormularioOperadorLocal {
                     sc.nextLine();
 
 
-                    if (!Validador.numerosPositivos(numeroParticipante)) {
+                    if (!Validador.numerosPositivosInt(numeroParticipante)) {
                         System.out.println("El número no cumple el formato");
                     }
                 }catch(InputMismatchException e){
@@ -95,16 +129,57 @@ public class FormularioOperadorLocal {
                     sc.nextLine();
                 }
 
-            } while (!Validador.numerosPositivos(numeroParticipante));
+            } while (!Validador.numerosPositivosInt(numeroParticipante));
+
+
 
             nombreCalleEvento = entrada.solicitarTexto("El nombre de la calle en donde es este evento: ", "Debes indicar una calle.");
             tipoEdificioEvento = entrada.solicitarTexto("El edificio tiene un nombre particular o es otro inmueble?: ", "Debes indicar un tipo de edificio.");
             numeroEdificio = entrada.solicitarTexto("El número del edificio: ", "Debes indicar una n° para el edificio.");
-            System.out.println("Excelente! Crearemos al operador con estado: Vigente");
+            direccion = new Direccion( nombreCalleEvento,tipoEdificioEvento, numeroEdificio);
+
+            switch (seleccionEvento){
+                case 1: //Ruta gastronómica
+                    do {
+                        try{
+                            System.out.print("Selecciona el número de paradas de la ruta Gastronómica: ");
+                            numeroParadas = sc.nextInt();
+                            sc.nextLine();
 
 
-            direccion = new Direccion(nombreCalleEvento, tipoEdificioEvento, numeroEdificio);
-            evento = new Evento(nombreEvento, numeroParticipante, direccion);
+                            if (!Validador.numerosPositivosInt(numeroParadas)) {
+                                System.out.println("El número no cumple el formato");
+                            }
+                        }catch(InputMismatchException e){
+                            System.out.println("Se produjo el siguiente error al ingresar n° de paradas: " + e);
+                            sc.nextLine();
+                        }
+
+                    } while (!Validador.numerosPositivosInt(numeroParadas));
+
+
+                    System.out.println("Excelente! Crearemos al operador con estado: Vigente");
+                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas);
+                    servicioTuristico.setDireccion(direccion);
+                    servicioTuristico.setCantidadParticipantes(numeroParticipante);
+                    break;
+
+                case 2: //Paseo lacustre
+                    tipoEmbarcacion = entrada.solicitarTexto("Que tipo de embarcación se utilizará: ", "Debes indicar un tipo de embarcación.");
+                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion);
+                    servicioTuristico.setDireccion(direccion);
+                    servicioTuristico.setCantidadParticipantes(numeroParticipante);
+                    break;
+                case 3: //Excursión cultiral
+                    lugarHistorico = entrada.solicitarTexto("Que lugar historico se visitara en esta ocasión: ", "Debes indicar un lugar ´histórico.");
+                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico);
+                    servicioTuristico.setDireccion(direccion);
+                    servicioTuristico.setCantidadParticipantes(numeroParticipante);
+                    break;
+                default:
+                    servicioTuristico = new ExcursionCultural();
+                    break;
+            }
 
             vigencia = true;
 
@@ -114,7 +189,7 @@ public class FormularioOperadorLocal {
             System.out.println("Excelente! Crearemos al operador con estado:No Vigente");
 
             direccion = new Direccion();
-            evento = new Evento();
+            servicioTuristico = new ExcursionCultural();
 
         } else {
 
@@ -122,11 +197,11 @@ public class FormularioOperadorLocal {
             System.out.println("Crearemos al operador con estado:No Vigente");
 
             direccion = new Direccion();
-            evento = new Evento();
+            servicioTuristico = new ExcursionCultural();
 
         }
 
-        return new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, tipoServicio, comuna, evento, vigencia);
+        return new OperadorLocal( nombreOperador, correoOperador, telefonoOperador, comuna, servicioTuristico, vigencia);
 
     }
 }

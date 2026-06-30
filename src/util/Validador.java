@@ -19,7 +19,13 @@ public class Validador {
      * @param numero Número a validar.
      * @return true si el número es positivo; false en caso contrario.
      */
-    public static boolean numerosPositivos(int numero) {
+    public static boolean numerosPositivosInt(int numero) {
+
+        return numero > 0;
+    }
+
+    public static boolean numerosPositivos(double numero) {
+
         return numero > 0;
     }
 

@@ -2,41 +2,29 @@ package model;
 
 public class OperadorLocal extends Usuario{
 
-    private String tipoServicio; // Pueden ser: Navegación, Kayak, Cabalgatas, Trekking, Gastronomía, etc.
     private String comuna; // Pueden ser: Puerto Montt, Puerto Varas,Frutillar, Llanquihue, Calbuco, Maullín, Fresia, Los Muermos y Cochamó
-    private Evento evento;
+    private ServicioTuristico servicioTuristico;
     private boolean vigente;
 
-    public OperadorLocal(String nombre, String correoElectronico, String numeroTelefonico, String tipoServicio, String comuna, Evento evento, boolean vigente){
+    public OperadorLocal(String nombre, String correoElectronico, String numeroTelefonico, String comuna, ServicioTuristico servicioTuristico, boolean vigente){
 
         super(nombre, correoElectronico, numeroTelefonico);
-        setTipoServicio(tipoServicio);
         setComuna(comuna);
-        this.evento = evento;
-        this.vigente = vigente;
+        setServicioTuristico(servicioTuristico);
+        setVigencia(vigente);
 
     }
 
     public OperadorLocal(){
 
         super();
-        this.tipoServicio = "No hay servicio registrado";
         this.comuna = "No hay comuna registrada";
-        this.evento = new Evento();
+        this.servicioTuristico = new ExcursionCultural();
         this.vigente = false;
 
     }
 
     //Getters ----------------------------
-    /**
-     * Obtiene el nombre del tipo de servicio.
-     *
-     * @return Nombre del servicio.
-     */
-    public String getTipoServicio() {
-
-        return tipoServicio;
-    }
 
     /**
      * Obtiene la comuna en donde se brinda el servicio.
@@ -49,13 +37,12 @@ public class OperadorLocal extends Usuario{
     }
 
     /**
-     * Obtiene el evento en donde se brinda el servicio.
+     * Obtiene el servicio turístico asociado al operador local.
      *
-     * @return Nombre del evento del servicio.
+     * @return Objeto ServicioTuristico asignado al operador.
      */
-    public Evento getEvento() {
-
-        return evento;
+    public ServicioTuristico getServicioTuristico() {
+        return servicioTuristico;
     }
 
     /**
@@ -77,27 +64,12 @@ public class OperadorLocal extends Usuario{
      * @return El estado de la variable booleana vigencia.
      */
     public boolean isVigente() {
+
         return vigente;
     }
 
 
     //Setters ----------------------------
-    /**
-     * Establece el nombre del tipo de servicio.
-     *
-     * @param tipoServicio Nombre del servicio.
-     */
-    public void setTipoServicio(String tipoServicio) {
-        if(tipoServicio== null || tipoServicio.trim().isEmpty()){
-
-            this.tipoServicio = "No se proporcionó Tipo de servicio";
-
-        } else{
-
-            this.tipoServicio = tipoServicio;
-
-        }
-    }
 
     /**
      * Establece la comuna en donde opera el operador local.
@@ -117,19 +89,18 @@ public class OperadorLocal extends Usuario{
     }
 
     /**
-     * Establece el evento del operador Local.
+     * Establece el servicio turístico asociado al operador local.
      *
-     * @param evento Nombre del evento del operador local.
+     * @param servicioTuristico Servicio turístico que realizará el operador local.
      */
-    public void setEvento(Evento evento) {
-
-        this.evento = evento;
+    public void setServicioTuristico(ServicioTuristico servicioTuristico) {
+        this.servicioTuristico = servicioTuristico;
     }
 
     /**
-     * Establece el estado de vigencia del operador Local.
+     * Establece el estado de vigencia del operador local.
      *
-     * @param vigente Nombre del evento del operador local.
+     * @param vigente Estado de vigencia del operador local.
      */
     public void setVigencia(boolean  vigente) {
 
@@ -151,9 +122,9 @@ public class OperadorLocal extends Usuario{
                 "¿Operador presenta servicios vigentes?:" + getVigencia() + "\n" +
                 "Correo electrónico: " + getCorreoElectronico() + "\n" +
                 "Número de contacto: +569" + getNumeroTelefonico() + "\n"  +
-                "Tipo de servicio ofrecido: " + getTipoServicio() + "\n" +
                 "Comuna de operación: " + getComuna() + "\n" +
-                "⬇ Información del evento asignado ⬇ " + getEvento();
+                "⬇ Información del evento asignado ⬇ " +
+                getServicioTuristico();
     }
 
 }

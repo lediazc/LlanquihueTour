@@ -1,9 +1,10 @@
-1;jacobo benavides;true;jcob@gmail.com;234567989;guía turístico;puerto montt;tour volcán osorno;25;los alerces;oficina;123
-2;maría gonzález;true;maria.gonzalez@gmail.com;987654321;kayak;puerto varas;travesía lago llanquihue;15;imperial;casa;456
-3;pedro muñoz;true;pedro.munoz@gmail.com;912345678;cabalgatas;frutillar;ruta ecuestre frutillar;12;los castaños;parcela;78
-4;camila soto;true;camila.soto@gmail.com;976543210;gastronomía;calbuco;festival de sabores del mar;80;costanera;restaurant;210
-5;rodrigo pérez;true;rodrigo.perez@gmail.com;998877665;trekking;cochamó;expedición valle cochamó;20;río puelo;refugio;15
-6;valentina rojas;true;valentina.rojas@gmail.com;955443322;navegación;maullín;navegación humedales de maullín;30;o'higgins;oficina;332
-7;pepito juarez;false;pepj@llanquihue.cl;87783443;chef;puerto montt;sabores de tenglo;10;tenglo 123;restaurant;3223
-8;holio menez;false;aloah1234@gmail.com;78943983;guia;frutillar;Sin nombre de evento registrado;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;0
-9;jose meme;true;meme@jose.cl;78896543;locutor;maitencillo;Sin nombre de evento registrado;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;0
+1;jacobo benavides;true;jcob@gmail.com;23456798;puerto montt;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5
+2;maría gonzález;true;maria.gonzalez@gmail.com;98765432;puerto varas;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán
+3;pedro muñoz;true;pedro.munoz@gmail.com;91234567;frutillar;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial
+4;camila soto;true;camila.soto@gmail.com;97654321;calbuco;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
+5;rodrigo pérez;true;rodrigo.perez@gmail.com;99887766;cochamó;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
+6;valentina rojas;true;valentina.rojas@gmail.com;95544332;maullín;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha
+7;elan;true;gpt@openai.com;12345678;otradimension;RutaGastronomica;comidagpt;1.0;2;inexistente;espaciosideral;99;5
+8;luis;true;luis@gmail.com;12345678;qa;PaseoLacustre;paseo;3.0;20;paseocalle;aire libre;00;bicicleta
+9;haru;true;haru@gmail.com;12345678;gato;ExcursionCultural;haru caminata;3.0;20;callemuseo;museo;11;museo de los gatos
+10;camila;false;cami@gmail.com;12345678;santiago;ExcursionCultural;Sin nombre registrado;0.0;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;No proporcionó número de hogar;Sin lugar histórico registrado

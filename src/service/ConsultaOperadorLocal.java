@@ -92,7 +92,7 @@ public class ConsultaOperadorLocal {
 
         for (OperadorLocal operador : operadores) {
 
-            if (operador.getEvento().getCantidadParticipantes() >= 15) {
+            if (operador.getServicioTuristico().getCantidadParticipantes() >= 15) {
 
                 System.out.println(operador);
 
@@ -109,7 +109,7 @@ public class ConsultaOperadorLocal {
 
         for (OperadorLocal operador : operadores) {
 
-            if (operador.getEvento().getCantidadParticipantes() < 15) {
+            if (operador.getServicioTuristico().getCantidadParticipantes() < 15) {
 
                 System.out.println(operador);
 

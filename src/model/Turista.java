@@ -4,14 +4,14 @@ public class Turista extends Usuario {
 
     private int edad;
     private String genero;
-    private Evento evento;
+    private ServicioTuristico servicioTuristico;
 
-    public Turista(String nombre, String correoElectronico, String numeroTelefonico, int edad, String genero, Evento evento) {
+    public Turista(String nombre, String correoElectronico, String numeroTelefonico, int edad, String genero, ServicioTuristico servicioTuristico) {
 
         super(nombre, correoElectronico, numeroTelefonico);
         setEdad(edad);
         setGenero(genero);
-        this.evento = evento;
+        setServicioTuristico(servicioTuristico);
 
     }
 
@@ -20,98 +20,53 @@ public class Turista extends Usuario {
         super();
         this.edad = 0;
         this.genero = "Prefiero no decir";
-        this.evento = new Evento();
+        this.servicioTuristico = new ExcursionCultural();
 
     }
 
-    //Getters ----------------------------
-
-    /**
-     * Obtiene la edad del turista.
-     *
-     * @return Edad del turista.
-     */
     public int getEdad() {
-
         return edad;
     }
 
-    /**
-     * Obtiene el género del turista.
-     *
-     * @return Género del turista.
-     */
     public String getGenero() {
-
         return genero;
     }
 
-    /**
-     * Obtiene el evento de asistencia.
-     *
-     * @return Nombre del evento de asistencia.
-     */
-    public Evento getEvento() {
-
-        return evento;
+    public ServicioTuristico getServicioTuristico() {
+        return servicioTuristico;
     }
 
-
-    //Setters ----------------------------
-
-    /**
-     * Establece la edad del turista.
-     *
-     * @param edad Edad turista.
-     */
     public void setEdad(int edad) {
-        if(edad < 0){
+        if (edad < 0) {
             this.edad = 0;
-        } else{
+        } else {
             this.edad = edad;
         }
     }
 
-    /**
-     * Establece el género(sexo) del turista.
-     *
-     * @param genero Género(sexo) del turista.
-     */
     public void setGenero(String genero) {
-        if(genero== null || genero.trim().isEmpty()){
+        if (genero == null || genero.trim().isEmpty()) {
             this.genero = "No se proporcionó ningún genero";
         } else {
             this.genero = genero;
         }
     }
 
-    /**
-     * Establece el evento de asistencia.
-     *
-     * @param evento Nombre del evento de asistencia.
-     */
-    public void setEvento(Evento evento) {
-
-        this.evento = evento;
+    public void setServicioTuristico(ServicioTuristico servicioTuristico) {
+        this.servicioTuristico = servicioTuristico;
     }
 
-    //Metodo toString de formateo -------------------------------------
-
-    /**
-     * Devuelve el usuario formateado.
-     *
-     * @return Cadena formateada con la información del propietario y su dirección.
-     */
     @Override
     public String toString() {
 
         return
                 "\n=== INFORMACIÓN DEL TURISTA ===\n" +
-                "Nombre del turista: " + getNombre() + "\n" +
-                "Correo electrónico: " + getCorreoElectronico() + "\n" +
-                "Número de contacto: +569" + getNumeroTelefonico() + "\n"  +
-                "Edad: " + getEdad() + "\n" +
-                "Género: " + getGenero() + "\n" +
-                "⬇ Evento inscrito ⬇ " + getEvento();
+                        "Nombre del turista: " + getNombre() + "\n" +
+                        "Correo electrónico: " + getCorreoElectronico() + "\n" +
+                        "Número de contacto: +569" + getNumeroTelefonico() + "\n" +
+                        "Edad: " + getEdad() + "\n" +
+                        "Género: " + getGenero() + "\n" +
+                        "⬇ Servicio inscrito ⬇ " + "\n" +
+                        getServicioTuristico();
     }
 }

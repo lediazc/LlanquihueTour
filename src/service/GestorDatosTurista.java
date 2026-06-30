@@ -1,8 +1,6 @@
 package service;
 
-import model.Direccion;
-import model.Evento;
-import model.Turista;
+import model.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -39,11 +37,11 @@ public class GestorDatosTurista {
             if (!Files.exists(archivoGestorTurista)) {
 
                 List<String> datosSemilla = List.of(
-                        "1;ana torres;ana.torres@gmail.com;87654321;28;femenino;tour volcán osorno;25;los alerces;oficina;123",
-                        "2;carlos perez;carlos.perez@gmail.com;91234567;34;masculino;travesía lago llanquihue;15;imperial;casa;456",
-                        "3;marcela rios;marcela.rios@gmail.com;98765432;22;femenino;ruta ecuestre frutillar;12;los castaños;parcela;78",
-                        "4;diego salinas;diego.salinas@gmail.com;99887766;41;masculino;festival de sabores del mar;80;costanera;restaurant;210",
-                        "5;paula fuentes;paula.fuentes@gmail.com;95544332;30;femenino;expedición valle cochamó;20;río puelo;refugio;15"
+                        "1;ana torres;ana.torres@gmail.com;87654321;28;femenino;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5",
+                        "2;carlos perez;carlos.perez@gmail.com;91234567;34;masculino;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán",
+                        "3;marcela rios;marcela.rios@gmail.com;98765432;22;femenino;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial",
+                        "4;diego salinas;diego.salinas@gmail.com;99887766;41;masculino;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8",
+                        "5;paula fuentes;paula.fuentes@gmail.com;95544332;30;femenino;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó"
                 );
 
                 Files.write(archivoGestorTurista, datosSemilla);
@@ -75,8 +73,19 @@ public class GestorDatosTurista {
 
         for (Turista turista : turistas) {
 
-            Evento evento = turista.getEvento();
-            Direccion direccion = evento.getDireccion();
+            ServicioTuristico servicio = turista.getServicioTuristico();
+            Direccion direccion = servicio.getDireccion();
+
+            String tipoServicioTuristico = servicio.getClass().getSimpleName();
+            String datoExtra = "";
+
+            if (servicio instanceof RutaGastronomica) {
+                datoExtra = String.valueOf(((RutaGastronomica) servicio).getNumeroDeParadas());
+            } else if (servicio instanceof PaseoLacustre) {
+                datoExtra = ((PaseoLacustre) servicio).getTipoEmbarcacion();
+            } else if (servicio instanceof ExcursionCultural) {
+                datoExtra = ((ExcursionCultural) servicio).getLugarHistorico();
+            }
 
             String linea = codigo + ";" +
                     turista.getNombre() + ";" +
@@ -84,11 +93,14 @@ public class GestorDatosTurista {
                     turista.getNumeroTelefonico() + ";" +
                     turista.getEdad() + ";" +
                     turista.getGenero() + ";" +
-                    evento.getNombreEvento() + ";" +
-                    evento.getCantidadParticipantes() + ";" +
+                    tipoServicioTuristico + ";" +
+                    servicio.getNombre() + ";" +
+                    servicio.getDuracionHoras() + ";" +
+                    servicio.getCantidadParticipantes() + ";" +
                     direccion.getCalle() + ";" +
                     direccion.getEdificacion() + ";" +
-                    direccion.getNumeroHogar();
+                    direccion.getNumeroHogar() + ";" +
+                    datoExtra;
 
             lineas.add(linea);
             codigo++;
@@ -121,23 +133,44 @@ public class GestorDatosTurista {
 
                 String[] datos = linea.split(";");
 
-                if (datos.length == 11) {
+                if (datos.length == 14) {
 
-                    String codigo = datos[0].trim();
                     String nombreTurista = datos[1].trim();
                     String correoTurista = datos[2].trim();
                     String telefonoTurista = datos[3].trim();
                     int edadTurista = Integer.parseInt(datos[4].trim());
                     String generoTurista = datos[5].trim();
-                    String nombreEvento = datos[6].trim();
-                    int cantidadParticipantes = Integer.parseInt(datos[7].trim());
-                    String nombreCalle = datos[8].trim();
-                    String edificacion = datos[9].trim();
-                    String numeroHogar = datos[10].trim();
+
+                    String tipoServicioTuristico = datos[6].trim();
+                    String nombreEvento = datos[7].trim();
+                    double cantidadHoras = Double.parseDouble(datos[8].trim());
+                    int cantidadParticipantes = Integer.parseInt(datos[9].trim());
+                    String nombreCalle = datos[10].trim();
+                    String edificacion = datos[11].trim();
+                    String numeroHogar = datos[12].trim();
+                    String datoExtra = datos[13].trim();
 
                     Direccion direccion = new Direccion(nombreCalle, edificacion, numeroHogar);
 
-                    Evento evento = new Evento(nombreEvento, cantidadParticipantes, direccion);
+                    ServicioTuristico servicio;
+
+                    switch (tipoServicioTuristico) {
+                        case "RutaGastronomica":
+                            servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra));
+                            break;
+                        case "PaseoLacustre":
+                            servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra);
+                            break;
+                        case "ExcursionCultural":
+                            servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra);
+                            break;
+                        default:
+                            servicio = new ExcursionCultural();
+                            break;
+                    }
+
+                    servicio.setDireccion(direccion);
+                    servicio.setCantidadParticipantes(cantidadParticipantes);
 
                     Turista turista = new Turista(
                             nombreTurista,
@@ -145,12 +178,11 @@ public class GestorDatosTurista {
                             telefonoTurista,
                             edadTurista,
                             generoTurista,
-                            evento
+                            servicio
                     );
 
                     turistas.add(turista);
-
-                } else {
+                }  else {
 
                     System.out.println("Línea ignorada por formato corrupto: " + linea);
 
