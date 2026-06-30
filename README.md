@@ -228,7 +228,7 @@ src/app/Main.java
 
 **Repositorio GitHub:** https://github.com/lediazc/LlanquihueTour
 
-**Fecha de entrega:** 22/06/2026
+**Fecha de entrega:** 29/06/2026
 
 ---
 
