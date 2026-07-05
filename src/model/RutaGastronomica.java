@@ -4,8 +4,8 @@ public class RutaGastronomica extends ServicioTuristico{
 
     private int numeroDeParadas;
 
-    public RutaGastronomica(String nombre, double duracionHoras, int numeroDeParadas){
-        super(nombre, duracionHoras);
+    public RutaGastronomica(String nombre, double duracionHoras, int numeroDeParadas, Direccion direccion){
+        super(nombre, duracionHoras, direccion);
         setNumeroDeParadas(numeroDeParadas);
     }
 
@@ -42,10 +42,15 @@ public class RutaGastronomica extends ServicioTuristico{
     }
 
     @Override
-    public String toString() {
+    public String mostrarInformación() {
         return
                 "\n--- Ruta Gastronómica ---" +
-                super.toString() +
-                "Número de Paradas: " + numeroDeParadas;
+                toString();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Número de paradas: " + numeroDeParadas + "\n";
     }
 }

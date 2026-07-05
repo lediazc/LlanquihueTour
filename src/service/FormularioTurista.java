@@ -66,14 +66,14 @@ public class FormularioTurista {
                 edadTurista = sc.nextInt();
                 sc.nextLine();
 
-                if (!Validador.numerosPositivosInt(edadTurista)) {
+                if (!Validador.numerosPositivos(edadTurista)) {
                     System.out.println("La edad debe ser un número positivo.");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Se produjo el siguiente error al ingresar la edad: " + e);
                 sc.nextLine();
             }
-        } while (!Validador.numerosPositivosInt(edadTurista));
+        } while (!Validador.numerosPositivos(edadTurista));
 
         generoTurista = entrada.solicitarTexto("Digita el género del turista: ", "Debes indicar un género.");
 
@@ -114,14 +114,14 @@ public class FormularioTurista {
                     numeroParticipante = sc.nextInt();
                     sc.nextLine();
 
-                    if (!Validador.numerosPositivosInt(numeroParticipante)) {
+                    if (!Validador.numerosPositivos(numeroParticipante)) {
                         System.out.println("El número no cumple el formato.");
                     }
                 } catch (InputMismatchException e) {
                     System.out.println("Se produjo el siguiente error al ingresar n° de participantes: " + e);
                     sc.nextLine();
                 }
-            } while (!Validador.numerosPositivosInt(numeroParticipante));
+            } while (!Validador.numerosPositivos(numeroParticipante));
 
             nombreCalleEvento = entrada.solicitarTexto("El nombre de la calle en donde es este evento: ", "Debes indicar una calle.");
             tipoEdificioEvento = entrada.solicitarTexto("El edificio tiene un nombre particular o es otro inmueble?: ", "Debes indicar un tipo de edificio.");
@@ -137,16 +137,16 @@ public class FormularioTurista {
                             numeroParadas = sc.nextInt();
                             sc.nextLine();
 
-                            if (!Validador.numerosPositivosInt(numeroParadas)) {
+                            if (!Validador.numerosPositivos(numeroParadas)) {
                                 System.out.println("El número no cumple el formato");
                             }
                         } catch (InputMismatchException e) {
                             System.out.println("Se produjo el siguiente error al ingresar n° de paradas: " + e);
                             sc.nextLine();
                         }
-                    } while (!Validador.numerosPositivosInt(numeroParadas));
+                    } while (!Validador.numerosPositivos(numeroParadas));
 
-                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas);
+                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas, direccion);
                     break;
 
                 case 2:

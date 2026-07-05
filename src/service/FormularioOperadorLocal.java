@@ -121,7 +121,7 @@ public class FormularioOperadorLocal {
                     sc.nextLine();
 
 
-                    if (!Validador.numerosPositivosInt(numeroParticipante)) {
+                    if (!Validador.numerosPositivos(numeroParticipante)) {
                         System.out.println("El número no cumple el formato");
                     }
                 }catch(InputMismatchException e){
@@ -129,7 +129,7 @@ public class FormularioOperadorLocal {
                     sc.nextLine();
                 }
 
-            } while (!Validador.numerosPositivosInt(numeroParticipante));
+            } while (!Validador.numerosPositivos(numeroParticipante));
 
 
 
@@ -147,7 +147,7 @@ public class FormularioOperadorLocal {
                             sc.nextLine();
 
 
-                            if (!Validador.numerosPositivosInt(numeroParadas)) {
+                            if (!Validador.numerosPositivos(numeroParadas)) {
                                 System.out.println("El número no cumple el formato");
                             }
                         }catch(InputMismatchException e){
@@ -155,24 +155,23 @@ public class FormularioOperadorLocal {
                             sc.nextLine();
                         }
 
-                    } while (!Validador.numerosPositivosInt(numeroParadas));
+                    } while (!Validador.numerosPositivos(numeroParadas));
 
 
                     System.out.println("Excelente! Crearemos al operador con estado: Vigente");
-                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas);
-                    servicioTuristico.setDireccion(direccion);
+                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas, direccion);
                     servicioTuristico.setCantidadParticipantes(numeroParticipante);
                     break;
 
                 case 2: //Paseo lacustre
                     tipoEmbarcacion = entrada.solicitarTexto("Que tipo de embarcación se utilizará: ", "Debes indicar un tipo de embarcación.");
-                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion);
+                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion, direccion);
                     servicioTuristico.setDireccion(direccion);
                     servicioTuristico.setCantidadParticipantes(numeroParticipante);
                     break;
                 case 3: //Excursión cultiral
                     lugarHistorico = entrada.solicitarTexto("Que lugar historico se visitara en esta ocasión: ", "Debes indicar un lugar ´histórico.");
-                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico);
+                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico, direccion);
                     servicioTuristico.setDireccion(direccion);
                     servicioTuristico.setCantidadParticipantes(numeroParticipante);
                     break;

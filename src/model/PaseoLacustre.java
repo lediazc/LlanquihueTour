@@ -4,8 +4,8 @@ public class PaseoLacustre extends ServicioTuristico{
 
     private String tipoEmbarcacion;
 
-    public PaseoLacustre(String nombre, double duracionHoras, String tipoEmbarcacion) {
-        super(nombre, duracionHoras);
+    public PaseoLacustre(String nombre, double duracionHoras, String tipoEmbarcacion, Direccion direccion) {
+        super(nombre, duracionHoras, direccion);
         setTipoEmbarcacion(tipoEmbarcacion);
 
     }
@@ -39,13 +39,19 @@ public class PaseoLacustre extends ServicioTuristico{
      * @param tipoEmbarcacion tipo de embarcación.
      */
     public void setTipoEmbarcacion(String tipoEmbarcacion) {
+
         this.tipoEmbarcacion = tipoEmbarcacion;
     }
 
     @Override
-    public String toString() {
+    public String mostrarInformación() {
         return "\n--- Paseo Lacustre ---" +
-                super.toString() +
+                toString();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
                 "Tipo de Embarcación: " + tipoEmbarcacion;
     }
 }

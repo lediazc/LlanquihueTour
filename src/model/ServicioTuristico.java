@@ -7,15 +7,16 @@ public abstract class ServicioTuristico {
     private Direccion direccion;
     private int cantidadParticipantes;
 
-    ServicioTuristico(String nombre, double duracionHoras){
+    ServicioTuristico(String nombre, double duracionHoras, Direccion direccion) {
 
         setNombre(nombre);
         setDuracionHoras(duracionHoras);
-        this.direccion = new Direccion();
-        this.cantidadParticipantes = 0;
+        setDireccion(direccion);
+        setCantidadParticipantes(cantidadParticipantes);
+        
     }
 
-    public ServicioTuristico(){
+    public ServicioTuristico() {
 
         this.nombre = "Sin nombre registrado";
         this.duracionHoras = 0.0;
@@ -31,7 +32,7 @@ public abstract class ServicioTuristico {
      *
      * @return Nombre del servicio.
      */
-    public String getNombre(){
+    public String getNombre() {
 
         return nombre;
 
@@ -43,7 +44,7 @@ public abstract class ServicioTuristico {
      *
      * @return duración del servicio en horas.
      */
-    public double getDuracionHoras(){
+    public double getDuracionHoras() {
 
         return duracionHoras;
     }
@@ -99,9 +100,9 @@ public abstract class ServicioTuristico {
      * @param cantidadParticipantes valor numérico de cantidad de turistas.
      */
     public void setCantidadParticipantes(int cantidadParticipantes) {
-        if(cantidadParticipantes < 0){
+        if (cantidadParticipantes < 0) {
             this.cantidadParticipantes = 0;
-        } else{
+        } else {
             this.cantidadParticipantes = cantidadParticipantes;
         }
     }
@@ -116,13 +117,23 @@ public abstract class ServicioTuristico {
         this.direccion = direccion;
     }
 
+    //Métodos de clase-----------------
+    /**
+     * Obtiene la información del servicio turístico.
+     * Este método debe ser implementado por las subclases para
+     * mostrar la información específica de cada tipo de servicio.
+     *
+     * @return Cadena con la información del servicio turístico.
+     */
+    public abstract String mostrarInformación();
+
     @Override
     public String toString() {
 
         return
                 "\nNombre del evento: " + getNombre() +
-                        "\nDirección del evento: " + getDireccion() +
-                        "\nDuración estimada: " + getDuracionHoras() +
-                        "\nCantidad de asistentes: " + getCantidadParticipantes() + "\n";
+                "\nDirección del evento: " + getDireccion() +
+                "\nDuración estimada: " + getDuracionHoras() +
+                "\nCantidad de asistentes: " + getCantidadParticipantes() + "\n";
     }
 }
