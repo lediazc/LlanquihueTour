@@ -1,0 +1,16 @@
+1;RutaGastronomica;tour volcán osorno;5.0;los alerces;oficina;123;5
+2;PaseoLacustre;travesía lago llanquihue;2.5;imperial;casa;456;catamarán
+3;ExcursionCultural;ruta ecuestre frutillar;3.0;los castaños;parcela;78;museo colonial
+4;RutaGastronomica;festival de sabores del mar;4.0;costanera;restaurant;210;8
+5;ExcursionCultural;expedición valle cochamó;6.0;río puelo;refugio;15;valle cochamó
+6;RutaGastronomica;tour volcán osorno;5.0;los alerces;oficina;123;5
+7;PaseoLacustre;travesía lago llanquihue;2.5;imperial;casa;456;catamarán
+8;ExcursionCultural;ruta ecuestre frutillar;3.0;los castaños;parcela;78;museo colonial
+9;RutaGastronomica;festival de sabores del mar;4.0;costanera;restaurant;210;8
+10;ExcursionCultural;expedición valle cochamó;6.0;río puelo;refugio;15;valle cochamó
+11;PaseoLacustre;navegación humedales de maullín;2.0;o'higgins;oficina;332;lancha
+12;RutaGastronomica;Llanquihue ñam;4.5;Calle ñami;Restaurant;2134;6
+13;PaseoLacustre;Lago siempre vivo;2.0;Lago siempre vivo;Caseta de guardia;423;lancha motorizada
+14;ExcursionCultural;La historia de un hospital maldito;2.0;Avenida Nathan;Hospital;123;Hospital Brookhaven
+15;RutaGastronomica;Almuerzo por la comuna;3.0;Calle Siempre viva;Edificio;2134;1
+16;ExcursionCultural;Conociendo la Muni por dentro;2.0;Calle Siempre viva;Edificio;2134;Municipalidad Feliz

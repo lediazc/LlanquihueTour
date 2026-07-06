@@ -13,7 +13,7 @@ public abstract class ServicioTuristico {
         setDuracionHoras(duracionHoras);
         setDireccion(direccion);
         setCantidadParticipantes(cantidadParticipantes);
-        
+
     }
 
     public ServicioTuristico() {
@@ -125,7 +125,7 @@ public abstract class ServicioTuristico {
      *
      * @return Cadena con la información del servicio turístico.
      */
-    public abstract String mostrarInformación();
+    public abstract String mostrarInformacion();
 
     @Override
     public String toString() {

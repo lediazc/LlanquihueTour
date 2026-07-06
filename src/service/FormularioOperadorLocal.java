@@ -169,7 +169,7 @@ public class FormularioOperadorLocal {
                     servicioTuristico.setDireccion(direccion);
                     servicioTuristico.setCantidadParticipantes(numeroParticipante);
                     break;
-                case 3: //Excursión cultiral
+                case 3: //Excursión cultural
                     lugarHistorico = entrada.solicitarTexto("Que lugar historico se visitara en esta ocasión: ", "Debes indicar un lugar ´histórico.");
                     servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico, direccion);
                     servicioTuristico.setDireccion(direccion);

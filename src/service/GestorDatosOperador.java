@@ -222,11 +222,7 @@ public class GestorDatosOperador {
 
         } catch (IOException e) {
 
-            System.out.println(
-
-                    "Error al leer los operadores Locales: " + e.getMessage()
-
-            );
+            System.out.println("Error al leer los operadores Locales: " + e.getMessage());
 
         } catch (NumberFormatException e) {
 

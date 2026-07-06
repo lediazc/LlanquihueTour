@@ -151,12 +151,12 @@ public class FormularioTurista {
 
                 case 2:
                     tipoEmbarcacion = entrada.solicitarTexto("Qué tipo de embarcación se utilizará: ", "Debes indicar un tipo de embarcación.");
-                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion);
+                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion, direccion);
                     break;
 
                 case 3:
                     lugarHistorico = entrada.solicitarTexto("Qué lugar histórico se visitará: ", "Debes indicar un lugar histórico.");
-                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico);
+                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico, direccion);
                     break;
 
                 default:

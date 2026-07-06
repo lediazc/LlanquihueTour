@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class MenuGeneral {
 
     private Scanner sc = new Scanner(System.in);
+    private GestorServicios gestorServicios = new GestorServicios();
     private GestorDatosOperador gestorOperador = new GestorDatosOperador();
     private ConsultaOperadorLocal consultaOperador = new ConsultaOperadorLocal();
     private ConsultaTurista consultaTurista = new ConsultaTurista();
@@ -30,14 +31,15 @@ public class MenuGeneral {
         ArrayList<Turista> gestorTuristas = gestorTurista.leerTuristasDesdeArchivo();
         do {
             try {
-                System.out.println("Bienvenido al Gestor de Personal de Llanquihue Tour");
+                System.out.println("\n Bienvenido al Gestor de Personal de Llanquihue Tour");
                 System.out.println("Por favor, seleccione una de las siguientes opciones: "        + "\n" +
                                     "1) Mostrarme todos los registros de operadores."              + "\n" +
                                     "2) Mostrarme todos los registros de turistas."                + "\n" +
                                     "3) Filtrar registros de operadores."                          + "\n" +
                                     "4) Agregar Operador Local."                                   + "\n" +
                                     "5) Agregar turista."                                          + "\n" +
-                                    "6) Salir."
+                                    "6) Visualizar todos los servicios registrados"                + "\n" +
+                                    "7) Salir."
                 );
 
                 System.out.print("Elección deseada: ");
@@ -73,6 +75,11 @@ public class MenuGeneral {
                         break;
 
                     case 6:
+                        gestorServicios.leerServiciosDesdeArchivos();
+                        gestorServicios.leerLista();
+                        break;
+
+                    case 7:
                         System.out.println("Hasta luego.");
                         break;
 
@@ -83,7 +90,7 @@ public class MenuGeneral {
                 System.out.println("Ocurrió el siguiente error: " + e);
                 sc.nextLine();
             }
-        } while (eleccionUsuario != 6);
+        } while (eleccionUsuario != 7);
     }
 
     /**

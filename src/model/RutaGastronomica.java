@@ -42,7 +42,7 @@ public class RutaGastronomica extends ServicioTuristico{
     }
 
     @Override
-    public String mostrarInformación() {
+    public String mostrarInformacion() {
         return
                 "\n--- Ruta Gastronómica ---" +
                 toString();
@@ -51,6 +51,6 @@ public class RutaGastronomica extends ServicioTuristico{
     @Override
     public String toString() {
         return super.toString() +
-                "Número de paradas: " + numeroDeParadas + "\n";
+                "Número de paradas: " + numeroDeParadas;
     }
 }
