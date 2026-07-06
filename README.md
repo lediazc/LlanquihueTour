@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# Actividad formativa 4 - Creación de jerarquías de clases con herencia simple
+# Actividad Formativa 5: Aplicación de sobreescritura y polimorfismo en jerarquías
 
 ## Autor del proyecto
 
@@ -13,7 +13,7 @@
 
 ## Descripción general del sistema
 
-Este proyecto corresponde a la Actividad Formativa 4: Actividad formativa 4 - Creación de jerarquías de clases con herencia simple - **Desarrollo Orientado a Objetos I**.
+Este proyecto corresponde a la Actividad Formativa 5: Aplicación de sobreescritura y polimorfismo en jerarquías - **Desarrollo Orientado a Objetos I**.
 
 La solución desarrollada consiste en un sistema orientado a objetos para la gestión de actividades turísticas en la provincia de Llanquihue. El sistema permite representar operadores turísticos, turistas, eventos y direcciones, aplicando conceptos fundamentales de Programación Orientada a Objetos tales como encapsulamiento, herencia, composición, constructores, getters, setters y reutilización de código.
 
@@ -32,6 +32,7 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 |    ├── FormularioTurista.java
 |    ├── GestorDatosOperador.java
 |    ├── GestorDatosTurista.java
+|    ├── GestorServicios.java
 |    └── MenuGeneral.java
 ├── app/
 |   └── Main.java
@@ -39,7 +40,6 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 |    ├── Usuario.java
 |    ├── OperadorLocal.java
 |    ├── Turista.java
-|    ├── Evento.java //Clase eliminada
 |    ├── PaseoLacustre.java
 |    ├── RutaGastronomica.java
 |    ├── ExcursionCultural.java
@@ -49,36 +49,24 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
     ├── EntradaConsola.java
     └── Validador.java
 📁 resources/ 
-    └── gestorDatosOperador.txt
+    ├── gestorDatosOperador.java
+    ├── gestorDatosServicios.java
+    └── gestorDatosTurista.txt
 ```
-### Descripción del documento utilizado
-El sistema utiliza un archivo de texto plano (.txt) llamado:
+### Descripción de los documentos utilizados
+El sistema utiliza tres archivos de texto plano (.txt):
 
-"gestorDatosOperador"
+* gestorDatosOperador.txt: almacena los operadores locales junto con su servicio turístico asociado.
+* gestorDatosTurista.txt: almacena la información de los turistas registrados y el servicio turístico inscrito.
+* gestorDatosServicios.txt: almacena los distintos servicios turísticos utilizados para demostrar herencia y polimorfismo.
 
-Cada línea representa un operador local y contiene información separada por punto y coma (;).
+Al iniciar la aplicación, el sistema:
 
-Ejemplo:
-
-1;Jacobo Benavides;jcob@gmail.com;234567989;Guía turístico;Puerto Montt;Tour Volcán Osorno;25;Los Alerces;Oficina;123
-
-Cuando se ejecuta el método main, el sistema:
-
-1.- Se verifica la existencia del archivo.
-
-2.- Se crean datos semilla si el archivo no existe.
-
-3.- Se leen los registros línea por línea.
-
-4.- Se separan los datos mediante split(";").
-
-5.- Se construyen objetos Direccion.
-
-6.- Se construyen objetos Evento.
-
-7.- Se construyen objetos OperadorLocal.
-
-8.- Los objetos se almacenan en un ArrayList.
+1) Verifica la existencia de la carpeta resources.
+2) Crea los archivos con datos semilla si no existen.
+3) Lee cada archivo línea por línea.
+4) Reconstruye los objetos correspondientes mediante split(";").
+5) Almacena los objetos en colecciones ArrayList.
 
 ### Descripción de clases
 
@@ -99,15 +87,37 @@ Cuando se ejecuta el método main, el sistema:
 * Representa a los asistentes de actividades turísticas.
 * Contiene información de edad, género y evento inscrito.
 
-**Evento**
-
-* Representa una actividad turística.
-* Contiene nombre, dirección y cantidad de participantes.
-
 **Direccion**
 
 * Representa la ubicación física de un evento.
 * Contiene calle, tipo de inmueble y número.
+
+
+**ServicioTuristico**
+
+* Clase abstracta del sistema. 
+* Contiene los atributos comunes a todos los servicios turísticos:
+  - nombre
+  - duración
+  - dirección
+  - cantidad de participantes
+* Declara el método abstracto ```mostrarInformacion()```.
+
+**RutaGastronomica**
+
+* Representa un recorrido gastronómico e incorpora el atributo `numeroDeParadas`.
+
+**PaseoLacustre**
+
+* Representa un recorrido lacustre e incorpora el atributo `tipoEmbarcacion`.
+
+**ExcursionCultural**
+
+* Representa una actividad cultural e incorpora el atributo `lugarHistorico`.
+
+**GestorServicios**
+
+* Gestiona la lectura de los servicios turísticos desde archivo y demuestra el uso de polimorfismo mediante una colección ArrayList<ServicioTuristico>.
 
 **GestorDatosOperador**
 
@@ -142,7 +152,19 @@ Contiene métodos estáticos de validación para:
 
 ---
 ##  Funcionalidades implementadas
-Esta semana (29/06/2026) se implementaron las siguientes funcionalidades:
+Esta semana (06/07/2026) se implementaron las siguientes funcionalidades:
+
+* Implementación de una jerarquía de clases mediante la clase abstracta `ServicioTuristico`.
+* Aplicación de herencia simple con las clases `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural`.
+* Implementación del método abstracto `mostrarInformacion()` y su sobrescritura en las subclases.
+* Implementación de polimorfismo utilizando una colección `ArrayList<ServicioTuristico>`.
+* Incorporación del `GestorServicios` para leer servicios turísticos desde archivo.
+* Creación del archivo `gestorDatosServicios.txt` con datos semilla.
+* Integración de la visualización de servicios turísticos en el menú principal.
+* 
+---
+
+Semana (29/06/2026) se implementaron las siguientes funcionalidades:
 * Implementación de herencia y polimorfismo mediante la jerarquía `ServicioTuristico`, incorporando las clases `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural`.
 
 * Selección dinámica del tipo de servicio turístico durante el registro de operadores y turistas.
@@ -182,7 +204,7 @@ Todos los atributos fueron declarados como privados y se accede a ellos mediante
 
 Las clases `OperadorLocal` y `Turista` heredan de la clase `Usuario`.
 
-La clase abstracta `ServicioTuristico` actúa como superclase de `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural`, permitiendo aplicar herencia y polimorfismo mediante la sobrescritura del método `toString()`.
+La clase abstracta `ServicioTuristico` actúa como superclase de `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural`, permitiendo aplicar herencia y polimorfismo mediante la sobrescritura del método abstracto mostrarInformacion(). Cada subclase reutiliza además super.toString() para complementar la información común del servicio.
 
 ### Composición
 
@@ -205,7 +227,7 @@ El proyecto se encuentra organizado en paquetes según su responsabilidad:
 
 ### Colecciones
 
-Se utiliza ArrayList para almacenar dinámicamente los operadores cargados desde archivo.
+Se utilizan colecciones ArrayList para almacenar operadores locales, turistas y servicios turísticos cargados desde archivos de texto. La colección ArrayList<ServicioTuristico> permite demostrar el uso de polimorfismo recorriendo objetos de distintas subclases mediante una referencia común.
 
 ---
 
@@ -231,7 +253,7 @@ src/app/Main.java
 
 **Repositorio GitHub:** https://github.com/lediazc/LlanquihueTour
 
-**Fecha de entrega:** 29/06/2026
+**Fecha de entrega:** 06/07/2026
 
 ---
 

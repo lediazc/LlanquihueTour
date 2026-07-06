@@ -18,9 +18,9 @@ public class GestorServicios {
 
     ArrayList<ServicioTuristico> servicios = new ArrayList<>();
     /**
-     * Crea la carpeta resources y el archivo de operadores con datos semilla si estos no existen previamente.
+     * Crea la carpeta resources y el archivo de servicios con datos semilla si estos no existen previamente.
      */
-    public void crearArchivoConDatosSemillaOperadorLocal() {
+    public void crearArchivoConDatosSemillaServicios() {
 
         try {
 
@@ -32,11 +32,17 @@ public class GestorServicios {
             if (!Files.exists(archivoDatosServicios)) {
 
                 List<String> datosSemilla = List.of(
-                    "1;RutaGastronomica;Llanquihue ñam;4.5;Calle ñami;Restaurant;2134;6",
-                    "2;PaseoLacustre;Lago siempre vivo;2.0;Lago siempre vivo;Caseta de guardia;423;lancha motorizada",
-                    "3;ExcursionCultural;La historia de un hospital maldito;2.0;Avenida Nathan;Hospital;123;Hospital Brookhaven",
-                    "4;RutaGastronomica;Almuerzo por la comuna;3.0;Calle Siempre viva;Edificio;2134;1",
-                    "5;ExcursionCultural;Conociendo la Muni por dentro;2.0;Calle Siempre viva;Edificio;2134;Municipalidad Feliz"
+                        "1;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5",
+                        "2;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán",
+                        "3;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial",
+                        "4;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8",
+                        "5;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó",
+                        "6;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha",
+                        "7;RutaGastronomica;Llanquihue ñam;4.5;6;Calle ñami;Restaurant;2134;6",
+                        "8;PaseoLacustre;Lago siempre vivo;2.0;2;Lago siempre vivo;Caseta de guardia;423;lancha motorizada",
+                        "9;ExcursionCultural;La historia de un hospital maldito;2.0;2;Avenida Nathan;Hospital;123;Hospital Brookhaven",
+                        "10;RutaGastronomica;Almuerzo por la comuna;3.0;1;Calle Siempre viva;Edificio;2134;1",
+                        "11;ExcursionCultural;Conociendo la Muni por dentro;2.0;2;Calle Siempre viva;Edificio;2134;Municipalidad Feliz"
                 );
 
                 Files.write(archivoDatosServicios, datosSemilla);
@@ -59,11 +65,14 @@ public class GestorServicios {
         }
     }
 
+    /**
+     * Lee todos los servicios almacenados en el archivo y los carga en una colección ArrayList.
+     */
     public void leerServiciosDesdeArchivos(){
 
         servicios.clear();
 
-        crearArchivoConDatosSemillaOperadorLocal();
+        crearArchivoConDatosSemillaServicios();
 
         try(BufferedReader lector = new BufferedReader(new FileReader(archivoDatosServicios.toFile()))){
 
@@ -72,16 +81,16 @@ public class GestorServicios {
             while((linea = lector.readLine()) != null){
 
                 String[] datos = linea.split(";");
-                    if (datos.length == 8) {
-                        //1;RutaGastronomica;Llanquihue ñam;4.5;Calle ñami;Restaurant;2134;6",
-                        String id = datos[0].trim();
+                    if (datos.length == 9) {
+                        String id                    = datos[0].trim();
                         String tipoServicioTuristico = datos[1].trim();
-                        String nombreEvento = datos[2].trim();
-                        double cantidadHoras = Double.parseDouble(datos[3]);
-                        String nombreCalleDireccion = datos[4].trim();
-                        String edificacionDireccion = datos[5].trim();
-                        String numeroDireccion = datos[6].trim();
-                        String datoExtra = datos[7].trim();
+                        String nombreEvento          = datos[2].trim();
+                        double cantidadHoras         = Double.parseDouble(datos[3]);
+                        int cantidadParticipantes    = Integer.parseInt(datos[4]);
+                        String nombreCalleDireccion  = datos[5].trim();
+                        String edificacionDireccion  = datos[6].trim();
+                        String numeroDireccion       = datos[7].trim();
+                        String datoExtra             = datos[8].trim();
 
                         Direccion direccion = new Direccion(nombreCalleDireccion, edificacionDireccion, numeroDireccion);
 
@@ -89,15 +98,15 @@ public class GestorServicios {
 
                         switch (tipoServicioTuristico) {
                             case "RutaGastronomica":
-                                servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion);
+                                servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion, cantidadParticipantes);
                                 break;
 
                             case "PaseoLacustre":
-                                servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion);
+                                servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
                                 break;
 
                             case "ExcursionCultural":
-                                servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion);
+                                servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
                                 break;
 
                             default:
@@ -129,6 +138,9 @@ public class GestorServicios {
 
     }
 
+    /**
+     * Lee la colección de servicios en el Arraylist.
+     */
     public void leerLista(){
 
         for(ServicioTuristico iteracion : servicios){

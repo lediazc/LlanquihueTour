@@ -109,13 +109,13 @@ public class MenuGeneral {
         } else if (respuesta.equals("no") || respuesta.equals("n")) {
 
             System.out.println("Hasta Luego");
-            eleccionUsuario = 6;
+            eleccionUsuario = 7;
 
         } else {
 
             System.out.println("Respuesta inválida.");
             System.out.println("¡Cerraremos el programa!");
-            eleccionUsuario = 6;
+            eleccionUsuario = 7;
         }
 
 

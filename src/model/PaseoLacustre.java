@@ -4,8 +4,8 @@ public class PaseoLacustre extends ServicioTuristico{
 
     private String tipoEmbarcacion;
 
-    public PaseoLacustre(String nombre, double duracionHoras, String tipoEmbarcacion, Direccion direccion) {
-        super(nombre, duracionHoras, direccion);
+    public PaseoLacustre(String nombre, double duracionHoras, String tipoEmbarcacion, Direccion direccion, int cantidadParticipantes) {
+        super(nombre, duracionHoras, direccion, cantidadParticipantes);
         setTipoEmbarcacion(tipoEmbarcacion);
 
     }

@@ -188,24 +188,21 @@ public class GestorDatosOperador {
 
                     switch (tipoServicioTuristico) {
                         case "RutaGastronomica":
-                            servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion);
+                            servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion, numeroAsistenteEvento);
                             break;
 
                         case "PaseoLacustre":
-                            servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion);
+                            servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion, numeroAsistenteEvento);
                             break;
 
                         case "ExcursionCultural":
-                            servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion);
+                            servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion, numeroAsistenteEvento);
                             break;
 
                         default:
                             servicio = new ExcursionCultural();
                             break;
                     }
-
-                    servicio.setDireccion(direccion);
-                    servicio.setCantidadParticipantes(numeroAsistenteEvento);
 
                     OperadorLocal operadorLocal = new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, comunaOperador, servicio, vigencia);
                     operadoresLocales.add(operadorLocal);

@@ -7,7 +7,7 @@ public abstract class ServicioTuristico {
     private Direccion direccion;
     private int cantidadParticipantes;
 
-    ServicioTuristico(String nombre, double duracionHoras, Direccion direccion) {
+    ServicioTuristico(String nombre, double duracionHoras, Direccion direccion, int cantidadParticipantes) {
 
         setNombre(nombre);
         setDuracionHoras(duracionHoras);

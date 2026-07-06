@@ -117,7 +117,7 @@ public class FormularioTurista {
                     if (!Validador.numerosPositivos(numeroParticipante)) {
                         System.out.println("El número no cumple el formato.");
                     }
-                } catch (InputMismatchException e) {
+                } catch (NumberFormatException e) {
                     System.out.println("Se produjo el siguiente error al ingresar n° de participantes: " + e);
                     sc.nextLine();
                 }
@@ -146,17 +146,17 @@ public class FormularioTurista {
                         }
                     } while (!Validador.numerosPositivos(numeroParadas));
 
-                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas, direccion);
+                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas, direccion, numeroParticipante);
                     break;
 
                 case 2:
                     tipoEmbarcacion = entrada.solicitarTexto("Qué tipo de embarcación se utilizará: ", "Debes indicar un tipo de embarcación.");
-                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion, direccion);
+                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion, direccion, numeroParticipante);
                     break;
 
                 case 3:
                     lugarHistorico = entrada.solicitarTexto("Qué lugar histórico se visitará: ", "Debes indicar un lugar histórico.");
-                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico, direccion);
+                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico, direccion, numeroParticipante);
                     break;
 
                 default:
@@ -164,8 +164,6 @@ public class FormularioTurista {
                     break;
             }
 
-            servicioTuristico.setDireccion(direccion);
-            servicioTuristico.setCantidadParticipantes(numeroParticipante);
 
         } else {
             System.out.println("Crearemos al turista sin evento asociado.");

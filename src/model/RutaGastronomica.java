@@ -4,8 +4,8 @@ public class RutaGastronomica extends ServicioTuristico{
 
     private int numeroDeParadas;
 
-    public RutaGastronomica(String nombre, double duracionHoras, int numeroDeParadas, Direccion direccion){
-        super(nombre, duracionHoras, direccion);
+    public RutaGastronomica(String nombre, double duracionHoras, int numeroDeParadas, Direccion direccion, int cantidadParticipantes){
+        super(nombre, duracionHoras, direccion, cantidadParticipantes);
         setNumeroDeParadas(numeroDeParadas);
     }
 

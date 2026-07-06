@@ -156,21 +156,18 @@ public class GestorDatosTurista {
 
                     switch (tipoServicioTuristico) {
                         case "RutaGastronomica":
-                            servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion);
+                            servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion, cantidadParticipantes);
                             break;
                         case "PaseoLacustre":
-                            servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion);
+                            servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
                             break;
                         case "ExcursionCultural":
-                            servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion);
+                            servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
                             break;
                         default:
                             servicio = new ExcursionCultural();
                             break;
                     }
-
-                    servicio.setDireccion(direccion);
-                    servicio.setCantidadParticipantes(cantidadParticipantes);
 
                     Turista turista = new Turista(
                             nombreTurista,

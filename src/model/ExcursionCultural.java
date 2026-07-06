@@ -5,8 +5,8 @@ public class ExcursionCultural extends ServicioTuristico{
 
     private String lugarHistorico;
 
-    public ExcursionCultural(String nombre, double duracionHoras, String lugarHistorico, Direccion direccion){
-        super(nombre, duracionHoras, direccion);
+    public ExcursionCultural(String nombre, double duracionHoras, String lugarHistorico, Direccion direccion, int cantidadParticipantes){
+        super(nombre, duracionHoras, direccion, cantidadParticipantes);
         setLugarHistorico(lugarHistorico);
     }
 

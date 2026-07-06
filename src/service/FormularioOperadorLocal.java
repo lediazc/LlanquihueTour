@@ -107,7 +107,7 @@ public class FormularioOperadorLocal {
                     if (!Validador.numerosPositivos(horaEvento)) {
                         System.out.println("El número no cumple el formato");
                     }
-                }catch(InputMismatchException e){
+                }catch(NumberFormatException e){
                     System.out.println("Se produjo el siguiente error al ingresar n° de participantes: " + e);
                     sc.nextLine();
                 }
@@ -159,21 +159,18 @@ public class FormularioOperadorLocal {
 
 
                     System.out.println("Excelente! Crearemos al operador con estado: Vigente");
-                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas, direccion);
-                    servicioTuristico.setCantidadParticipantes(numeroParticipante);
+                    servicioTuristico = new RutaGastronomica(nombreEvento, horaEvento, numeroParadas, direccion, numeroParticipante);
                     break;
 
                 case 2: //Paseo lacustre
                     tipoEmbarcacion = entrada.solicitarTexto("Que tipo de embarcación se utilizará: ", "Debes indicar un tipo de embarcación.");
-                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion, direccion);
+                    servicioTuristico = new PaseoLacustre(nombreEvento, horaEvento, tipoEmbarcacion, direccion, numeroParticipante);
                     servicioTuristico.setDireccion(direccion);
-                    servicioTuristico.setCantidadParticipantes(numeroParticipante);
                     break;
                 case 3: //Excursión cultural
                     lugarHistorico = entrada.solicitarTexto("Que lugar historico se visitara en esta ocasión: ", "Debes indicar un lugar ´histórico.");
-                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico, direccion);
+                    servicioTuristico = new ExcursionCultural(nombreEvento, horaEvento, lugarHistorico, direccion, numeroParticipante);
                     servicioTuristico.setDireccion(direccion);
-                    servicioTuristico.setCantidadParticipantes(numeroParticipante);
                     break;
                 default:
                     servicioTuristico = new ExcursionCultural();
