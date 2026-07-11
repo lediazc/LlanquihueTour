@@ -1,6 +1,6 @@
 package app;
 
-import service.MenuGeneral;
+import ui.VentanaPrincipal;
 
 public class Main {
 
@@ -9,8 +9,7 @@ public class Main {
      * @param args Argumento de ejecución.
      */
     public static void main(String[] args) {
-        MenuGeneral menuGeneral = new MenuGeneral();
-        menuGeneral.mostrarMenu();
+        new VentanaPrincipal();
 
     }
 }

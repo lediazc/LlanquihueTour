@@ -1,4 +1,4 @@
-package service;
+package data;
 
 import model.Direccion;
 import model.OperadorLocal;

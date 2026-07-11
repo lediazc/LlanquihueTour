@@ -25,7 +25,7 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 
 ```plaintext
 📁 src/
-├── service/
+├── data/
 |    ├── ConsultaOperadorLocal.java
 |    ├── ConsultaTurista.java
 |    ├── FormularioOperadorLocal.java
@@ -222,7 +222,7 @@ El proyecto se encuentra organizado en paquetes según su responsabilidad:
 
 * app
 * model
-* service
+* data
 * util
 
 ### Colecciones

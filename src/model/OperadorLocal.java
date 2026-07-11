@@ -1,6 +1,6 @@
 package model;
 
-public class OperadorLocal extends Usuario{
+public class OperadorLocal extends Usuario implements Registrable{
 
     private String comuna; // Pueden ser: Puerto Montt, Puerto Varas,Frutillar, Llanquihue, Calbuco, Maullín, Fresia, Los Muermos y Cochamó
     private ServicioTuristico servicioTuristico;
@@ -106,6 +106,11 @@ public class OperadorLocal extends Usuario{
 
         this.vigente = vigente;
     }
+    //Metodos  -------------------------------------
+    @Override
+    public void mostrarResumen(){
+        System.out.println("Operador Local registrado!");
+    };
 
     //Metodo toString de formateo -------------------------------------
     /**

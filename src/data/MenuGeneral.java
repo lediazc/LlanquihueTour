@@ -1,4 +1,4 @@
-package service;
+package data;
 
 import model.OperadorLocal;
 import model.Turista;
