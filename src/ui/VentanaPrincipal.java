@@ -27,6 +27,9 @@ public class VentanaPrincipal extends JFrame {
     JButton botonAgregarTurista = new JButton("Agregar turista");
     JButton botonMostrarTodosServicios = new JButton("Visualizar todos los servicios registrados");
 
+    ImageIcon icono = new ImageIcon(getClass().getResource("/icono.png"));
+    JLabel logo = new JLabel(icono);
+
     JTextArea areaResultado = new JTextArea(25, 100);
 
     //FormularioOperador
@@ -48,7 +51,7 @@ public class VentanaPrincipal extends JFrame {
     private final CardLayout layoutPanelIzquierdo = new CardLayout();
     private final JPanel panelIzquierdo = new JPanel(layoutPanelIzquierdo);
     private final JPanel panelMenuIzquierdo = new JPanel(new GridLayout(3, 1, 10, 10));
-    private final JPanel panelFormularioOperador = new JPanel(new GridLayout(5, 2, 10, 10));
+    private final JPanel panelFormularioOperador = new JPanel(new GridLayout(7, 1, 10, 10));
 
     private final JPanel panelFormularioTurista = new JPanel();
 
@@ -105,8 +108,11 @@ public class VentanaPrincipal extends JFrame {
     private void agregarComponentes() {
         panelCabecera.add(bienvenidaLabel);
 
-        panelMenuIzquierdo.add(botonAgregarOperador);
-        panelMenuIzquierdo.add(botonAgregarTurista);
+        JPanel panelBotones = new JPanel(new FlowLayout());
+        panelBotones.add(botonAgregarOperador);
+        panelBotones.add(botonAgregarTurista);
+        panelMenuIzquierdo.add(panelBotones);
+        panelMenuIzquierdo.add(logo);
 
         construirFormularioOperador();
         //construirFormularioTurista();
@@ -140,19 +146,41 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void construirFormularioOperador() {
-        panelFormularioOperador.add(new JLabel("Nombre del operador:"));
-        panelFormularioOperador.add(campoNombreOperador);
 
-        panelFormularioOperador.add(new JLabel("Correo del operador:"));
-        panelFormularioOperador.add(campoCorreoOperador);
+        JPanel panelNombre = new JPanel(new FlowLayout());
 
-        panelFormularioOperador.add(new JLabel("Número de contacto:"));
-        panelFormularioOperador.add(campoTelefonoOperador);
+        panelNombre.add(new JLabel("Nombre del operador:"));
+        panelNombre.add(campoNombreOperador);
 
-        panelFormularioOperador.add(new JLabel("Comuna donde tiene actividad:"));
-        panelFormularioOperador.add(campoComunaOperador);
+        JPanel panelCorreo = new JPanel(new FlowLayout());
 
-        panelFormularioOperador.add(botonGuardarOperador);
-        panelFormularioOperador.add(botonVolverMenu);
+        panelCorreo.add(new JLabel("Correo del operador:"));
+        panelCorreo.add(campoCorreoOperador);
+
+        JPanel panelTelefono = new JPanel(new FlowLayout());
+
+        panelTelefono.add(new JLabel("Número de contacto:"));
+        panelTelefono.add(campoTelefonoOperador);
+
+        JPanel panelComuna = new JPanel(new FlowLayout());
+
+        panelComuna.add(new JLabel("Comuna donde tiene actividad:"));
+        panelComuna.add(campoComunaOperador);
+
+        JPanel panelBotones = new JPanel(new FlowLayout());
+
+        panelBotones.add(botonGuardarOperador);
+        panelBotones.add(botonVolverMenu);
+
+
+        panelFormularioOperador.add(panelNombre);
+        panelFormularioOperador.add(panelCorreo);
+        panelFormularioOperador.add(panelTelefono);
+        panelFormularioOperador.add(panelComuna);
+        panelFormularioOperador.add(panelBotones);
+
+
+
+
     }
 }
