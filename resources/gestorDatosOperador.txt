@@ -4,3 +4,7 @@
 4;camila soto;true;camila.soto@gmail.com;97654321;calbuco;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
 5;rodrigo pérez;true;rodrigo.perez@gmail.com;99887766;cochamó;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
 6;valentina rojas;true;valentina.rojas@gmail.com;95544332;maullín;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha
+7;ñañ;false;manasdsa@gmail.cl;23546857;ñaña;ExcursionCultural;Sin nombre registrado;0.0;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;No proporcionó número de hogar;Sin lugar histórico registrado
+8;pepe;true;momo@gmail.com;78348906;puerto montt;RutaGastronomica;meme;2.0;4;momo;momo;taca12;8
+9;pepe;true;momo@gmail.com;78348906;puerto montt;PaseoLacustre;ruru;2.0;4;riri;rere;tasdasa12;lancha
+10;pepe;true;momo@gmail.com;78348906;puerto montt;ExcursionCultural;svsvs;2.0;4;seeses;sasa;qweqwewqea12;Museo

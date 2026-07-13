@@ -3,3 +3,4 @@
 3;marcela rios;marcela.rios@gmail.com;98765432;22;femenino;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial
 4;diego salinas;diego.salinas@gmail.com;99887766;41;masculino;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
 5;paula fuentes;paula.fuentes@gmail.com;95544332;30;femenino;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
+6;chaca;xx@xx.cl;98345634;23;Masculino;ExcursionCultural;Sin nombre registrado;0.0;0;No presenta calle registrada;Vive en casa o en condominio de 1 edificio;No proporcionó número de hogar;Sin lugar histórico registrado

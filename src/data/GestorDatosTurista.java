@@ -212,4 +212,13 @@ public class GestorDatosTurista {
 
         guardarTuristasEnArchivo(turistas);
     }
+
+    public void agregarTuristaYGuardar(Turista turista) {
+
+        ArrayList<Turista> turistas = leerTuristasDesdeArchivo();
+
+        turistas.add(turista);
+
+        guardarTuristasEnArchivo(turistas);
+    }
 }

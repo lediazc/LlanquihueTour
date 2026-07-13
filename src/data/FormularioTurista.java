@@ -172,4 +172,91 @@ public class FormularioTurista {
 
         return new Turista(nombreTurista, correoTurista, telefonoTurista, edadTurista, generoTurista, servicioTuristico);
     }
+
+    public Turista agregarTurista(
+            String nombreTurista,
+            String correoTurista,
+            String telefonoTurista,
+            int edadTurista,
+            String generoTurista
+    ) {
+
+        if (nombreTurista == null || nombreTurista.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del turista no puede estar vacío.");
+        }
+
+        correoTurista = correoTurista.trim().toLowerCase();
+
+        if (!Validador.correoValido(correoTurista)) {
+            throw new IllegalArgumentException("El correo no respeta el formato solicitado.");
+        }
+
+        telefonoTurista = telefonoTurista.trim();
+
+        if (!Validador.telefonoValido(telefonoTurista)) {
+            throw new IllegalArgumentException("El teléfono debe tener exactamente 8 dígitos.");
+        }
+
+        if (!Validador.numerosPositivos(edadTurista)) {
+            throw new IllegalArgumentException("La edad debe ser un número positivo.");
+        }
+
+        if (generoTurista == null || generoTurista.trim().isEmpty()) {
+            throw new IllegalArgumentException("Debes indicar un género.");
+        }
+
+        ServicioTuristico servicio = new ExcursionCultural();
+
+        return new Turista(
+                nombreTurista.trim(),
+                correoTurista,
+                telefonoTurista,
+                edadTurista,
+                generoTurista.trim(),
+                servicio
+        );
+    }
+
+    public Turista agregarTurista(
+            String nombreTurista,
+            String correoTurista,
+            String telefonoTurista,
+            int edadTurista,
+            String generoTurista,
+            ServicioTuristico servicioTuristico
+    ) {
+
+        if (nombreTurista == null || nombreTurista.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del turista no puede estar vacío.");
+        }
+
+        correoTurista = correoTurista.trim().toLowerCase();
+
+        if (!Validador.correoValido(correoTurista)) {
+            throw new IllegalArgumentException("El correo no respeta el formato solicitado.");
+        }
+
+        telefonoTurista = telefonoTurista.trim();
+
+        if (!Validador.telefonoValido(telefonoTurista)) {
+            throw new IllegalArgumentException("El teléfono debe tener exactamente 8 dígitos.");
+        }
+
+        if (!Validador.numerosPositivos(edadTurista)) {
+            throw new IllegalArgumentException("La edad debe ser un número positivo.");
+        }
+
+        if (generoTurista == null || generoTurista.trim().isEmpty()) {
+            throw new IllegalArgumentException("Debes indicar un género.");
+        }
+
+        return new Turista(
+                nombreTurista.trim(),
+                correoTurista,
+                telefonoTurista,
+                edadTurista,
+                generoTurista.trim(),
+                servicioTuristico
+        );
+    }
 }

@@ -200,4 +200,82 @@ public class FormularioOperadorLocal {
         return new OperadorLocal( nombreOperador, correoOperador, telefonoOperador, comuna, servicioTuristico, vigencia);
 
     }
+
+    public OperadorLocal agregarOperadorLocal(
+            String nombreOperador,
+            String correoOperador,
+            String telefonoOperador,
+            String comuna
+    ) {
+
+        if (nombreOperador == null || nombreOperador.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del operador no puede estar vacío.");
+        }
+
+        correoOperador = correoOperador.trim().toLowerCase();
+
+        if (!Validador.correoValido(correoOperador)) {
+            throw new IllegalArgumentException("El correo no respeta el formato solicitado.");
+        }
+
+        telefonoOperador = telefonoOperador.trim();
+
+        if (!Validador.telefonoValido(telefonoOperador)) {
+            throw new IllegalArgumentException("El teléfono debe tener exactamente 8 dígitos.");
+        }
+
+        if (comuna == null || comuna.trim().isEmpty()) {
+            throw new IllegalArgumentException("Debes indicar una comuna.");
+        }
+
+        ServicioTuristico servicioTuristico = new ExcursionCultural();
+        boolean vigencia = false;
+
+        return new OperadorLocal(
+                nombreOperador.trim(),
+                correoOperador,
+                telefonoOperador,
+                comuna.trim(),
+                servicioTuristico,
+                vigencia
+        );
+    }
+
+    public OperadorLocal agregarOperadorLocal(
+            String nombreOperador,
+            String correoOperador,
+            String telefonoOperador,
+            String comuna,
+            ServicioTuristico servicioTuristico
+    ) {
+
+        if (nombreOperador == null || nombreOperador.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre del operador no puede estar vacío.");
+        }
+
+        correoOperador = correoOperador.trim().toLowerCase();
+
+        if (!Validador.correoValido(correoOperador)) {
+            throw new IllegalArgumentException("El correo no respeta el formato solicitado.");
+        }
+
+        telefonoOperador = telefonoOperador.trim();
+
+        if (!Validador.telefonoValido(telefonoOperador)) {
+            throw new IllegalArgumentException("El teléfono debe tener exactamente 8 dígitos.");
+        }
+
+        if (comuna == null || comuna.trim().isEmpty()) {
+            throw new IllegalArgumentException("Debes indicar una comuna.");
+        }
+
+        return new OperadorLocal(
+                nombreOperador.trim(),
+                correoOperador,
+                telefonoOperador,
+                comuna.trim(),
+                servicioTuristico,
+                true
+        );
+    }
 }

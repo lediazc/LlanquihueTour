@@ -146,6 +146,16 @@ public class GestorDatosOperador {
         guardarOperadoresEnArchivo(operadoresLocales);
     }
 
+    public void agregarOperadorYGuardar(OperadorLocal operador) {
+
+        ArrayList<OperadorLocal> operadoresLocales =
+                leerOperadoresDesdeArchivo();
+
+        operadoresLocales.add(operador);
+
+        guardarOperadoresEnArchivo(operadoresLocales);
+    }
+
 
     /**
      * Lee todos los operadores almacenados en el archivo y los carga en una colección ArrayList.
