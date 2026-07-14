@@ -224,6 +224,14 @@ Semana (15/06/2026) se implementaron las siguientes funcionalidades:
 * Filtrar operadores por cantidad de asistentes(Por eventos grandes o pequeños y por nombre específico)
 
 ---
+**Compatibilidad con la versión por consola**
+
+Como parte de la evolución del proyecto, la aplicación fue migrada desde una interfaz basada en consola hacia una interfaz gráfica desarrollada con Swing. Por ello, se conservaron las clases y métodos correspondientes a la versión por consola (por ejemplo, formularios, consultas y menú principal) con el objetivo de mantener compatibilidad con las entregas anteriores, facilitar la trazabilidad de la evolución del sistema y disponer de una alternativa para futuras evaluaciones o comparaciones de funcionamiento.
+
+La lógica principal del sistema continúa siendo reutilizada por la interfaz gráfica, evitando duplicación de código y permitiendo una transición gradual entre ambas formas de interacción.
+
+
+---
 
 ##  Conceptos de Programación Orientada a Objetos aplicados
 

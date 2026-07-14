@@ -173,69 +173,72 @@ public class GestorDatosOperador {
 
             while((linea = lector.readLine()) != null){
 
-                String[] datos = linea.split(";");
+                try {
 
-                if (datos.length == 14) {
+                    String[] datos = linea.split(";");
 
-                    String codigo                = datos[0].trim(); //Se usará para próximos incrementos, si es que debo relacionar datos
-                    String nombreOperador        = datos[1].trim();
-                    boolean vigencia             = Boolean.parseBoolean(datos[2].trim());
-                    String correoOperador        = datos[3].trim();
-                    String telefonoOperador      = datos[4].trim();
-                    String comunaOperador        = datos[5].trim();
-                    String tipoServicioTuristico = datos[6].trim();
-                    String nombreEvento          = datos[7].trim();
-                    double cantidadHoras         = Double.parseDouble(datos[8].trim());
-                    int numeroAsistenteEvento    = Integer.parseInt(datos[9].trim());
-                    String nombreCalleDireccion  = datos[10].trim();
-                    String edificacionDireccion  = datos[11].trim();
-                    String numeroDireccion       = datos[12].trim();
-                    String datoExtra             = datos[13].trim();
+                    if (datos.length == 14) {
 
-                    Direccion direccion = new Direccion(nombreCalleDireccion, edificacionDireccion, numeroDireccion);
+                        String codigo = datos[0].trim(); //Se usará para próximos incrementos, si es que debo relacionar datos
+                        String nombreOperador = datos[1].trim();
+                        boolean vigencia = Boolean.parseBoolean(datos[2].trim());
+                        String correoOperador = datos[3].trim();
+                        String telefonoOperador = datos[4].trim();
+                        String comunaOperador = datos[5].trim();
+                        String tipoServicioTuristico = datos[6].trim();
+                        String nombreEvento = datos[7].trim();
+                        double cantidadHoras = Double.parseDouble(datos[8].trim());
+                        int numeroAsistenteEvento = Integer.parseInt(datos[9].trim());
+                        String nombreCalleDireccion = datos[10].trim();
+                        String edificacionDireccion = datos[11].trim();
+                        String numeroDireccion = datos[12].trim();
+                        String datoExtra = datos[13].trim();
 
-                    ServicioTuristico servicio;
+                        Direccion direccion = new Direccion(nombreCalleDireccion, edificacionDireccion, numeroDireccion);
 
-                    switch (tipoServicioTuristico) {
-                        case "RutaGastronomica":
-                            servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion, numeroAsistenteEvento);
-                            break;
+                        ServicioTuristico servicio;
 
-                        case "PaseoLacustre":
-                            servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion, numeroAsistenteEvento);
-                            break;
+                        switch (tipoServicioTuristico) {
+                            case "RutaGastronomica":
+                                servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion, numeroAsistenteEvento);
+                                break;
 
-                        case "ExcursionCultural":
-                            servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion, numeroAsistenteEvento);
-                            break;
+                            case "PaseoLacustre":
+                                servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion, numeroAsistenteEvento);
+                                break;
 
-                        default:
-                            servicio = new ExcursionCultural();
-                            break;
+                            case "ExcursionCultural":
+                                servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion, numeroAsistenteEvento);
+                                break;
+
+                            default:
+                                servicio = new ExcursionCultural();
+                                break;
+                        }
+
+                        OperadorLocal operadorLocal = new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, comunaOperador, servicio, vigencia);
+                        operadoresLocales.add(operadorLocal);
+
+                    } else {
+
+                        System.out.println(
+
+                                "Linea ignorada por formato corrupto: " + linea
+
+                        );
                     }
+                } catch (NumberFormatException e) {
 
-                    OperadorLocal operadorLocal = new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, comunaOperador, servicio, vigencia);
-                    operadoresLocales.add(operadorLocal);
-
-                } else {
-
-                    System.out.println(
-
-                            "Linea ignorada por formato corrupto: " + linea
-
-                    );
+                    System.out.println("Línea ignorada por dato numérico inválido: " + linea);
                 }
+
             }
 
         } catch (IOException e) {
 
             System.out.println("Error al leer los operadores Locales: " + e.getMessage());
 
-        } catch (NumberFormatException e) {
-
-            System.out.println("Error al convertir dato numérico: " + e.getMessage());
-
-        }
+        } 
 
         return operadoresLocales;
     }

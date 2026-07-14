@@ -78,61 +78,82 @@ public class GestorServicios {
 
             String linea;
 
-            while((linea = lector.readLine()) != null){
+            while ((linea = lector.readLine()) != null) {
 
-                String[] datos = linea.split(";");
+                try {
+
+                    String[] datos = linea.split(";");
+
                     if (datos.length == 9) {
-                        String id                    = datos[0].trim();
-                        String tipoServicioTuristico = datos[1].trim();
-                        String nombreEvento          = datos[2].trim();
-                        double cantidadHoras         = Double.parseDouble(datos[3]);
-                        int cantidadParticipantes    = Integer.parseInt(datos[4]);
-                        String nombreCalleDireccion  = datos[5].trim();
-                        String edificacionDireccion  = datos[6].trim();
-                        String numeroDireccion       = datos[7].trim();
-                        String datoExtra             = datos[8].trim();
 
-                        Direccion direccion = new Direccion(nombreCalleDireccion, edificacionDireccion, numeroDireccion);
+                        String tipoServicioTuristico = datos[1].trim();
+                        String nombreEvento = datos[2].trim();
+                        double cantidadHoras = Double.parseDouble(datos[3].trim());
+                        int cantidadParticipantes = Integer.parseInt(datos[4].trim());
+                        String nombreCalleDireccion = datos[5].trim();
+                        String edificacionDireccion = datos[6].trim();
+                        String numeroDireccion = datos[7].trim();
+                        String datoExtra = datos[8].trim();
+
+                        Direccion direccion = new Direccion(
+                                nombreCalleDireccion,
+                                edificacionDireccion,
+                                numeroDireccion
+                        );
 
                         ServicioTuristico servicio;
 
                         switch (tipoServicioTuristico) {
                             case "RutaGastronomica":
-                                servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion, cantidadParticipantes);
+                                servicio = new RutaGastronomica(
+                                        nombreEvento,
+                                        cantidadHoras,
+                                        Integer.parseInt(datoExtra),
+                                        direccion,
+                                        cantidadParticipantes
+                                );
                                 break;
 
                             case "PaseoLacustre":
-                                servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
+                                servicio = new PaseoLacustre(
+                                        nombreEvento,
+                                        cantidadHoras,
+                                        datoExtra,
+                                        direccion,
+                                        cantidadParticipantes
+                                );
                                 break;
 
                             case "ExcursionCultural":
-                                servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
+                                servicio = new ExcursionCultural(
+                                        nombreEvento,
+                                        cantidadHoras,
+                                        datoExtra,
+                                        direccion,
+                                        cantidadParticipantes
+                                );
                                 break;
 
                             default:
-                                servicio = new ExcursionCultural();
-                                break;
+                                System.out.println("Tipo de servicio desconocido. Línea ignorada: " + linea);
+                                continue;
                         }
 
                         servicios.add(servicio);
 
                     } else {
 
-                System.out.println(
+                        System.out.println("Línea ignorada por formato corrupto: " + linea);
+                    }
 
-                        "Linea ignorada por formato corrupto: " + linea
+                } catch (NumberFormatException e) {
 
-                );
-            }
-
+                    System.out.println("Línea ignorada por dato numérico inválido: " + linea);
+                }
             }
         } catch (IOException e) {
 
             System.out.println("Error al leer los servicios: " + e.getMessage());
-
-        } catch (NumberFormatException e) {
-
-            System.out.println("Error al convertir dato numérico: " + e.getMessage());
 
         }
 

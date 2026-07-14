@@ -131,68 +131,69 @@ public class GestorDatosTurista {
 
             while ((linea = lector.readLine()) != null) {
 
-                String[] datos = linea.split(";");
+                try {
+                    String[] datos = linea.split(";");
 
-                if (datos.length == 14) {
+                    if (datos.length == 14) {
 
-                    String nombreTurista = datos[1].trim();
-                    String correoTurista = datos[2].trim();
-                    String telefonoTurista = datos[3].trim();
-                    int edadTurista = Integer.parseInt(datos[4].trim());
-                    String generoTurista = datos[5].trim();
+                        String nombreTurista = datos[1].trim();
+                        String correoTurista = datos[2].trim();
+                        String telefonoTurista = datos[3].trim();
+                        int edadTurista = Integer.parseInt(datos[4].trim());
+                        String generoTurista = datos[5].trim();
 
-                    String tipoServicioTuristico = datos[6].trim();
-                    String nombreEvento = datos[7].trim();
-                    double cantidadHoras = Double.parseDouble(datos[8].trim());
-                    int cantidadParticipantes = Integer.parseInt(datos[9].trim());
-                    String nombreCalle = datos[10].trim();
-                    String edificacion = datos[11].trim();
-                    String numeroHogar = datos[12].trim();
-                    String datoExtra = datos[13].trim();
+                        String tipoServicioTuristico = datos[6].trim();
+                        String nombreEvento = datos[7].trim();
+                        double cantidadHoras = Double.parseDouble(datos[8].trim());
+                        int cantidadParticipantes = Integer.parseInt(datos[9].trim());
+                        String nombreCalle = datos[10].trim();
+                        String edificacion = datos[11].trim();
+                        String numeroHogar = datos[12].trim();
+                        String datoExtra = datos[13].trim();
 
-                    Direccion direccion = new Direccion(nombreCalle, edificacion, numeroHogar);
+                        Direccion direccion = new Direccion(nombreCalle, edificacion, numeroHogar);
 
-                    ServicioTuristico servicio;
+                        ServicioTuristico servicio;
 
-                    switch (tipoServicioTuristico) {
-                        case "RutaGastronomica":
-                            servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion, cantidadParticipantes);
-                            break;
-                        case "PaseoLacustre":
-                            servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
-                            break;
-                        case "ExcursionCultural":
-                            servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
-                            break;
-                        default:
-                            servicio = new ExcursionCultural();
-                            break;
+                        switch (tipoServicioTuristico) {
+                            case "RutaGastronomica":
+                                servicio = new RutaGastronomica(nombreEvento, cantidadHoras, Integer.parseInt(datoExtra), direccion, cantidadParticipantes);
+                                break;
+                            case "PaseoLacustre":
+                                servicio = new PaseoLacustre(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
+                                break;
+                            case "ExcursionCultural":
+                                servicio = new ExcursionCultural(nombreEvento, cantidadHoras, datoExtra, direccion, cantidadParticipantes);
+                                break;
+                            default:
+                                servicio = new ExcursionCultural();
+                                break;
+                        }
+
+                        Turista turista = new Turista(
+                                nombreTurista,
+                                correoTurista,
+                                telefonoTurista,
+                                edadTurista,
+                                generoTurista,
+                                servicio
+                        );
+
+                        turistas.add(turista);
+                    } else {
+
+                        System.out.println("Línea ignorada por formato corrupto: " + linea);
+
                     }
+                } catch (NumberFormatException e) {
 
-                    Turista turista = new Turista(
-                            nombreTurista,
-                            correoTurista,
-                            telefonoTurista,
-                            edadTurista,
-                            generoTurista,
-                            servicio
-                    );
-
-                    turistas.add(turista);
-                }  else {
-
-                    System.out.println("Línea ignorada por formato corrupto: " + linea);
-
+                    System.out.println("Línea ignorada por dato numérico inválido: " + linea);
                 }
             }
 
         } catch (IOException e) {
 
             System.out.println("Error al leer los turistas: " + e.getMessage());
-
-        } catch (NumberFormatException e) {
-
-            System.out.println("Error al convertir dato numérico: " + e.getMessage());
 
         }
 
