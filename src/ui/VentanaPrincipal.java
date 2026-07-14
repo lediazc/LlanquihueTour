@@ -4,19 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
-import data.GestorDatosOperador;
-import data.GestorDatosTurista;
-import data.GestorServicios;
-import data.FormularioOperadorLocal;
-import model.OperadorLocal;
-import data.FormularioTurista;
-import model.Turista;
+
+import data.*;
+import model.*;
 import util.Validador;
-import model.Direccion;
-import model.ServicioTuristico;
-import model.RutaGastronomica;
-import model.PaseoLacustre;
-import model.ExcursionCultural;
 
 
 public class VentanaPrincipal extends JFrame {
@@ -27,13 +18,16 @@ public class VentanaPrincipal extends JFrame {
     GestorServicios gestorServ = new GestorServicios();
     FormularioOperadorLocal formularioOperador = new FormularioOperadorLocal();
     FormularioTurista formularioTurista = new FormularioTurista();
+    GestorEntidades gestorEntidades = new GestorEntidades();
+
+
 
 
     //Creamos los elementos relacionados con el input de patente del vehículo
     JTextField plateInput = new JTextField(6);
     JLabel bienvenidaLabel = new JLabel("Bienvenido al Gestor de Personal de Llanquihue Tour");
 
-
+    JButton botonMostrarTodosRegistros = new JButton("Mostrar todos los registros");
     JButton botonMostrarTodosOperadores = new JButton("Mostrarme todos los registros de operadores");
     JButton botonFiltrarOperadores = new JButton("Filtrar registros de operadores");
     JButton botonAgregarOperador = new JButton("Agregar Operador Local");
@@ -135,7 +129,7 @@ public class VentanaPrincipal extends JFrame {
 
     private final JPanel panelDerecho = new JPanel(new GridLayout(2,1,10,10));
     private final JPanel panelResultado = new JPanel(new BorderLayout());
-    private final JPanel panelBotonesResultados = new JPanel(new GridLayout(4,1,10,10));
+    private final JPanel panelBotonesResultados = new JPanel(new GridLayout(5,1,10,10));
 
 
     public VentanaPrincipal(){
@@ -207,7 +201,7 @@ public class VentanaPrincipal extends JFrame {
 
         panelResultado.add(scrollResultado, BorderLayout.CENTER);
 
-
+        panelBotonesResultados.add(botonMostrarTodosRegistros);
         panelBotonesResultados.add(botonMostrarTodosOperadores);
         panelBotonesResultados.add(botonFiltrarOperadores);
         panelBotonesResultados.add(botonMostrarTodosTuristas);
@@ -386,6 +380,8 @@ public class VentanaPrincipal extends JFrame {
         botonMostrarTodosServicios.addActionListener(e -> mostrarTodosServicios());
 
         botonFiltrarOperadores.addActionListener(e -> filtrarOperadores());
+
+        botonMostrarTodosRegistros.addActionListener(e -> mostrarTodosLosRegistros());
     }
 
     private void construirFormularioOperador() {
@@ -907,5 +903,124 @@ public class VentanaPrincipal extends JFrame {
         }
 
         areaResultado.setText(resultado.toString());
+    }
+
+    private void filtrarOperadores() {
+
+        String[] opciones = {
+                "Eventos grandes (15 o más asistentes)",
+                "Eventos pequeños (menos de 15 asistentes)",
+                "Buscar por nombre",
+                "Operadores vigentes",
+                "Operadores no vigentes"
+        };
+
+        String seleccion = (String) JOptionPane.showInputDialog(
+                this,
+                "Selecciona el filtro que deseas aplicar:",
+                "Filtrar operadores",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]
+        );
+
+        if (seleccion == null) {
+            return;
+        }
+
+        ArrayList<OperadorLocal> operadores = gestorOp.leerOperadoresDesdeArchivo();
+        StringBuilder resultado = new StringBuilder();
+
+        switch (seleccion) {
+
+            case "Eventos grandes (15 o más asistentes)":
+
+                for (OperadorLocal operador : operadores) {
+
+                    if (operador.getServicioTuristico().getCantidadParticipantes() >= 15) {
+                        resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+
+            case "Eventos pequeños (menos de 15 asistentes)":
+
+                for (OperadorLocal operador : operadores) {
+
+                    if (operador.getServicioTuristico().getCantidadParticipantes() < 15) {
+                        resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+
+            case "Buscar por nombre":
+
+                String nombre = JOptionPane.showInputDialog(
+                        this,
+                        "Ingresa el nombre del operador:"
+                );
+
+                if (nombre == null) {
+                    return;
+                }
+
+                nombre = nombre.trim().toLowerCase();
+
+                if (nombre.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "No ingresaste ningún nombre.", "Dato inválido", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                for (OperadorLocal operador : operadores) {
+
+                    if (operador.getNombre().toLowerCase().contains(nombre)) {
+                        resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+
+            case "Operadores vigentes":
+
+                for (OperadorLocal operador : operadores) {
+
+                    if (operador.isVigente()) {
+                        resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+
+            case "Operadores no vigentes":
+
+                for (OperadorLocal operador : operadores) {
+
+                    if (!operador.isVigente()) {
+                        resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+        }
+
+        if (resultado.length() == 0) {
+            areaResultado.setText("No se encontraron operadores para el filtro seleccionado.");
+        } else {
+            areaResultado.setText(resultado.toString());
+        }
+    }
+
+    private void mostrarTodosLosRegistros() {
+
+        areaResultado.setText(gestorEntidades.recorrerRegistros());
+
     }
 }

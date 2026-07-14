@@ -42,6 +42,14 @@ public class ExcursionCultural extends ServicioTuristico{
         this.lugarHistorico = lugarHistorico;
     }
 
+    //Métodos de clase-----------------
+    @Override
+    public String mostrarResumen() {
+
+        return "Excursión Cultural: "
+                + getNombre();
+    }
+
     @Override
     public String mostrarInformacion() {
         return "\n--- Excursión Cultural ---" +

@@ -1,6 +1,6 @@
 package model;
 
-public abstract class ServicioTuristico {
+public abstract class ServicioTuristico implements Registrable{
 
     private String nombre;
     private double duracionHoras;
@@ -118,6 +118,13 @@ public abstract class ServicioTuristico {
     }
 
     //Métodos de clase-----------------
+    @Override
+    public String mostrarResumen() {
+
+        return getNombre();
+    }
+
+
     /**
      * Obtiene la información del servicio turístico.
      * Este método debe ser implementado por las subclases para

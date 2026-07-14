@@ -43,6 +43,15 @@ public class PaseoLacustre extends ServicioTuristico{
         this.tipoEmbarcacion = tipoEmbarcacion;
     }
 
+    //Métodos de clase-----------------
+    @Override
+    public String mostrarResumen() {
+
+        return "Paseo Lacustre: "
+                + getNombre();
+    }
+
+
     @Override
     public String mostrarInformacion() {
         return "\n--- Paseo Lacustre ---" +

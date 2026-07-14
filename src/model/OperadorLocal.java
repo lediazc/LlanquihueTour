@@ -1,6 +1,6 @@
 package model;
 
-public class OperadorLocal extends Usuario implements Registrable{
+public class OperadorLocal extends Usuario {
 
     private String comuna; // Pueden ser: Puerto Montt, Puerto Varas,Frutillar, Llanquihue, Calbuco, Maullín, Fresia, Los Muermos y Cochamó
     private ServicioTuristico servicioTuristico;
@@ -42,6 +42,7 @@ public class OperadorLocal extends Usuario implements Registrable{
      * @return Objeto ServicioTuristico asignado al operador.
      */
     public ServicioTuristico getServicioTuristico() {
+
         return servicioTuristico;
     }
 
@@ -106,11 +107,14 @@ public class OperadorLocal extends Usuario implements Registrable{
 
         this.vigente = vigente;
     }
-    //Metodos  -------------------------------------
+
+    //Métodos de clase -------------------------------------
+
     @Override
-    public void mostrarResumen(){
-        System.out.println("Operador Local registrado!");
-    };
+    public String mostrarResumen() {
+
+        return "Operador: "+ getNombre() + " (comuna: "+ getComuna() + ")";
+    }
 
     //Metodo toString de formateo -------------------------------------
     /**

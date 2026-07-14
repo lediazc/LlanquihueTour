@@ -1,11 +1,11 @@
-"1;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5",
-"2;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán",
-"3;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial",
-"4;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8",
-"5;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó",
-"6;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha",
-"7;RutaGastronomica;Llanquihue ñam;4.5;6;Calle ñami;Restaurant;2134;6",
-"8;PaseoLacustre;Lago siempre vivo;2.0;2;Lago siempre vivo;Caseta de guardia;423;lancha motorizada",
-"9;ExcursionCultural;La historia de un hospital maldito;2.0;2;Avenida Nathan;Hospital;123;Hospital Brookhaven",
-"10;RutaGastronomica;Almuerzo por la comuna;3.0;1;Calle Siempre viva;Edificio;2134;1",
-"11;ExcursionCultural;Conociendo la Muni por dentro;2.0;2;Calle Siempre viva;Edificio;2134;Municipalidad Feliz"
+1;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5
+2;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán
+3;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial
+4;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
+5;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
+6;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha
+7;RutaGastronomica;Llanquihue ñam;4.5;6;Calle ñami;Restaurant;2134;6
+8;PaseoLacustre;Lago siempre vivo;2.0;2;Lago siempre vivo;Caseta de guardia;423;lancha motorizada
+9;ExcursionCultural;La historia de un hospital maldito;2.0;2;Avenida Nathan;Hospital;123;Hospital Brookhaven
+10;RutaGastronomica;Almuerzo por la comuna;3.0;1;Calle Siempre viva;Edificio;2134;1
+11;ExcursionCultural;Conociendo la Muni por dentro;2.0;2;Calle Siempre viva;Edificio;2134;Municipalidad Feliz

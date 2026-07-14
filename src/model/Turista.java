@@ -1,6 +1,6 @@
 package model;
 
-public class Turista extends Usuario {
+public class Turista extends Usuario  {
 
     private int edad;
     private String genero;
@@ -54,6 +54,13 @@ public class Turista extends Usuario {
 
     public void setServicioTuristico(ServicioTuristico servicioTuristico) {
         this.servicioTuristico = servicioTuristico;
+    }
+
+    //Métodos de clase -------------------------------------
+    @Override
+    public String mostrarResumen() {
+
+        return "Turista: " + getNombre() + " (" + getEdad() + " años)";
     }
 
     @Override

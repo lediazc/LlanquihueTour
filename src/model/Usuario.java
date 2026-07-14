@@ -5,7 +5,7 @@ package model;
  * Representa al Usuario general del aplicativo.
  * De él se desprenden todas las clases, tiene atributos cómo "Nombre y correoElectronico".
  */
-public class Usuario {
+public class Usuario implements Registrable{
 
     private String nombre;
     private String correoElectronico;
@@ -110,6 +110,12 @@ public class Usuario {
             this.numeroTelefonico = numeroTelefonico;
         }
 
+    }
+
+    //Metodos  -------------------------------------
+    @Override
+    public String mostrarResumen() {
+        return "Usuario: " + getNombre();
     }
 
     @Override

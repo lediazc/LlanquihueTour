@@ -41,6 +41,14 @@ public class RutaGastronomica extends ServicioTuristico{
 
     }
 
+    //Métodos de clase-----------------
+    @Override
+    public String mostrarResumen() {
+
+        return "Ruta Gastronómica: "
+                + getNombre();
+    }
+
     @Override
     public String mostrarInformacion() {
         return

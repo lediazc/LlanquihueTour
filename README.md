@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# Actividad Formativa 5: Aplicación de sobreescritura y polimorfismo en jerarquías
+# Actividad Sumativa 3: Interfaces e integración con colecciones genéricas
 
 ## Autor del proyecto
 
@@ -13,18 +13,24 @@
 
 ## Descripción general del sistema
 
-Este proyecto corresponde a la Actividad Formativa 5: Aplicación de sobreescritura y polimorfismo en jerarquías - **Desarrollo Orientado a Objetos I**.
+Este proyecto corresponde a la Actividad Sumativa 3: Interfaces e integración con colecciones genéricas - **Desarrollo Orientado a Objetos I**.
 
 La solución desarrollada consiste en un sistema orientado a objetos para la gestión de actividades turísticas en la provincia de Llanquihue. El sistema permite representar operadores turísticos, turistas, eventos y direcciones, aplicando conceptos fundamentales de Programación Orientada a Objetos tales como encapsulamiento, herencia, composición, constructores, getters, setters y reutilización de código.
 
-La aplicación fue implementada en Java y ejecutada mediante consola, permitiendo visualizar la información de los distintos participantes y eventos registrados en el sistema.
+La aplicación fue implementada en Java utilizando Swing para proporcionar una interfaz gráfica de usuario (GUI), permitiendo registrar, consultar y filtrar operadores locales, turistas y servicios turísticos mediante formularios y componentes visuales.
 
 ---
 
 ## Estructura general del proyecto
 
 ```plaintext
+📁 resources/ 
+    ├── gestorDatosOperador.java
+    ├── gestorDatosServicios.java
+    └── gestorDatosTurista.txt
 📁 src/
+├── app/
+|   └── Main.java
 ├── data/
 |    ├── ConsultaOperadorLocal.java
 |    ├── ConsultaTurista.java
@@ -32,26 +38,25 @@ La aplicación fue implementada en Java y ejecutada mediante consola, permitiend
 |    ├── FormularioTurista.java
 |    ├── GestorDatosOperador.java
 |    ├── GestorDatosTurista.java
+|    ├── GestorEntidades.java
 |    ├── GestorServicios.java
 |    └── MenuGeneral.java
-├── app/
-|   └── Main.java
 └── model/
-|    ├── Usuario.java
+|    ├── Direccion.java
 |    ├── OperadorLocal.java
-|    ├── Turista.java
 |    ├── PaseoLacustre.java
+|    ├── Registrable.java
 |    ├── RutaGastronomica.java
 |    ├── ExcursionCultural.java
 |    ├── ServicioTuristico.java
-|    └── Direccion.java
+|    ├── Turista.java
+|    └── Usuario.java
+└── ui/
+|    └── VentanaPrincipal.java
 └── util/
     ├── EntradaConsola.java
     └── Validador.java
-📁 resources/ 
-    ├── gestorDatosOperador.java
-    ├── gestorDatosServicios.java
-    └── gestorDatosTurista.txt
+
 ```
 ### Descripción de los documentos utilizados
 El sistema utiliza tres archivos de texto plano (.txt):
@@ -150,9 +155,35 @@ Contiene métodos estáticos de validación para:
 * Números telefónicos
 * Valores numéricos
 
+**Registrable**
+
+*Interfaz que define el contrato mostrarResumen().
+
+
+**GestorEntidades**
+
+* Reúne operadores y turistas en una colección ArrayList<Registrable>.
+* Recorre la colección utilizando instanceof.
+
+**VentanaPrincipal**
+
+* Implementa la interfaz gráfica mediante Swing.
+* Gestiona formularios, navegación con CardLayout y visualización de registros.
 ---
 ##  Funcionalidades implementadas
-Esta semana (06/07/2026) se implementaron las siguientes funcionalidades:
+Esta semana (13/07/2026) se implementaron las siguientes funcionalidades:
+
+* Implementación de la interfaz Registrable.
+* Incorporación del gestor GestorEntidades.
+* Uso de ArrayList<Registrable>.
+* Diferenciación de objetos mediante instanceof.
+* Desarrollo de una interfaz gráfica con Swing.
+* Registro de operadores y turistas mediante formularios.
+* Navegación mediante CardLayout.
+* Visualización de registros desde la interfaz gráfica.
+
+---
+Semana (06/07/2026) se implementaron las siguientes funcionalidades:
 
 * Implementación de una jerarquía de clases mediante la clase abstracta `ServicioTuristico`.
 * Aplicación de herencia simple con las clases `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural`.
@@ -161,7 +192,7 @@ Esta semana (06/07/2026) se implementaron las siguientes funcionalidades:
 * Incorporación del `GestorServicios` para leer servicios turísticos desde archivo.
 * Creación del archivo `gestorDatosServicios.txt` con datos semilla.
 * Integración de la visualización de servicios turísticos en el menú principal.
-* 
+
 ---
 
 Semana (29/06/2026) se implementaron las siguientes funcionalidades:
@@ -206,6 +237,7 @@ Las clases `OperadorLocal` y `Turista` heredan de la clase `Usuario`.
 
 La clase abstracta `ServicioTuristico` actúa como superclase de `RutaGastronomica`, `PaseoLacustre` y `ExcursionCultural`, permitiendo aplicar herencia y polimorfismo mediante la sobrescritura del método abstracto mostrarInformacion(). Cada subclase reutiliza además super.toString() para complementar la información común del servicio.
 
+Usuario implementa la interfaz Registrable, heredando este comportamiento OperadorLocal y Turista.
 ### Composición
 
 La clase `ServicioTuristico` contiene un objeto de tipo `Direccion`.
@@ -229,6 +261,8 @@ El proyecto se encuentra organizado en paquetes según su responsabilidad:
 
 Se utilizan colecciones ArrayList para almacenar operadores locales, turistas y servicios turísticos cargados desde archivos de texto. La colección ArrayList<ServicioTuristico> permite demostrar el uso de polimorfismo recorriendo objetos de distintas subclases mediante una referencia común.
 
+Se implementó una colección ArrayList<Registrable> para almacenar entidades de distintos tipos bajo un contrato común, recorriéndolas mediante polimorfismo y diferenciándolas con el operador instanceof.
+
 ---
 
 ##  Instrucciones para ejecutar el proyecto
@@ -247,13 +281,13 @@ git clone https://github.com/lediazc/LlanquihueTour.git
 src/app/Main.java
 ```
 
-4. Revisar la salida generada en la consola.
+4. Se abrirá la interfaz gráfica principal, desde la cual es posible registrar operadores, turistas, consultar registros y visualizar los servicios turísticos.
 
 ---
 
 **Repositorio GitHub:** https://github.com/lediazc/LlanquihueTour
 
-**Fecha de entrega:** 06/07/2026
+**Fecha de entrega:** 13/07/2026
 
 ---
 
