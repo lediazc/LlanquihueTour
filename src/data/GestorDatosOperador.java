@@ -238,4 +238,24 @@ public class GestorDatosOperador {
 
         return operadoresLocales;
     }
+
+    public boolean editarOperador(
+            int numeroRegistro,
+            OperadorLocal operadorEditado
+    ) {
+        ArrayList<OperadorLocal> operadores =
+                leerOperadoresDesdeArchivo();
+
+        int indice = numeroRegistro - 1;
+
+        if (indice < 0 || indice >= operadores.size()) {
+            return false;
+        }
+
+        operadores.set(indice, operadorEditado);
+        guardarOperadoresEnArchivo(operadores);
+
+        return true;
+    }
+
 }

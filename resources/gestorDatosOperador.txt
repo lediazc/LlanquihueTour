@@ -1,6 +1,6 @@
-1;jacobo benavides;true;jcob@gmail.com;23456798;puerto montt;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5
-2;maría gonzález;true;maria.gonzalez@gmail.com;98765432;puerto varas;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán
-3;pedro muñoz;true;pedro.munoz@gmail.com;91234567;frutillar;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial
-4;camila soto;true;camila.soto@gmail.com;97654321;calbuco;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
-5;rodrigo pérez;true;rodrigo.perez@gmail.com;99887766;cochamó;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
-6;valentina rojas;true;valentina.rojas@gmail.com;95544332;maullín;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha
+1;jacobo benavides;true;72630650-8;jcob@gmail.com;23456798;puerto montt;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5
+2;maría gonzález;true;64422449-K;maria.gonzalez@gmail.com;98765432;puerto varas;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán
+3;pedro muñoz;true;35738746-9;pedro.munoz@gmail.com;91234567;frutillar;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial
+4;camila soto;true;2949806-7;camila.soto@gmail.com;97654321;calbuco;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
+5;rodrigo pérez;true;94898184-K;rodrigo.perez@gmail.com;99887766;cochamó;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
+6;valentina rojas;true;83276582-1;valentina.rojas@gmail.com;95544332;maullín;PaseoLacustre;navegación humedales de maullín;2.0;20;o'higgins;oficina;332;lancha

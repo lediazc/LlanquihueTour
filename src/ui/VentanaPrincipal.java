@@ -26,12 +26,17 @@ public class VentanaPrincipal extends JFrame {
 
 
     //Botones del aplicativo
+
+    JButton botonAgregarOperador        = new JButton("Agregar Operador Local");
+    JButton botonAgregarTurista         = new JButton("Agregar turista");
+    JButton botonEditarOperador         = new JButton("Editar Operador Local");
+    JButton botonEditarTurista          = new JButton("Editar turista");
+
     JButton botonMostrarTodosRegistros  = new JButton("Mostrar todos los registros");
     JButton botonMostrarTodosOperadores = new JButton("Mostrarme todos los registros de operadores");
     JButton botonFiltrarOperadores      = new JButton("Filtrar registros de operadores");
-    JButton botonAgregarOperador        = new JButton("Agregar Operador Local");
     JButton botonMostrarTodosTuristas   = new JButton("Mostrarme todos los registros de turistas");
-    JButton botonAgregarTurista         = new JButton("Agregar turista");
+    JButton botonFiltrarTuristas        = new JButton("Filtrar registros de turistas");
     JButton botonMostrarTodosServicios  = new JButton("Visualizar todos los servicios registrados");
 
     //Imagen
@@ -115,15 +120,22 @@ public class VentanaPrincipal extends JFrame {
     private final CardLayout layoutPanelIzquierdo   = new CardLayout();
     private final JPanel panelIzquierdo             = new JPanel(layoutPanelIzquierdo);
     private final JPanel panelMenuIzquierdo         = new JPanel(new GridLayout(3, 1, 10, 10));
-    private final JPanel panelFormularioOperador    = new JPanel(new GridLayout(7, 1, 10, 10));
+    private final JPanel panelFormularioOperador    = new JPanel(new GridLayout(8, 1, 10, 10));
 
-    private final JPanel panelFormularioTurista     = new JPanel(new GridLayout(7, 1, 10, 10));
+    private final JPanel panelFormularioTurista     = new JPanel(new GridLayout(8, 1, 10, 10));
 
     private final JPanel panelFormularioEvento      = new JPanel(new GridLayout(9, 1, 10, 10));
 
     private final JPanel panelDerecho               = new JPanel(new GridLayout(2,1,10,10));
     private final JPanel panelResultado             = new JPanel(new BorderLayout());
-    private final JPanel panelBotonesResultados     = new JPanel(new GridLayout(5,1,10,10));
+    private final JPanel panelBotonesResultados     = new JPanel(new GridLayout(6,1,10,10));
+
+    //atributos
+    private boolean editandoOperador = false;
+    private boolean editandoTurista = false;
+
+    private int indiceOperadorEditado = -1;
+    private int indiceTuristaEditado = -1;
 
 
     public VentanaPrincipal(){
@@ -179,6 +191,9 @@ public class VentanaPrincipal extends JFrame {
         JPanel panelBotones = new JPanel(new FlowLayout());
         panelBotones.add(botonAgregarOperador);
         panelBotones.add(botonAgregarTurista);
+        panelBotones.add(botonEditarOperador);
+        panelBotones.add(botonEditarTurista);
+
         panelMenuIzquierdo.add(panelBotones);
         panelMenuIzquierdo.add(logo);
 
@@ -199,6 +214,7 @@ public class VentanaPrincipal extends JFrame {
         panelBotonesResultados.add(botonMostrarTodosOperadores);
         panelBotonesResultados.add(botonFiltrarOperadores);
         panelBotonesResultados.add(botonMostrarTodosTuristas);
+        panelBotonesResultados.add(botonFiltrarTuristas);
         panelBotonesResultados.add(botonMostrarTodosServicios);
     }
 
@@ -206,29 +222,86 @@ public class VentanaPrincipal extends JFrame {
     private void registrarEventos() {
         botonAgregarOperador.addActionListener(e -> {
 
+            editandoOperador = false;
+            indiceOperadorEditado = -1;
+
+            botonGuardarOperador.setText("Guardar operador");
+
             limpiarFormularioOperador();
 
-            layoutPanelIzquierdo.show(panelIzquierdo, "FORMULARIO_OPERADOR");
+            layoutPanelIzquierdo.show(panelIzquierdo,"FORMULARIO_OPERADOR");
 
             bienvenidaLabel.setText("Agreguemos un Operador Local");
         });
 
-        botonAgregarTurista.addActionListener(e -> {
-            layoutPanelIzquierdo.show(panelIzquierdo,"FORMULARIO_TURISTA");
+        botonEditarOperador.addActionListener(e -> {
 
-            bienvenidaLabel.setText("Agreguemos un Turista");
+            solicitarEdicionOperador();
+
+        });
+
+        botonAgregarTurista.addActionListener(e -> {
+
+            // El formulario se utilizará para crear un turista nuevo
+            editandoTurista = false;
+            indiceTuristaEditado = -1;
+
+            // Restauramos el texto normal del botón
+            botonGuardarTurista.setText("Guardar turista");
+
+            // Limpiamos posibles datos anteriores
+            limpiarFormularioTurista();
+
+            layoutPanelIzquierdo.show(
+                    panelIzquierdo,
+                    "FORMULARIO_TURISTA"
+            );
+
+            bienvenidaLabel.setText(
+                    "Agreguemos un Turista"
+            );
+        });
+
+        botonEditarTurista.addActionListener(e -> {
+
+            solicitarEdicionTurista();
+
         });
 
         botonVolverMenu.addActionListener(e -> {
-            layoutPanelIzquierdo.show(panelIzquierdo, "MENU");
+
+            editandoOperador = false;
+            indiceOperadorEditado = -1;
+
+            botonGuardarOperador.setText("Guardar operador");
+
+            limpiarFormularioOperador();
+
+            layoutPanelIzquierdo.show(panelIzquierdo,"MENU");
 
             bienvenidaLabel.setText("Bienvenido al Gestor de Personal de Llanquihue Tour");
         });
 
         botonVolverMenuTurista.addActionListener(e -> {
-            layoutPanelIzquierdo.show(panelIzquierdo, "MENU");
 
-            bienvenidaLabel.setText("Bienvenido al Gestor de Personal de Llanquihue Tour");
+            // Cancelamos cualquier edición que estuviera en curso
+            editandoTurista = false;
+            indiceTuristaEditado = -1;
+
+            botonGuardarTurista.setText(
+                    "Guardar turista"
+            );
+
+            limpiarFormularioTurista();
+
+            layoutPanelIzquierdo.show(
+                    panelIzquierdo,
+                    "MENU"
+            );
+
+            bienvenidaLabel.setText(
+                    "Bienvenido al Gestor de Personal de Llanquihue Tour"
+            );
         });
 
         botonGuardarOperador.addActionListener(e -> {
@@ -285,20 +358,21 @@ public class VentanaPrincipal extends JFrame {
 
                 if (origenEvento == OrigenEvento.OPERADOR) {
 
-                    OperadorLocal operador = formularioOperador.agregarOperadorLocal(
-                            campoNombreOperador.getText(),
-                            campoRUTOperador.getText(),
-                            campoCorreoOperador.getText(),
-                            campoTelefonoOperador.getText(),
-                            campoComunaOperador.getText(),
-                            servicio
+                    OperadorLocal operador =
+                            formularioOperador.agregarOperadorLocal(
+                                    campoNombreOperador.getText(),
+                                    campoRUTOperador.getText(),
+                                    campoCorreoOperador.getText(),
+                                    campoTelefonoOperador.getText(),
+                                    campoComunaOperador.getText(),
+                                    servicio
+                            );
+
+                    guardarOperadorSegunModo(operador);
+
+                    areaResultado.setText(
+                            operador.toString()
                     );
-
-                    gestorOp.agregarOperadorYGuardar(operador);
-
-                    areaResultado.setText(operador.toString());
-
-                    JOptionPane.showMessageDialog(this, "Operador registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                 } else if (origenEvento == OrigenEvento.TURISTA) {
 
@@ -315,15 +389,12 @@ public class VentanaPrincipal extends JFrame {
                             servicio
                     );
 
-                    gestorTur.agregarTuristaYGuardar(turista);
+                    guardarTuristaSegunModo(turista);
 
                     areaResultado.setText(turista.toString());
 
-                    JOptionPane.showMessageDialog(this, "Turista registrado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 }
 
-                layoutPanelIzquierdo.show(panelIzquierdo, "MENU");
-                bienvenidaLabel.setText("Bienvenido al Gestor de Personal de Llanquihue Tour");
 
             } catch (IllegalArgumentException ex) {
 
@@ -367,11 +438,269 @@ public class VentanaPrincipal extends JFrame {
                 bienvenidaLabel.setText("Agreguemos un Turista");
             }
         });
+
         botonMostrarTodosOperadores.addActionListener(e -> mostrarTodosOperadores());
         botonMostrarTodosTuristas.addActionListener(e -> mostrarTodosTuristas());
+        botonFiltrarTuristas.addActionListener(e -> filtrarTuristas());
         botonMostrarTodosServicios.addActionListener(e -> mostrarTodosServicios());
         botonFiltrarOperadores.addActionListener(e -> filtrarOperadores());
         botonMostrarTodosRegistros.addActionListener(e -> mostrarTodosLosRegistros());
+    }
+
+    private void solicitarEdicionOperador() {
+
+        ArrayList<OperadorLocal> operadores =
+                gestorOp.leerOperadoresDesdeArchivo();
+
+        if (operadores.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No existen operadores registrados para editar.",
+                    "Sin registros",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+            return;
+        }
+
+        String entrada = JOptionPane.showInputDialog(
+                this,
+                "Ingresa el número de registro del operador que deseas editar:",
+                "Editar operador",
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        // La persona presionó cancelar
+        if (entrada == null) {
+            return;
+        }
+
+        entrada = entrada.trim();
+
+        if (entrada.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Debes ingresar un número de registro.",
+                    "Dato obligatorio",
+                    JOptionPane.WARNING_MESSAGE
+            );
+
+            return;
+        }
+
+        try {
+
+            int numeroRegistro = Integer.parseInt(entrada);
+
+            // El registro mostrado comienza en 1,
+            // pero el índice del ArrayList comienza en 0
+            int indice = numeroRegistro - 1;
+
+            if (indice < 0 || indice >= operadores.size()) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No existe un operador con el número de registro "
+                                + numeroRegistro + ".",
+                        "Registro inexistente",
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                return;
+            }
+
+            OperadorLocal operadorSeleccionado =
+                    operadores.get(indice);
+
+            editandoOperador = true;
+            indiceOperadorEditado = indice;
+
+            precargarFormularioOperador(operadorSeleccionado);
+
+            botonGuardarOperador.setText("Guardar cambios");
+
+            bienvenidaLabel.setText(
+                    "Editando operador — registro "
+                            + numeroRegistro
+            );
+
+            layoutPanelIzquierdo.show(
+                    panelIzquierdo,
+                    "FORMULARIO_OPERADOR"
+            );
+
+        } catch (NumberFormatException ex) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "El número de registro debe ser un número entero.",
+                    "Dato inválido",
+                    JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
+
+    private void solicitarEdicionTurista() {
+
+        ArrayList<Turista> turistas =
+                gestorTur.leerTuristasDesdeArchivo();
+
+        if (turistas.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No existen turistas registrados para editar.",
+                    "Sin registros",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+            return;
+        }
+
+        String entrada = JOptionPane.showInputDialog(
+                this,
+                "Ingresa el número de registro del turista que deseas editar:",
+                "Editar turista",
+                JOptionPane.QUESTION_MESSAGE
+        );
+
+        // El usuario presionó Cancelar
+        if (entrada == null) {
+            return;
+        }
+
+        entrada = entrada.trim();
+
+        if (entrada.isEmpty()) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Debes ingresar un número de registro.",
+                    "Dato obligatorio",
+                    JOptionPane.WARNING_MESSAGE
+            );
+
+            return;
+        }
+
+        try {
+
+            int numeroRegistro =
+                    Integer.parseInt(entrada);
+
+            // Los registros empiezan en 1,
+            // pero el ArrayList empieza en 0
+            int indice =
+                    numeroRegistro - 1;
+
+            if (indice < 0 || indice >= turistas.size()) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No existe un turista con el número de registro "
+                                + numeroRegistro + ".",
+                        "Registro inexistente",
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                return;
+            }
+
+            Turista turistaSeleccionado =
+                    turistas.get(indice);
+
+            editandoTurista = true;
+            indiceTuristaEditado = indice;
+
+            precargarFormularioTurista(
+                    turistaSeleccionado
+            );
+
+            botonGuardarTurista.setText(
+                    "Guardar cambios"
+            );
+
+            bienvenidaLabel.setText(
+                    "Editando turista — registro "
+                            + numeroRegistro
+            );
+
+            layoutPanelIzquierdo.show(
+                    panelIzquierdo,
+                    "FORMULARIO_TURISTA"
+            );
+
+        } catch (NumberFormatException ex) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "El número de registro debe ser un número entero.",
+                    "Dato inválido",
+                    JOptionPane.WARNING_MESSAGE
+            );
+        }
+    }
+
+    private void precargarFormularioTurista(
+            Turista turista
+    ) {
+
+        campoNombreTurista.setText(turista.getNombre());
+
+        campoRUTTurista.setText(turista.getRUT());
+
+        campoCorreoTurista.setText(turista.getCorreoElectronico());
+
+        campoTelefonoTurista.setText(turista.getNumeroTelefonico());
+
+        campoEdadTurista.setText(String.valueOf(turista.getEdad()));
+
+        comboGeneroTurista.setSelectedItem(turista.getGenero());
+
+        ServicioTuristico servicio = turista.getServicioTuristico();
+
+        if (servicio == null) {
+
+            rbEventoTuristaNo.setSelected(true);
+
+            limpiarFormularioEvento();
+
+        } else {
+
+            rbEventoTuristaSi.setSelected(true);
+
+            precargarFormularioEvento(servicio);
+        }
+    }
+
+    private void precargarFormularioOperador(OperadorLocal operador) {
+
+        campoNombreOperador.setText(operador.getNombre());
+
+        campoRUTOperador.setText(operador.getRUT());
+
+        campoCorreoOperador.setText(operador.getCorreoElectronico());
+
+        campoTelefonoOperador.setText(operador.getNumeroTelefonico());
+
+        campoComunaOperador.setText(operador.getComuna());
+
+        ServicioTuristico servicio = operador.getServicioTuristico();
+
+        if (servicio == null) {
+
+            rbEventoOperadorNo.setSelected(true);
+
+            limpiarFormularioEvento();
+
+        } else {
+
+            rbEventoOperadorSi.setSelected(true);
+
+            precargarFormularioEvento(servicio);
+        }
     }
 
     private void construirFormularioOperador() {
@@ -600,17 +929,134 @@ public class VentanaPrincipal extends JFrame {
                     campoComunaOperador.getText()
             );
 
-            gestorOp.agregarOperadorYGuardar(operador);
+            guardarOperadorSegunModo(operador);
 
             areaResultado.setText(operador.toString());
 
-            JOptionPane.showMessageDialog(this, "Operador creado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (IllegalArgumentException e) {
 
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+    private void guardarOperadorSegunModo(
+            OperadorLocal operador
+    ) {
+
+        if (editandoOperador) {
+
+            ArrayList<OperadorLocal> operadores = gestorOp.leerOperadoresDesdeArchivo();
+
+            if (indiceOperadorEditado < 0 || indiceOperadorEditado >= operadores.size()) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No fue posible localizar el registro que se estaba editando.",
+                        "Error de edición",
+                        JOptionPane.ERROR_MESSAGE
+                );
+
+                return;
+            }
+
+            operadores.set( indiceOperadorEditado,operador);
+
+            gestorOp.guardarOperadoresEnArchivo(operadores);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Operador actualizado correctamente.",
+                    "Edición completada",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+        } else {
+
+            gestorOp.agregarOperadorYGuardar(operador);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Operador creado correctamente.",
+                    "Registro completado",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+
+        finalizarFormularioOperador();
+    }
+
+    private void guardarTuristaSegunModo(Turista turista ) {
+
+        if (editandoTurista) {
+
+            ArrayList<Turista> turistas = gestorTur.leerTuristasDesdeArchivo();
+
+            if (
+                    indiceTuristaEditado < 0
+                            || indiceTuristaEditado >= turistas.size()
+            ) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No fue posible localizar el turista que se estaba editando.",
+                        "Error de edición",
+                        JOptionPane.ERROR_MESSAGE
+                );
+
+                return;
+            }
+
+            turistas.set(indiceTuristaEditado,turista);
+
+            gestorTur.guardarTuristasEnArchivo(turistas);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Turista actualizado correctamente.",
+                    "Edición completada",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+        } else {
+
+            gestorTur.agregarTuristaYGuardar(turista);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Turista creado correctamente.",
+                    "Registro completado",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+
+        finalizarFormularioTurista();
+    }
+
+    private void finalizarFormularioTurista() {
+
+        editandoTurista = false;
+        indiceTuristaEditado = -1;
+
+        botonGuardarTurista.setText("Guardar turista");
+        limpiarFormularioTurista();
+
+        layoutPanelIzquierdo.show(panelIzquierdo,"MENU");
+        bienvenidaLabel.setText("Bienvenido al Gestor de Personal de Llanquihue Tour");
+    }
+
+    private void finalizarFormularioOperador() {
+
+        editandoOperador = false;
+        indiceOperadorEditado = -1;
+        botonGuardarOperador.setText("Guardar operador");
+
+        limpiarFormularioOperador();
+
+        layoutPanelIzquierdo.show(panelIzquierdo,"MENU");
+
+        bienvenidaLabel.setText("Bienvenido al Gestor de Personal de Llanquihue Tour");
     }
 
     private boolean validarDatosEvento() {
@@ -725,10 +1171,7 @@ public class VentanaPrincipal extends JFrame {
         switch (tipoEvento) {
 
             case "Ruta Gastronómica":
-                int numeroParadas = Integer.parseInt(
-                        campoNumeroParadas.getText().trim()
-                );
-
+                int numeroParadas = Integer.parseInt(campoNumeroParadas.getText().trim());
                 return new RutaGastronomica(
                         nombreEvento,
                         duracion,
@@ -756,9 +1199,7 @@ public class VentanaPrincipal extends JFrame {
                 );
 
             default:
-                throw new IllegalArgumentException(
-                        "El tipo de evento seleccionado no es válido."
-                );
+                throw new IllegalArgumentException("El tipo de evento seleccionado no es válido.");
         }
     }
 
@@ -787,6 +1228,82 @@ public class VentanaPrincipal extends JFrame {
         comboTipoEvento.setSelectedIndex(0);
     }
 
+    private void limpiarFormularioTurista() {
+
+        campoNombreTurista.setText("");
+        campoRUTTurista.setText("");
+        campoCorreoTurista.setText("");
+        campoTelefonoTurista.setText("");
+        campoEdadTurista.setText("");
+
+        comboGeneroTurista.setSelectedIndex(0);
+
+        rbEventoTuristaSi.setSelected(false);
+        rbEventoTuristaNo.setSelected(false);
+
+        limpiarFormularioEvento();
+    }
+
+    private void limpiarFormularioEvento() {
+
+        campoNombreEvento.setText("");
+        campoDuracionEvento.setText("");
+        campoParticipantesEvento.setText("");
+        campoCalleEvento.setText("");
+        campoTipoEdificioEvento.setText("");
+        campoNumeroEdificioEvento.setText("");
+
+        campoNumeroParadas.setText("");
+        campoTipoEmbarcacion.setText("");
+        campoLugarHistorico.setText("");
+
+        comboTipoEvento.setSelectedIndex(0);
+
+        layoutDetalleEvento.show(
+                panelDetalleEvento,
+                "RUTA"
+        );
+    }
+
+    private void precargarFormularioEvento(ServicioTuristico servicio) {
+
+        campoNombreEvento.setText(servicio.getNombre());
+
+        campoDuracionEvento.setText(String.valueOf(servicio.getDuracionHoras()));
+
+        campoParticipantesEvento.setText(String.valueOf(servicio.getCantidadParticipantes()));
+
+        Direccion direccion = servicio.getDireccion();
+
+        campoCalleEvento.setText(direccion.getCalle());
+
+        campoTipoEdificioEvento.setText(direccion.getEdificacion());
+
+        campoNumeroEdificioEvento.setText( direccion.getNumeroHogar());
+
+        if (servicio instanceof RutaGastronomica) {
+
+            RutaGastronomica ruta = (RutaGastronomica) servicio;
+            comboTipoEvento.setSelectedItem("Ruta Gastronómica");
+            campoNumeroParadas.setText(String.valueOf(ruta.getNumeroDeParadas()));
+            layoutDetalleEvento.show(panelDetalleEvento, "RUTA");
+
+        } else if (servicio instanceof PaseoLacustre) {
+
+            PaseoLacustre paseo = (PaseoLacustre) servicio;
+            comboTipoEvento.setSelectedItem("Paseo Lacustre");
+            campoTipoEmbarcacion.setText(paseo.getTipoEmbarcacion());
+            layoutDetalleEvento.show(panelDetalleEvento,"PASEO");
+
+        } else if (servicio instanceof ExcursionCultural) {
+
+            ExcursionCultural excursion =(ExcursionCultural) servicio;
+            comboTipoEvento.setSelectedItem("Excursión Cultural");
+            campoLugarHistorico.setText( excursion.getLugarHistorico());
+            layoutDetalleEvento.show(panelDetalleEvento,"EXCURSION");
+        }
+    }
+
     private boolean validarDatosTurista() {
 
         String nombre       = campoNombreTurista.getText().trim();
@@ -798,6 +1315,11 @@ public class VentanaPrincipal extends JFrame {
 
         if (nombre.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El nombre del turista no puede estar vacío.");
+            return false;
+        }
+
+        if (!Validador.rutValido(rut)) {
+            JOptionPane.showMessageDialog(this, "El RUT ingresado no es válido.");
             return false;
         }
 
@@ -842,24 +1364,28 @@ public class VentanaPrincipal extends JFrame {
 
             String genero = (String) comboGeneroTurista.getSelectedItem();
 
-            Turista turista = formularioTurista.agregarTurista(
-                    campoNombreTurista.getText(),
-                    campoRUTTurista.getText(),
-                    campoCorreoTurista.getText(),
-                    campoTelefonoTurista.getText(),
-                    edad,
-                    genero
-            );
+            Turista turista =
+                    formularioTurista.agregarTurista(
+                            campoNombreTurista.getText(),
+                            campoRUTTurista.getText(),
+                            campoCorreoTurista.getText(),
+                            campoTelefonoTurista.getText(),
+                            edad,
+                            genero
+                    );
 
-            gestorTur.agregarTuristaYGuardar(turista);
+            guardarTuristaSegunModo(turista);
 
             areaResultado.setText(turista.toString());
 
-            JOptionPane.showMessageDialog(this, "Turista creado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
         } catch (IllegalArgumentException e) {
 
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
     }
 
@@ -869,10 +1395,17 @@ public class VentanaPrincipal extends JFrame {
 
         StringBuilder resultado = new StringBuilder();
 
-        for (OperadorLocal operador : operadores) {
+        for (int i = 0; i < operadores.size(); i++) {
+
+            OperadorLocal operador = operadores.get(i);
+
+            resultado.append("Número de registro: ").append(i + 1);
 
             resultado.append(operador.toString());
-            resultado.append("\n----------------------------------------\n");
+
+            resultado.append(
+                    "\n----------------------------------------\n"
+            );
         }
 
         areaResultado.setText(resultado.toString());
@@ -880,14 +1413,21 @@ public class VentanaPrincipal extends JFrame {
 
     private void mostrarTodosTuristas() {
 
-        ArrayList<Turista> turistas = gestorTur.leerTuristasDesdeArchivo();
+        ArrayList<Turista> turistas =
+                gestorTur.leerTuristasDesdeArchivo();
 
         StringBuilder resultado = new StringBuilder();
 
-        for (Turista turista : turistas) {
+        for (int i = 0; i < turistas.size(); i++) {
 
-            resultado.append(turista.toString());
-            resultado.append("\n----------------------------------------\n");
+            Turista turista = turistas.get(i);
+
+            resultado.append("Número de registro: ").append(i + 1);
+
+            resultado.append(turista);
+            resultado.append(
+                    "\n----------------------------------------\n"
+            );
         }
 
         areaResultado.setText(resultado.toString());
@@ -902,7 +1442,13 @@ public class VentanaPrincipal extends JFrame {
 
         resultado.append("===== SERVICIOS DE OPERADORES =====\n\n");
 
-        for (OperadorLocal operador : operadores) {
+        for (int i = 0; i < operadores.size(); i++) {
+
+            OperadorLocal operador = operadores.get(i);
+
+            resultado.append("Número de registro: ")
+                    .append(i + 1)
+                    .append("\n");
 
             resultado.append(operador.getServicioTuristico());
             resultado.append("\n----------------------------------------\n");
@@ -910,7 +1456,13 @@ public class VentanaPrincipal extends JFrame {
 
         resultado.append("\n===== SERVICIOS DE TURISTAS =====\n\n");
 
-        for (Turista turista : turistas) {
+        for (int i = 0; i < turistas.size(); i++) {
+
+            Turista turista = turistas.get(i);
+
+            resultado.append("Número de registro: ")
+                    .append(i + 1)
+                    .append("\n");
 
             resultado.append(turista.getServicioTuristico());
             resultado.append("\n----------------------------------------\n");
@@ -950,9 +1502,16 @@ public class VentanaPrincipal extends JFrame {
 
             case "Eventos grandes (15 o más asistentes)":
 
-                for (OperadorLocal operador : operadores) {
+                for (int i = 0; i < operadores.size(); i++) {
+
+                    OperadorLocal operador = operadores.get(i);
 
                     if (operador.getServicioTuristico().getCantidadParticipantes() >= 15) {
+
+                        resultado.append("Número de registro: ")
+                                .append(i + 1)
+                                .append("\n");
+
                         resultado.append(operador);
                         resultado.append("\n----------------------------------------\n");
                     }
@@ -962,10 +1521,160 @@ public class VentanaPrincipal extends JFrame {
 
             case "Eventos pequeños (menos de 15 asistentes)":
 
-                for (OperadorLocal operador : operadores) {
+                for (int i = 0; i < operadores.size(); i++) {
+
+                    OperadorLocal operador = operadores.get(i);
 
                     if (operador.getServicioTuristico().getCantidadParticipantes() < 15) {
+
+                        resultado.append("Número de registro: ")
+                                .append(i + 1)
+                                .append("\n");
+
                         resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+
+            case "Buscar por nombre":
+
+                String nombre = JOptionPane.showInputDialog(this,"Ingresa el nombre del operador:");
+
+                if (nombre == null) {
+                    return;
+                }
+
+                nombre = nombre.trim().toLowerCase();
+
+                if (nombre.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "No ingresaste ningún nombre.", "Dato inválido", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                for (int i = 0; i < operadores.size(); i++) {
+
+                    OperadorLocal operador = operadores.get(i);
+
+                    if (operador.getNombre().toLowerCase().contains(nombre)) {
+
+                        resultado.append("Número de registro: ")
+                                .append(i + 1)
+                                .append("\n");
+
+                        resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+
+            case "Operadores vigentes":
+
+                for (int i = 0; i < operadores.size(); i++) {
+
+                    OperadorLocal operador = operadores.get(i);
+
+                    if (operador.isVigente()) {
+
+                        resultado.append("Número de registro: ")
+                                .append(i + 1)
+                                .append("\n");
+
+                        resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+
+            case "Operadores no vigentes":
+
+                for (int i = 0; i < operadores.size(); i++) {
+
+                    OperadorLocal operador = operadores.get(i);
+
+                    if (!operador.isVigente()) {
+
+                        resultado.append("Número de registro: ")
+                                .append(i + 1)
+                                .append("\n");
+
+                        resultado.append(operador);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+        }
+
+        if (resultado.length() == 0) {
+            areaResultado.setText("No se encontraron operadores para el filtro seleccionado.");
+        } else {
+            areaResultado.setText(resultado.toString());
+        }
+    }
+
+    private void filtrarTuristas() {
+
+        String[] opciones = {
+                "Eventos grandes (15 o más asistentes)",
+                "Eventos pequeños (menos de 15 asistentes)",
+                "Buscar por nombre"
+        };
+
+        String seleccion = (String) JOptionPane.showInputDialog(
+                this,
+                "Selecciona el filtro que deseas aplicar:",
+                "Filtrar operadores",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]
+        );
+
+        if (seleccion == null) {
+            return;
+        }
+
+        ArrayList<Turista> turistas = gestorTur.leerTuristasDesdeArchivo();
+        StringBuilder resultado = new StringBuilder();
+
+        switch (seleccion) {
+
+            case "Eventos grandes (15 o más asistentes)":
+
+                for (int i = 0; i < turistas.size(); i++) {
+
+                    Turista turista = turistas.get(i);
+
+                    if (turista.getServicioTuristico().getCantidadParticipantes() >= 15) {
+
+                        resultado.append("Número de registro: ")
+                                .append(i + 1)
+                                .append("\n");
+
+                        resultado.append(turista);
+                        resultado.append("\n----------------------------------------\n");
+                    }
+                }
+
+                break;
+
+            case "Eventos pequeños (menos de 15 asistentes)":
+
+                for (int i = 0; i < turistas.size(); i++) {
+
+                    Turista turista = turistas.get(i);
+
+                    if (turista.getServicioTuristico().getCantidadParticipantes() < 15) {
+
+                        resultado.append("Número de registro: ")
+                                .append(i + 1)
+                                .append("\n");
+
+                        resultado.append(turista);
                         resultado.append("\n----------------------------------------\n");
                     }
                 }
@@ -976,7 +1685,7 @@ public class VentanaPrincipal extends JFrame {
 
                 String nombre = JOptionPane.showInputDialog(
                         this,
-                        "Ingresa el nombre del operador:"
+                        "Ingresa el nombre del turista:"
                 );
 
                 if (nombre == null) {
@@ -990,34 +1699,17 @@ public class VentanaPrincipal extends JFrame {
                     return;
                 }
 
-                for (OperadorLocal operador : operadores) {
+                for (int i = 0; i < turistas.size(); i++) {
 
-                    if (operador.getNombre().toLowerCase().contains(nombre)) {
-                        resultado.append(operador);
-                        resultado.append("\n----------------------------------------\n");
-                    }
-                }
+                    Turista turista = turistas.get(i);
 
-                break;
+                    if (turista.getNombre().toLowerCase().contains(nombre)) {
 
-            case "Operadores vigentes":
+                        resultado.append("Número de registro: ")
+                                .append(i + 1)
+                                .append("\n");
 
-                for (OperadorLocal operador : operadores) {
-
-                    if (operador.isVigente()) {
-                        resultado.append(operador);
-                        resultado.append("\n----------------------------------------\n");
-                    }
-                }
-
-                break;
-
-            case "Operadores no vigentes":
-
-                for (OperadorLocal operador : operadores) {
-
-                    if (!operador.isVigente()) {
-                        resultado.append(operador);
+                        resultado.append(turista);
                         resultado.append("\n----------------------------------------\n");
                     }
                 }
@@ -1026,7 +1718,7 @@ public class VentanaPrincipal extends JFrame {
         }
 
         if (resultado.length() == 0) {
-            areaResultado.setText("No se encontraron operadores para el filtro seleccionado.");
+            areaResultado.setText("No se encontraron turistas para el filtro seleccionado.");
         } else {
             areaResultado.setText(resultado.toString());
         }

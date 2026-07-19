@@ -224,4 +224,23 @@ public class GestorDatosTurista {
 
         guardarTuristasEnArchivo(turistas);
     }
+
+    public boolean editarTurista(
+            int numeroRegistro,
+            Turista turistaEditado
+    ) {
+        ArrayList<Turista> turistas =
+                leerTuristasDesdeArchivo();
+
+        int indice = numeroRegistro - 1;
+
+        if (indice < 0 || indice >= turistas.size()) {
+            return false;
+        }
+
+        turistas.set(indice, turistaEditado);
+        guardarTuristasEnArchivo(turistas);
+
+        return true;
+    }
 }

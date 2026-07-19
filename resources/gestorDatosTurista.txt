@@ -1,5 +1,7 @@
-1;ana torres;ana.torres@gmail.com;87654321;28;femenino;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5
-2;carlos perez;carlos.perez@gmail.com;91234567;34;masculino;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán
-3;marcela rios;marcela.rios@gmail.com;98765432;22;femenino;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial
-4;diego salinas;diego.salinas@gmail.com;99887766;41;masculino;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
-5;paula fuentes;paula.fuentes@gmail.com;95544332;30;femenino;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
+1;ana torres;40478812-4;ana.torres@gmail.com;87654321;28;femenino;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5
+2;carlos perez;1404636-4;carlos.perez@gmail.com;91234567;34;masculino;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán
+3;marcela rios;89522362-K;marcela.rios@gmail.com;98765432;22;femenino;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial
+4;diego salinas;3978260-K;diego.salinas@gmail.com;99887766;41;masculino;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
+5;paula fuentes;14590799-3;paula.fuentes@gmail.com;95544332;30;femenino;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó
+6;diego salinas fuentes;3978260-k;diego.salinas@gmail.com;99887766;65;Masculino;RutaGastronomica;festival de sabores del mar;4.0;40;costanera;restaurante;210;8
+7;diego salinas;3978260-k;diego.salinas@gmail.com;99887766;69;Masculino;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8
