@@ -25,6 +25,7 @@ public class FormularioOperadorLocal {
         ServicioTuristico servicioTuristico;
         Direccion direccion = new Direccion();
         String nombreOperador;
+        String rutOperador;
         String correoOperador;
         String telefonoOperador;
         String tipoServicio;
@@ -52,6 +53,16 @@ public class FormularioOperadorLocal {
         System.out.println("Agregemos un Operador Local");
 
         nombreOperador = entrada.solicitarTexto("Digita el nombre del operador: ", "El nombre no puede estar vacío.");
+
+        do {
+            System.out.print("Digita el RUT del operador(xxxxxxxx-x): ");
+            rutOperador = sc.nextLine().trim();
+
+            if (!Validador.rutValido(rutOperador)) {
+                System.out.println("El RUT ingresado no es válido.");
+            }
+        } while (!Validador.rutValido(rutOperador));
+
 
         do {
 
@@ -197,12 +208,13 @@ public class FormularioOperadorLocal {
 
         }
 
-        return new OperadorLocal( nombreOperador, correoOperador, telefonoOperador, comuna, servicioTuristico, vigencia);
+        return new OperadorLocal( nombreOperador, rutOperador, correoOperador, telefonoOperador, comuna, servicioTuristico, vigencia);
 
     }
 
     public OperadorLocal agregarOperadorLocal(
             String nombreOperador,
+            String rutOperador,
             String correoOperador,
             String telefonoOperador,
             String comuna
@@ -210,6 +222,12 @@ public class FormularioOperadorLocal {
 
         if (nombreOperador == null || nombreOperador.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del operador no puede estar vacío.");
+        }
+
+        rutOperador = rutOperador.trim().toLowerCase();
+
+        if (!Validador.rutValido(rutOperador)) {
+            throw new IllegalArgumentException("El RUT no respeta el formato solicitado.");
         }
 
         correoOperador = correoOperador.trim().toLowerCase();
@@ -233,6 +251,7 @@ public class FormularioOperadorLocal {
 
         return new OperadorLocal(
                 nombreOperador.trim(),
+                rutOperador,
                 correoOperador,
                 telefonoOperador,
                 comuna.trim(),
@@ -243,6 +262,7 @@ public class FormularioOperadorLocal {
 
     public OperadorLocal agregarOperadorLocal(
             String nombreOperador,
+            String rutOperador,
             String correoOperador,
             String telefonoOperador,
             String comuna,
@@ -251,6 +271,12 @@ public class FormularioOperadorLocal {
 
         if (nombreOperador == null || nombreOperador.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del operador no puede estar vacío.");
+        }
+
+        rutOperador = rutOperador.trim().toLowerCase();
+
+        if (!Validador.rutValido(rutOperador)) {
+            throw new IllegalArgumentException("El RUT no respeta el formato solicitado.");
         }
 
         correoOperador = correoOperador.trim().toLowerCase();
@@ -271,6 +297,7 @@ public class FormularioOperadorLocal {
 
         return new OperadorLocal(
                 nombreOperador.trim(),
+                rutOperador,
                 correoOperador,
                 telefonoOperador,
                 comuna.trim(),

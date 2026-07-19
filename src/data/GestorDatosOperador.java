@@ -1,11 +1,6 @@
 package data;
 
-import model.Direccion;
-import model.OperadorLocal;
-import model.ServicioTuristico;
-import model.RutaGastronomica;
-import model.PaseoLacustre;
-import model.ExcursionCultural;
+import model.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -26,7 +21,6 @@ public class GestorDatosOperador {
 
     private FormularioOperadorLocal formulario = new FormularioOperadorLocal();
 
-
     /**
      * Crea la carpeta resources y el archivo de operadores con datos semilla si estos no existen previamente.
      */
@@ -42,12 +36,12 @@ public class GestorDatosOperador {
             if (!Files.exists(archivoGestorOperador)) {
 
                 List<String> datosSemilla = List.of(
-                        "1;jacobo benavides;true;jcob@gmail.com;23456798;puerto montt;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5",
-                        "2;maría gonzález;true;maria.gonzalez@gmail.com;98765432;puerto varas;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán",
-                        "3;pedro muñoz;true;pedro.munoz@gmail.com;91234567;frutillar;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial",
-                        "4;camila soto;true;camila.soto@gmail.com;97654321;calbuco;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8",
-                        "5;rodrigo pérez;true;rodrigo.perez@gmail.com;99887766;cochamó;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó",
-                        "6;valentina rojas;true;valentina.rojas@gmail.com;95544332;maullín;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha"
+                        "1;jacobo benavides;true;72630650-8;jcob@gmail.com;23456798;puerto montt;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5",
+                        "2;maría gonzález;true;64422449-K;maria.gonzalez@gmail.com;98765432;puerto varas;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán",
+                        "3;pedro muñoz;true;35738746-9;pedro.munoz@gmail.com;91234567;frutillar;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial",
+                        "4;camila soto;true;2949806-7;camila.soto@gmail.com;97654321;calbuco;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8",
+                        "5;rodrigo pérez;true;94898184-K;rodrigo.perez@gmail.com;99887766;cochamó;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó",
+                        "6;valentina rojas;true;83276582-1;valentina.rojas@gmail.com;95544332;maullín;PaseoLacustre;navegación humedales de maullín;2.0;30;o'higgins;oficina;332;lancha"
                 );
 
                 Files.write(archivoGestorOperador, datosSemilla);
@@ -108,6 +102,7 @@ public class GestorDatosOperador {
             String linea = codigo                        + ";" +
                     operador.getNombre()                 + ";" +
                     operador.isVigente()                 + ";" +
+                    operador.getRUT()                    + ";" +
                     operador.getCorreoElectronico()      + ";" +
                     operador.getNumeroTelefonico()       + ";" +
                     operador.getComuna()                 + ";" +
@@ -177,22 +172,23 @@ public class GestorDatosOperador {
 
                     String[] datos = linea.split(";");
 
-                    if (datos.length == 14) {
+                    if (datos.length == 15) {
 
                         String codigo = datos[0].trim(); //Se usará para próximos incrementos, si es que debo relacionar datos
                         String nombreOperador = datos[1].trim();
                         boolean vigencia = Boolean.parseBoolean(datos[2].trim());
-                        String correoOperador = datos[3].trim();
-                        String telefonoOperador = datos[4].trim();
-                        String comunaOperador = datos[5].trim();
-                        String tipoServicioTuristico = datos[6].trim();
-                        String nombreEvento = datos[7].trim();
-                        double cantidadHoras = Double.parseDouble(datos[8].trim());
-                        int numeroAsistenteEvento = Integer.parseInt(datos[9].trim());
-                        String nombreCalleDireccion = datos[10].trim();
-                        String edificacionDireccion = datos[11].trim();
-                        String numeroDireccion = datos[12].trim();
-                        String datoExtra = datos[13].trim();
+                        String rutOperador = datos[3].trim();
+                        String correoOperador = datos[4].trim();
+                        String telefonoOperador = datos[5].trim();
+                        String comunaOperador = datos[6].trim();
+                        String tipoServicioTuristico = datos[7].trim();
+                        String nombreEvento = datos[8].trim();
+                        double cantidadHoras = Double.parseDouble(datos[9].trim());
+                        int numeroAsistenteEvento = Integer.parseInt(datos[10].trim());
+                        String nombreCalleDireccion = datos[11].trim();
+                        String edificacionDireccion = datos[12].trim();
+                        String numeroDireccion = datos[13].trim();
+                        String datoExtra = datos[14].trim();
 
                         Direccion direccion = new Direccion(nombreCalleDireccion, edificacionDireccion, numeroDireccion);
 
@@ -216,7 +212,7 @@ public class GestorDatosOperador {
                                 break;
                         }
 
-                        OperadorLocal operadorLocal = new OperadorLocal(nombreOperador, correoOperador, telefonoOperador, comunaOperador, servicio, vigencia);
+                        OperadorLocal operadorLocal = new OperadorLocal(nombreOperador, rutOperador, correoOperador, telefonoOperador, comunaOperador, servicio, vigencia);
                         operadoresLocales.add(operadorLocal);
 
                     } else {

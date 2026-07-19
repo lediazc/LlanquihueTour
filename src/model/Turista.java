@@ -6,9 +6,9 @@ public class Turista extends Usuario  {
     private String genero;
     private ServicioTuristico servicioTuristico;
 
-    public Turista(String nombre, String correoElectronico, String numeroTelefonico, int edad, String genero, ServicioTuristico servicioTuristico) {
+    public Turista(String nombre, String rut, String correoElectronico, String numeroTelefonico, int edad, String genero, ServicioTuristico servicioTuristico) {
 
-        super(nombre, correoElectronico, numeroTelefonico);
+        super(nombre, rut, correoElectronico, numeroTelefonico);
         setEdad(edad);
         setGenero(genero);
         setServicioTuristico(servicioTuristico);

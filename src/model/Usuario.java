@@ -8,6 +8,7 @@ package model;
 public class Usuario implements Registrable{
 
     private String nombre;
+    private String rut;
     private String correoElectronico;
     private String numeroTelefonico;
 
@@ -18,9 +19,10 @@ public class Usuario implements Registrable{
      * @param nombre Nombre del usuario.
      * @param correoElectronico Dato de contacto del usuario.
      */
-    public Usuario(String nombre, String correoElectronico, String numeroTelefonico){
+    public Usuario(String nombre, String rut, String correoElectronico, String numeroTelefonico){
 
         setNombre(nombre);
+        setRUT(rut);
         setCorreoElectronico(correoElectronico);
         setNumeroTelefonico(numeroTelefonico);
     }
@@ -31,8 +33,9 @@ public class Usuario implements Registrable{
     public Usuario(){
 
         this.nombre = "Sin nombre registrado";
+        this.rut = "";
         this.correoElectronico = "Sin correo electrónico registrado";
-        this.numeroTelefonico = "00000000";
+        this.numeroTelefonico = "Sin número de teléfono registrado";
 
     }
 
@@ -45,6 +48,17 @@ public class Usuario implements Registrable{
     public String getNombre() {
 
         return nombre;
+    }
+
+    //Getters ----------------------------
+    /**
+     * Obtiene el RUT del usuario.
+     *
+     * @return RUT del usuario.
+     */
+    public String getRUT() {
+
+        return rut;
     }
 
 
@@ -83,6 +97,20 @@ public class Usuario implements Registrable{
             this.nombre = nombre;
         }
     }
+
+    /**
+     * Establece el RUT del usuario.
+     *
+     * @param rut Nombre del usuario.
+     */
+    public void setRUT(String rut) {
+        if(rut == null || rut.trim().isEmpty()){
+            this.rut = "No se proporcionó ningún RUT";
+        } else {
+            this.rut = rut;
+        }
+    }
+
 
     /**
      * Establece el correo electrónico del usuario.

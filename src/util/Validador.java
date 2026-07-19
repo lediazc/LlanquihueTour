@@ -89,4 +89,9 @@ public class Validador {
 
         return digitoVerificadorBrutoString.equalsIgnoreCase(numeroVerificador);
     }
+
+    public static boolean rutValido(String rut) {
+        return cedulaIdentidadValida(rut)
+                && numeroVerificadorValido(rut);
+    }
 }

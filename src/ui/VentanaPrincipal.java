@@ -13,49 +13,55 @@ import util.Validador;
 public class VentanaPrincipal extends JFrame {
 
     //Instancias
-    GestorDatosOperador gestorOp = new GestorDatosOperador();
-    GestorDatosTurista gestorTur = new GestorDatosTurista();
-    GestorServicios gestorServ = new GestorServicios();
-    FormularioOperadorLocal formularioOperador = new FormularioOperadorLocal();
-    FormularioTurista formularioTurista = new FormularioTurista();
-    GestorEntidades gestorEntidades = new GestorEntidades();
+    GestorDatosOperador gestorOp                = new GestorDatosOperador();
+    GestorDatosTurista gestorTur                = new GestorDatosTurista();
+    GestorServicios gestorServ                  = new GestorServicios();
+    FormularioOperadorLocal formularioOperador  = new FormularioOperadorLocal();
+    FormularioTurista formularioTurista         = new FormularioTurista();
+    GestorEntidades gestorEntidades             = new GestorEntidades();
 
 
-
-
-    //Creamos los elementos relacionados con el input de patente del vehículo
-    JTextField plateInput = new JTextField(6);
+    //Labels
     JLabel bienvenidaLabel = new JLabel("Bienvenido al Gestor de Personal de Llanquihue Tour");
 
-    JButton botonMostrarTodosRegistros = new JButton("Mostrar todos los registros");
-    JButton botonMostrarTodosOperadores = new JButton("Mostrarme todos los registros de operadores");
-    JButton botonFiltrarOperadores = new JButton("Filtrar registros de operadores");
-    JButton botonAgregarOperador = new JButton("Agregar Operador Local");
-    JButton botonMostrarTodosTuristas = new JButton("Mostrarme todos los registros de turistas");
-    JButton botonAgregarTurista = new JButton("Agregar turista");
-    JButton botonMostrarTodosServicios = new JButton("Visualizar todos los servicios registrados");
 
+    //Botones del aplicativo
+    JButton botonMostrarTodosRegistros  = new JButton("Mostrar todos los registros");
+    JButton botonMostrarTodosOperadores = new JButton("Mostrarme todos los registros de operadores");
+    JButton botonFiltrarOperadores      = new JButton("Filtrar registros de operadores");
+    JButton botonAgregarOperador        = new JButton("Agregar Operador Local");
+    JButton botonMostrarTodosTuristas   = new JButton("Mostrarme todos los registros de turistas");
+    JButton botonAgregarTurista         = new JButton("Agregar turista");
+    JButton botonMostrarTodosServicios  = new JButton("Visualizar todos los servicios registrados");
+
+    //Imagen
     ImageIcon icono = new ImageIcon(getClass().getResource("/icono.png"));
     JLabel logo = new JLabel(icono);
 
     JTextArea areaResultado = new JTextArea(25, 100);
 
     //FormularioOperador
-    private final JTextField campoNombreOperador = new JTextField(20);
-    private final JTextField campoCorreoOperador = new JTextField(20);
-    private final JTextField campoTelefonoOperador = new JTextField(20);
-    private final JTextField campoComunaOperador = new JTextField(20);
-    private final JRadioButton rbEventoOperadorSi = new JRadioButton("Sí");
-    private final JRadioButton rbEventoOperadorNo = new JRadioButton("No");
+    private final JTextField campoNombreOperador    = new JTextField(20);
+    private final JTextField campoRUTOperador       = new JTextField(20);
+    private final JTextField campoCorreoOperador    = new JTextField(20);
+    private final JTextField campoTelefonoOperador  = new JTextField(20);
+    private final JTextField campoComunaOperador    = new JTextField(20);
+    private final JRadioButton rbEventoOperadorSi   = new JRadioButton("Sí");
+    private final JRadioButton rbEventoOperadorNo   = new JRadioButton("No");
 
-    private final JButton botonGuardarOperador = new JButton("Guardar operador");
-    private final JButton botonVolverMenu = new JButton("Volver");
+    private final JButton botonGuardarOperador      = new JButton("Guardar operador");
+    private final JButton botonVolverMenu           = new JButton("Volver");
+
+
+    private final JButton botonGuardarEvento        = new JButton("Guardar evento");
+    private final JButton botonVolverOperador       = new JButton("Volver");
 
     //FormularioTurista
-    private final JTextField campoNombreTurista = new JTextField(20);
-    private final JTextField campoCorreoTurista =  new JTextField(20);
-    private final JTextField campoTelefonoTurista = new JTextField(20);
-    private final JTextField campoEdadTurista = new JTextField(20);
+    private final JTextField campoNombreTurista     = new JTextField(20);
+    private final JTextField campoRUTTurista        = new JTextField(20);
+    private final JTextField campoCorreoTurista     = new JTextField(20);
+    private final JTextField campoTelefonoTurista   = new JTextField(20);
+    private final JTextField campoEdadTurista       = new JTextField(20);
 
     private final JComboBox<String> comboGeneroTurista =
             new JComboBox<>(new String[]{
@@ -64,10 +70,10 @@ public class VentanaPrincipal extends JFrame {
                     "Otro"
             });
 
-    private final JRadioButton rbEventoTuristaSi = new JRadioButton("Sí");
-    private final JRadioButton rbEventoTuristaNo = new JRadioButton("No");
-    private final JButton botonGuardarTurista = new JButton("Guardar turista");
-    private final JButton botonVolverMenuTurista = new JButton("Volver");
+    private final JRadioButton rbEventoTuristaSi    = new JRadioButton("Sí");
+    private final JRadioButton rbEventoTuristaNo    = new JRadioButton("No");
+    private final JButton botonGuardarTurista       = new JButton("Guardar turista");
+    private final JButton botonVolverMenuTurista    = new JButton("Volver");
 
 
     // Formulario Evento
@@ -76,12 +82,12 @@ public class VentanaPrincipal extends JFrame {
 
     private OrigenEvento origenEvento;
 
-    private final JTextField campoNombreEvento = new JTextField(20);
-    private final JTextField campoDuracionEvento = new JTextField(20);
-    private final JTextField campoParticipantesEvento = new JTextField(20);
-    private final JTextField campoCalleEvento = new JTextField(20);
-    private final JTextField campoTipoEdificioEvento = new JTextField(20);
-    private final JTextField campoNumeroEdificioEvento = new JTextField(20);
+    private final JTextField campoNombreEvento          = new JTextField(20);
+    private final JTextField campoDuracionEvento        = new JTextField(20);
+    private final JTextField campoParticipantesEvento   = new JTextField(20);
+    private final JTextField campoCalleEvento           = new JTextField(20);
+    private final JTextField campoTipoEdificioEvento    = new JTextField(20);
+    private final JTextField campoNumeroEdificioEvento  = new JTextField(20);
 
     private final JComboBox<String> comboTipoEvento =
             new JComboBox<>(new String[]{
@@ -90,46 +96,34 @@ public class VentanaPrincipal extends JFrame {
                     "Excursión Cultural"
             });
 
-
-    private final JButton botonGuardarEvento = new JButton("Guardar evento");
-
-    private final JButton botonVolverOperador = new JButton("Volver");
-
     // Componentes específicos de cada tipo de evento
 
-    private final CardLayout layoutDetalleEvento = new CardLayout();
-
-    private final JPanel panelDetalleEvento = new JPanel(layoutDetalleEvento);
-
-    private final JPanel panelRutaGastronomica = new JPanel(new FlowLayout());
-
-    private final JPanel panelPaseoLacustre = new JPanel(new FlowLayout());
-
-    private final JPanel panelExcursionCultural =  new JPanel(new FlowLayout());
-
-    private final JTextField campoNumeroParadas = new JTextField(15);
-
-    private final JTextField campoTipoEmbarcacion = new JTextField(15);
-
-    private final JTextField campoLugarHistorico = new JTextField(15);
+    private final CardLayout layoutDetalleEvento    = new CardLayout();
+    private final JPanel panelDetalleEvento         = new JPanel(layoutDetalleEvento);
+    private final JPanel panelRutaGastronomica      = new JPanel(new FlowLayout());
+    private final JPanel panelPaseoLacustre         = new JPanel(new FlowLayout());
+    private final JPanel panelExcursionCultural     = new JPanel(new FlowLayout());
+    private final JTextField campoNumeroParadas     = new JTextField(15);
+    private final JTextField campoTipoEmbarcacion   = new JTextField(15);
+    private final JTextField campoLugarHistorico    = new JTextField(15);
 
     //Construcción de maquetado
-    private final JPanel panelPrincipal = new JPanel(new BorderLayout(10, 10));
-    private final JPanel panelCabecera = new JPanel();
-    private final JPanel panelCentral = new JPanel(new GridLayout(1,2,10,10));
+    private final JPanel panelPrincipal             = new JPanel(new BorderLayout(10, 10));
+    private final JPanel panelCabecera              = new JPanel();
+    private final JPanel panelCentral               = new JPanel(new GridLayout(1,2,10,10));
 
-    private final CardLayout layoutPanelIzquierdo = new CardLayout();
-    private final JPanel panelIzquierdo = new JPanel(layoutPanelIzquierdo);
-    private final JPanel panelMenuIzquierdo = new JPanel(new GridLayout(3, 1, 10, 10));
-    private final JPanel panelFormularioOperador = new JPanel(new GridLayout(7, 1, 10, 10));
+    private final CardLayout layoutPanelIzquierdo   = new CardLayout();
+    private final JPanel panelIzquierdo             = new JPanel(layoutPanelIzquierdo);
+    private final JPanel panelMenuIzquierdo         = new JPanel(new GridLayout(3, 1, 10, 10));
+    private final JPanel panelFormularioOperador    = new JPanel(new GridLayout(7, 1, 10, 10));
 
-    private final JPanel panelFormularioTurista = new JPanel(new GridLayout(7, 1, 10, 10));
+    private final JPanel panelFormularioTurista     = new JPanel(new GridLayout(7, 1, 10, 10));
 
-    private final JPanel panelFormularioEvento = new JPanel(new GridLayout(9, 1, 10, 10));
+    private final JPanel panelFormularioEvento      = new JPanel(new GridLayout(9, 1, 10, 10));
 
-    private final JPanel panelDerecho = new JPanel(new GridLayout(2,1,10,10));
-    private final JPanel panelResultado = new JPanel(new BorderLayout());
-    private final JPanel panelBotonesResultados = new JPanel(new GridLayout(5,1,10,10));
+    private final JPanel panelDerecho               = new JPanel(new GridLayout(2,1,10,10));
+    private final JPanel panelResultado             = new JPanel(new BorderLayout());
+    private final JPanel panelBotonesResultados     = new JPanel(new GridLayout(5,1,10,10));
 
 
     public VentanaPrincipal(){
@@ -293,6 +287,7 @@ public class VentanaPrincipal extends JFrame {
 
                     OperadorLocal operador = formularioOperador.agregarOperadorLocal(
                             campoNombreOperador.getText(),
+                            campoRUTOperador.getText(),
                             campoCorreoOperador.getText(),
                             campoTelefonoOperador.getText(),
                             campoComunaOperador.getText(),
@@ -312,6 +307,7 @@ public class VentanaPrincipal extends JFrame {
 
                     Turista turista = formularioTurista.agregarTurista(
                             campoNombreTurista.getText(),
+                            campoRUTTurista.getText(),
                             campoCorreoTurista.getText(),
                             campoTelefonoTurista.getText(),
                             edad,
@@ -362,7 +358,6 @@ public class VentanaPrincipal extends JFrame {
         });
 
         botonVolverOperador.addActionListener(e -> {
-
             if (origenEvento == OrigenEvento.OPERADOR) {
                 layoutPanelIzquierdo.show(panelIzquierdo, "FORMULARIO_OPERADOR");
                 bienvenidaLabel.setText("Agreguemos un Operador Local");
@@ -372,15 +367,10 @@ public class VentanaPrincipal extends JFrame {
                 bienvenidaLabel.setText("Agreguemos un Turista");
             }
         });
-
         botonMostrarTodosOperadores.addActionListener(e -> mostrarTodosOperadores());
-
         botonMostrarTodosTuristas.addActionListener(e -> mostrarTodosTuristas());
-
         botonMostrarTodosServicios.addActionListener(e -> mostrarTodosServicios());
-
         botonFiltrarOperadores.addActionListener(e -> filtrarOperadores());
-
         botonMostrarTodosRegistros.addActionListener(e -> mostrarTodosLosRegistros());
     }
 
@@ -390,6 +380,11 @@ public class VentanaPrincipal extends JFrame {
 
         panelNombre.add(new JLabel("Nombre del operador:"));
         panelNombre.add(campoNombreOperador);
+
+        JPanel panelRUT = new JPanel(new FlowLayout());
+
+        panelNombre.add(new JLabel("RUT del operador(Sin puntos y con guión xxxxxxxx-x): "));
+        panelNombre.add(campoRUTOperador);
 
         JPanel panelCorreo = new JPanel(new FlowLayout());
 
@@ -422,6 +417,7 @@ public class VentanaPrincipal extends JFrame {
 
 
         panelFormularioOperador.add(panelNombre);
+        panelFormularioOperador.add(panelRUT);
         panelFormularioOperador.add(panelCorreo);
         panelFormularioOperador.add(panelTelefono);
         panelFormularioOperador.add(panelComuna);
@@ -435,6 +431,11 @@ public class VentanaPrincipal extends JFrame {
 
         panelNombre.add(new JLabel("Digita el nombre del turista:"));
         panelNombre.add(campoNombreTurista);
+
+        JPanel panelRUT = new JPanel(new FlowLayout());
+
+        panelNombre.add(new JLabel("RUT del turista(Sin puntos y con guión xxxxxxxx-x): "));
+        panelNombre.add(campoRUTTurista);
 
         JPanel panelCorreo = new JPanel(new FlowLayout());
 
@@ -472,6 +473,7 @@ public class VentanaPrincipal extends JFrame {
 
 
         panelFormularioTurista.add(panelNombre);
+        panelFormularioTurista.add(panelRUT);
         panelFormularioTurista.add(panelCorreo);
         panelFormularioTurista.add(panelTelefono);
         panelFormularioTurista.add(panelComuna);
@@ -542,15 +544,23 @@ public class VentanaPrincipal extends JFrame {
 
     private boolean validarDatosOperador() {
 
-        String nombre = campoNombreOperador.getText().trim();
-        String correo = campoCorreoOperador.getText().trim().toLowerCase();
+        String nombre   = campoNombreOperador.getText().trim();
+        String rut      = campoRUTOperador.getText().trim();
+        String correo   = campoCorreoOperador.getText().trim().toLowerCase();
         String telefono = campoTelefonoOperador.getText().trim();
-        String comuna = campoComunaOperador.getText().trim();
+        String comuna   = campoComunaOperador.getText().trim();
 
         if (nombre.isEmpty()) {
             JOptionPane.showMessageDialog(this,"El nombre del operador no puede estar vacío.","Dato inválido",JOptionPane.WARNING_MESSAGE);
 
             campoNombreOperador.requestFocusInWindow();
+            return false;
+        }
+
+        if (!Validador.rutValido(rut)) {
+            JOptionPane.showMessageDialog(this,"El RUT ingresado no es válido.","Dato inválido",JOptionPane.WARNING_MESSAGE);
+
+            campoRUTOperador.requestFocusInWindow();
             return false;
         }
 
@@ -584,6 +594,7 @@ public class VentanaPrincipal extends JFrame {
 
             OperadorLocal operador = formularioOperador.agregarOperadorLocal(
                     campoNombreOperador.getText(),
+                    campoRUTOperador.getText(),
                     campoCorreoOperador.getText(),
                     campoTelefonoOperador.getText(),
                     campoComunaOperador.getText()
@@ -604,12 +615,12 @@ public class VentanaPrincipal extends JFrame {
 
     private boolean validarDatosEvento() {
 
-        String nombreEvento = campoNombreEvento.getText().trim();
-        String duracionTexto = campoDuracionEvento.getText().trim().replace(",", ".");
-        String participantesTexto = campoParticipantesEvento.getText().trim();
-        String calle = campoCalleEvento.getText().trim();
-        String edificio = campoTipoEdificioEvento.getText().trim();
-        String numero = campoNumeroEdificioEvento.getText().trim();
+        String nombreEvento         = campoNombreEvento.getText().trim();
+        String duracionTexto        = campoDuracionEvento.getText().trim().replace(",", ".");
+        String participantesTexto   = campoParticipantesEvento.getText().trim();
+        String calle                = campoCalleEvento.getText().trim();
+        String edificio             = campoTipoEdificioEvento.getText().trim();
+        String numero               = campoNumeroEdificioEvento.getText().trim();
 
         if (nombreEvento.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El nombre del evento no puede estar vacío.", "Dato inválido", JOptionPane.WARNING_MESSAGE);
@@ -754,6 +765,7 @@ public class VentanaPrincipal extends JFrame {
     private void limpiarFormularioOperador() {
 
         campoNombreOperador.setText("");
+        campoRUTOperador.setText("");
         campoCorreoOperador.setText("");
         campoTelefonoOperador.setText("");
         campoComunaOperador.setText("");
@@ -777,11 +789,12 @@ public class VentanaPrincipal extends JFrame {
 
     private boolean validarDatosTurista() {
 
-        String nombre = campoNombreTurista.getText().trim();
-        String correo = campoCorreoTurista.getText().trim().toLowerCase();
-        String telefono = campoTelefonoTurista.getText().trim();
-        String edadTexto = campoEdadTurista.getText().trim();
-        String genero = (String) comboGeneroTurista.getSelectedItem();
+        String nombre       = campoNombreTurista.getText().trim();
+        String rut          = campoRUTTurista.getText().trim();
+        String correo       = campoCorreoTurista.getText().trim().toLowerCase();
+        String telefono     = campoTelefonoTurista.getText().trim();
+        String edadTexto    = campoEdadTurista.getText().trim();
+        String genero       = (String) comboGeneroTurista.getSelectedItem();
 
         if (nombre.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El nombre del turista no puede estar vacío.");
@@ -831,6 +844,7 @@ public class VentanaPrincipal extends JFrame {
 
             Turista turista = formularioTurista.agregarTurista(
                     campoNombreTurista.getText(),
+                    campoRUTTurista.getText(),
                     campoCorreoTurista.getText(),
                     campoTelefonoTurista.getText(),
                     edad,

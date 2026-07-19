@@ -6,9 +6,9 @@ public class OperadorLocal extends Usuario {
     private ServicioTuristico servicioTuristico;
     private boolean vigente;
 
-    public OperadorLocal(String nombre, String correoElectronico, String numeroTelefonico, String comuna, ServicioTuristico servicioTuristico, boolean vigente){
+    public OperadorLocal(String nombre, String rut, String correoElectronico, String numeroTelefonico, String comuna, ServicioTuristico servicioTuristico, boolean vigente){
 
-        super(nombre, correoElectronico, numeroTelefonico);
+        super(nombre, rut, correoElectronico, numeroTelefonico);
         setComuna(comuna);
         setServicioTuristico(servicioTuristico);
         setVigencia(vigente);

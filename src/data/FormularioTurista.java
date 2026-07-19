@@ -18,6 +18,7 @@ public class FormularioTurista {
         Direccion direccion = new Direccion();
 
         String nombreTurista;
+        String rutTurista;
         String correoTurista;
         String telefonoTurista;
         int edadTurista = 0;
@@ -41,6 +42,15 @@ public class FormularioTurista {
         System.out.println("Agreguemos un Turista");
 
         nombreTurista = entrada.solicitarTexto("Digita el nombre del turista: ", "El nombre no puede estar vacío.");
+
+        do {
+            System.out.print("Digita el RUT del turista(xxxxxxxx-x): ");
+            rutTurista = sc.nextLine().trim();
+
+            if (!Validador.rutValido(rutTurista)) {
+                System.out.println("El RUT ingresado no es válido.");
+            }
+        } while (!Validador.rutValido(rutTurista));
 
         do {
             System.out.print("Digita el correo del turista(xx@xx.cl): ");
@@ -170,11 +180,12 @@ public class FormularioTurista {
             servicioTuristico = new ExcursionCultural();
         }
 
-        return new Turista(nombreTurista, correoTurista, telefonoTurista, edadTurista, generoTurista, servicioTuristico);
+        return new Turista(nombreTurista,rutTurista, correoTurista, telefonoTurista, edadTurista, generoTurista, servicioTuristico);
     }
 
     public Turista agregarTurista(
             String nombreTurista,
+            String rutTurista,
             String correoTurista,
             String telefonoTurista,
             int edadTurista,
@@ -183,6 +194,12 @@ public class FormularioTurista {
 
         if (nombreTurista == null || nombreTurista.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del turista no puede estar vacío.");
+        }
+
+        rutTurista = rutTurista.trim().toLowerCase();
+
+        if (!Validador.rutValido(rutTurista)) {
+            throw new IllegalArgumentException("El RUT no respeta el formato solicitado.");
         }
 
         correoTurista = correoTurista.trim().toLowerCase();
@@ -209,6 +226,7 @@ public class FormularioTurista {
 
         return new Turista(
                 nombreTurista.trim(),
+                rutTurista,
                 correoTurista,
                 telefonoTurista,
                 edadTurista,
@@ -219,6 +237,7 @@ public class FormularioTurista {
 
     public Turista agregarTurista(
             String nombreTurista,
+            String rutTurista,
             String correoTurista,
             String telefonoTurista,
             int edadTurista,
@@ -228,6 +247,12 @@ public class FormularioTurista {
 
         if (nombreTurista == null || nombreTurista.trim().isEmpty()) {
             throw new IllegalArgumentException("El nombre del turista no puede estar vacío.");
+        }
+
+        rutTurista = rutTurista.trim().toLowerCase();
+
+        if (!Validador.rutValido(rutTurista)) {
+            throw new IllegalArgumentException("El RUT no respeta el formato solicitado.");
         }
 
         correoTurista = correoTurista.trim().toLowerCase();
@@ -252,6 +277,7 @@ public class FormularioTurista {
 
         return new Turista(
                 nombreTurista.trim(),
+                rutTurista,
                 correoTurista,
                 telefonoTurista,
                 edadTurista,

@@ -37,11 +37,11 @@ public class GestorDatosTurista {
             if (!Files.exists(archivoGestorTurista)) {
 
                 List<String> datosSemilla = List.of(
-                        "1;ana torres;ana.torres@gmail.com;87654321;28;femenino;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5",
-                        "2;carlos perez;carlos.perez@gmail.com;91234567;34;masculino;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán",
-                        "3;marcela rios;marcela.rios@gmail.com;98765432;22;femenino;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial",
-                        "4;diego salinas;diego.salinas@gmail.com;99887766;41;masculino;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8",
-                        "5;paula fuentes;paula.fuentes@gmail.com;95544332;30;femenino;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó"
+                        "1;ana torres;40478812-4;ana.torres@gmail.com;87654321;28;femenino;RutaGastronomica;tour volcán osorno;5.0;25;los alerces;oficina;123;5",
+                        "2;carlos perez;1404636-4;carlos.perez@gmail.com;91234567;34;masculino;PaseoLacustre;travesía lago llanquihue;2.5;15;imperial;casa;456;catamarán",
+                        "3;marcela rios;89522362-K;marcela.rios@gmail.com;98765432;22;femenino;ExcursionCultural;ruta ecuestre frutillar;3.0;12;los castaños;parcela;78;museo colonial",
+                        "4;diego salinas;3978260-K;diego.salinas@gmail.com;99887766;41;masculino;RutaGastronomica;festival de sabores del mar;4.0;80;costanera;restaurant;210;8",
+                        "5;paula fuentes;14590799-3;paula.fuentes@gmail.com;95544332;30;femenino;ExcursionCultural;expedición valle cochamó;6.0;20;río puelo;refugio;15;valle cochamó"
                 );
 
                 Files.write(archivoGestorTurista, datosSemilla);
@@ -87,19 +87,20 @@ public class GestorDatosTurista {
                 datoExtra = ((ExcursionCultural) servicio).getLugarHistorico();
             }
 
-            String linea = codigo + ";" +
-                    turista.getNombre() + ";" +
-                    turista.getCorreoElectronico() + ";" +
-                    turista.getNumeroTelefonico() + ";" +
-                    turista.getEdad() + ";" +
-                    turista.getGenero() + ";" +
-                    tipoServicioTuristico + ";" +
-                    servicio.getNombre() + ";" +
-                    servicio.getDuracionHoras() + ";" +
+            String linea = codigo                       + ";" +
+                    turista.getNombre()                 + ";" +
+                    turista.getRUT()                    + ";" +
+                    turista.getCorreoElectronico()      + ";" +
+                    turista.getNumeroTelefonico()       + ";" +
+                    turista.getEdad()                   + ";" +
+                    turista.getGenero()                 + ";" +
+                    tipoServicioTuristico               + ";" +
+                    servicio.getNombre()                + ";" +
+                    servicio.getDuracionHoras()         + ";" +
                     servicio.getCantidadParticipantes() + ";" +
-                    direccion.getCalle() + ";" +
-                    direccion.getEdificacion() + ";" +
-                    direccion.getNumeroHogar() + ";" +
+                    direccion.getCalle()                + ";" +
+                    direccion.getEdificacion()          + ";" +
+                    direccion.getNumeroHogar()          + ";" +
                     datoExtra;
 
             lineas.add(linea);
@@ -134,22 +135,22 @@ public class GestorDatosTurista {
                 try {
                     String[] datos = linea.split(";");
 
-                    if (datos.length == 14) {
+                    if (datos.length == 15) {
 
                         String nombreTurista = datos[1].trim();
-                        String correoTurista = datos[2].trim();
-                        String telefonoTurista = datos[3].trim();
-                        int edadTurista = Integer.parseInt(datos[4].trim());
-                        String generoTurista = datos[5].trim();
-
-                        String tipoServicioTuristico = datos[6].trim();
-                        String nombreEvento = datos[7].trim();
-                        double cantidadHoras = Double.parseDouble(datos[8].trim());
-                        int cantidadParticipantes = Integer.parseInt(datos[9].trim());
-                        String nombreCalle = datos[10].trim();
-                        String edificacion = datos[11].trim();
-                        String numeroHogar = datos[12].trim();
-                        String datoExtra = datos[13].trim();
+                        String rutTurista = datos[2].trim();
+                        String correoTurista = datos[3].trim();
+                        String telefonoTurista = datos[4].trim();
+                        int edadTurista = Integer.parseInt(datos[5].trim());
+                        String generoTurista = datos[6].trim();
+                        String tipoServicioTuristico = datos[7].trim();
+                        String nombreEvento = datos[8].trim();
+                        double cantidadHoras = Double.parseDouble(datos[9].trim());
+                        int cantidadParticipantes = Integer.parseInt(datos[10].trim());
+                        String nombreCalle = datos[11].trim();
+                        String edificacion = datos[12].trim();
+                        String numeroHogar = datos[13].trim();
+                        String datoExtra = datos[14].trim();
 
                         Direccion direccion = new Direccion(nombreCalle, edificacion, numeroHogar);
 
@@ -172,6 +173,7 @@ public class GestorDatosTurista {
 
                         Turista turista = new Turista(
                                 nombreTurista,
+                                rutTurista,
                                 correoTurista,
                                 telefonoTurista,
                                 edadTurista,
