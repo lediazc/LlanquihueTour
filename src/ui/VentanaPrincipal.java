@@ -9,7 +9,12 @@ import data.*;
 import model.*;
 import util.Validador;
 
-
+/**
+ * Ventana principal de la aplicación Llanquihue Tour.
+ * Esta clase implementa la interfaz gráfica del sistema mediante Java Swing.
+ * Permite registrar, editar, consultar y filtrar operadores locales, turistas y servicios turísticos.
+ */
+public class VentanaPrincipal extends JFrame {
 public class VentanaPrincipal extends JFrame {
 
     //Instancias
@@ -137,7 +142,9 @@ public class VentanaPrincipal extends JFrame {
     private int indiceOperadorEditado = -1;
     private int indiceTuristaEditado = -1;
 
-
+    /**
+     * Constructor donde se inician los principales métodos
+     */
     public VentanaPrincipal(){
 
         inicializarDocumentos();
@@ -147,9 +154,8 @@ public class VentanaPrincipal extends JFrame {
         configurarVentana();
 
     }
-
+    
     public void inicializarDocumentos(){
-        //Verificar/crear archivos al iniciar el programa
         gestorOp.crearArchivoConDatosSemillaOperadorLocal();
         gestorTur.crearArchivoConDatosSemillaTurista();
         gestorServ.crearArchivoConDatosSemillaServicios();

@@ -1,6 +1,6 @@
 ![Duoc UC](https://www.duoc.cl/wp-content/uploads/2022/09/logo-0.png)
 
-# Actividad Sumativa 3: Interfaces e integración con colecciones genéricas
+# Evaluación final Transversal
 
 ## Autor del proyecto
 
@@ -13,7 +13,7 @@
 
 ## Descripción general del sistema
 
-Este proyecto corresponde a la Actividad Sumativa 3: Interfaces e integración con colecciones genéricas - **Desarrollo Orientado a Objetos I**.
+Este proyecto corresponde a la Evaluación final Transversal - **Desarrollo Orientado a Objetos I**.
 
 La solución desarrollada consiste en un sistema orientado a objetos para la gestión de actividades turísticas en la provincia de Llanquihue. El sistema permite representar operadores turísticos, turistas, eventos y direcciones, aplicando conceptos fundamentales de Programación Orientada a Objetos tales como encapsulamiento, herencia, composición, constructores, getters, setters y reutilización de código.
 
@@ -171,7 +171,15 @@ Contiene métodos estáticos de validación para:
 * Gestiona formularios, navegación con CardLayout y visualización de registros.
 ---
 ##  Funcionalidades implementadas
-Esta semana (13/07/2026) se implementaron las siguientes funcionalidades:
+Esta semana (19/07/2026) se implementaron las siguientes funcionalidades:
+
+- Edición de operadores y turistas previamente registrados.
+- Precarga automática de la información del registro seleccionado en los formularios.
+- Reutilización del mismo formulario para la creación y edición de registros.
+- Actualización de operadores y turistas reemplazando el registro correspondiente dentro de la colección `ArrayList`.
+- Persistencia de los cambios mediante la reescritura de los archivos de texto, evitando la generación de registros duplicados.
+---
+Semana (13/07/2026) se implementaron las siguientes funcionalidades:
 
 * Implementación de la interfaz Registrable.
 * Incorporación del gestor GestorEntidades.
@@ -264,13 +272,15 @@ El proyecto se encuentra organizado en paquetes según su responsabilidad:
 * model
 * data
 * util
+* ui
 
 ### Colecciones
 
-Se utilizan colecciones ArrayList para almacenar operadores locales, turistas y servicios turísticos cargados desde archivos de texto. La colección ArrayList<ServicioTuristico> permite demostrar el uso de polimorfismo recorriendo objetos de distintas subclases mediante una referencia común.
+- Se utilizan colecciones ArrayList para almacenar operadores locales, turistas y servicios turísticos cargados desde archivos de texto. La colección ArrayList<ServicioTuristico> permite demostrar el uso de polimorfismo recorriendo objetos de distintas subclases mediante una referencia común.
 
-Se implementó una colección ArrayList<Registrable> para almacenar entidades de distintos tipos bajo un contrato común, recorriéndolas mediante polimorfismo y diferenciándolas con el operador instanceof.
+- Se implementó una colección ArrayList<Registrable> para almacenar entidades de distintos tipos bajo un contrato común, recorriéndolas mediante polimorfismo y diferenciándolas con el operador instanceof. 
 
+- Se utiliza `ArrayList` junto con el método set() para actualizar registros existentes sin crear duplicados durante la edición de operadores y turistas.
 ---
 
 ##  Instrucciones para ejecutar el proyecto
@@ -295,7 +305,7 @@ src/app/Main.java
 
 **Repositorio GitHub:** https://github.com/lediazc/LlanquihueTour
 
-**Fecha de entrega:** 13/07/2026
+**Fecha de entrega:** 19/07/2026
 
 ---
 
