@@ -15,7 +15,6 @@ import util.Validador;
  * Permite registrar, editar, consultar y filtrar operadores locales, turistas y servicios turísticos.
  */
 public class VentanaPrincipal extends JFrame {
-public class VentanaPrincipal extends JFrame {
 
     //Instancias
     GestorDatosOperador gestorOp                = new GestorDatosOperador();
@@ -154,7 +153,7 @@ public class VentanaPrincipal extends JFrame {
         configurarVentana();
 
     }
-    
+
     public void inicializarDocumentos(){
         gestorOp.crearArchivoConDatosSemillaOperadorLocal();
         gestorTur.crearArchivoConDatosSemillaTurista();
